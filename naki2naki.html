@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Naki2Naki — Connect in Nakivale</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue:       #4A90D9;
+      --blue-light: #EBF4FF;
+      --blue-mid:   #C8DFFB;
+      --blue-dark:  #1E5FA8;
+      --blue-deep:  #0F3460;
+      --white:      #FFFFFF;
+      --bg:         #F4F8FD;
+      --gray-text:  #1F2937;
+      --gray-mid:   #6B7280;
+      --gray-light: #E5ECF4;
+      --green:      #22C55E;
+      --green-bg:   #DCFCE7;
+      --green-dark: #15803D;
+      --red:        #EF4444;
+      --radius-lg:  22px;
+      --radius-md:  14px;
+      --radius-sm:  10px;
+      --shadow-sm:  0 1px 8px rgba(30,95,168,0.08);
+      --shadow-md:  0 4px 24px rgba(30,95,168,0.12);
+      --shadow-lg:  0 8px 40px rgba(30,95,168,0.18);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--gray-text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+    body::before { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 10% 10%, rgba(74,144,217,0.08) 0%, transparent 55%), radial-gradient(ellipse at 90% 85%, rgba(74,144,217,0.05) 0%, transparent 50%); }
+
+    .screen { display: none; width: 100%; max-width: 440px; padding: 16px; position: relative; z-index: 1; min-height: 100vh; flex-direction: column; justify-content: center; }
+    .screen.active { display: flex; }
+    #chat-screen { justify-content: flex-start; padding: 0; max-width: 100%; width: 100%; }
+    #chat-screen .inner { max-width: 480px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; height: 100vh; }
+    #lobby-screen { justify-content: flex-start; padding-top: 0; }
+    .lobby-scroll { padding: 16px; }
+
+    .logo-wrap { text-align: center; margin-bottom: 6px; }
+    .logo { font-family: 'Syne', sans-serif; font-size: 2.6rem; font-weight: 800; color: var(--blue-deep); letter-spacing: -1.5px; line-height: 1; }
+    .logo .two { color: var(--blue); }
+    .logo-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--blue-light); border: 1.5px solid var(--blue-mid); border-radius: 20px; padding: 4px 14px; font-size: 0.76rem; font-weight: 700; color: var(--blue-dark); margin-top: 5px; }
+    .tagline { text-align: center; color: var(--gray-mid); font-size: 0.92rem; margin-bottom: 20px; font-weight: 500; }
+
+    .card { background: var(--white); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-md); border: 1px solid rgba(74,144,217,0.09); }
+
+    .field { margin-bottom: 16px; }
+    label { display: block; font-weight: 700; font-size: 0.78rem; margin-bottom: 6px; color: var(--gray-mid); letter-spacing: 0.6px; text-transform: uppercase; }
+    input { width: 100%; padding: 12px 14px; border: 2px solid var(--gray-light); border-radius: var(--radius-sm); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.97rem; outline: none; color: var(--gray-text); background: var(--white); transition: border 0.2s, box-shadow 0.2s; }
+    input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(74,144,217,0.13); }
+    input::placeholder { color: #A0AEC0; }
+
+    .gender-row { display: flex; gap: 10px; }
+    .gender-btn { flex: 1; padding: 11px 10px; border: 2px solid var(--gray-light); border-radius: var(--radius-sm); background: var(--white); cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.97rem; font-weight: 700; color: var(--gray-mid); text-align: center; transition: all 0.2s; }
+    .gender-btn.selected { border-color: var(--blue); background: var(--blue-light); color: var(--blue-dark); }
+
+    .zone-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .zone-btn { padding: 8px 16px; border: 2px solid var(--gray-light); border-radius: 30px; background: var(--white); cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.87rem; font-weight: 700; color: var(--gray-mid); transition: all 0.2s; }
+    .zone-btn.selected { border-color: var(--blue); background: var(--blue-light); color: var(--blue-dark); }
+
+    .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 18px; }
+    .lang-btn { padding: 10px 12px; border: 2px solid var(--gray-light); border-radius: var(--radius-sm); background: var(--white); cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.87rem; font-weight: 700; color: var(--gray-mid); transition: all 0.15s; text-align: left; display: flex; align-items: center; gap: 8px; }
+    .lang-btn.active { border-color: var(--blue); background: var(--blue-light); color: var(--blue-dark); }
+
+    .btn { width: 100%; padding: 14px; border: none; border-radius: var(--radius-md); font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+    .btn-blue { background: var(--blue); color: white; box-shadow: 0 4px 16px rgba(74,144,217,0.30); }
+    .btn-blue:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+    .btn-outline:hover { background: var(--blue-light); }
+    .btn-red { background: var(--red); color: white; }
+    .btn-sm { width: auto; padding: 8px 16px; font-size: 0.88rem; border-radius: var(--radius-sm); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; }
+    .mt12 { margin-top: 12px; }
+
+    .mood-row { display: flex; gap: 6px; flex-wrap: wrap; }
+    .mood-btn { font-size: 1.4rem; border: 2px solid transparent; border-radius: var(--radius-sm); background: var(--gray-light); padding: 5px 9px; cursor: pointer; transition: all 0.15s; line-height: 1; }
+    .mood-btn:hover { background: var(--blue-light); transform: scale(1.1); }
+    .mood-btn.selected { border-color: var(--blue); background: var(--blue-light); transform: scale(1.15); }
+
+    .stats-row { display: flex; gap: 8px; margin-bottom: 14px; }
+    .stat-box { flex: 1; background: var(--blue-light); border: 1.5px solid var(--blue-mid); border-radius: var(--radius-sm); padding: 10px 8px; text-align: center; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--blue-dark); }
+    .stat-label { font-size: 0.66rem; color: var(--gray-mid); font-weight: 600; margin-top: 2px; }
+
+    .content-tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+    .tab-btn { flex: 1; padding: 7px 4px; border: 1.5px solid var(--blue-mid); border-radius: var(--radius-sm); background: var(--white); cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--blue-dark); transition: all 0.15s; text-align: center; }
+    .tab-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+    .content-card { background: var(--blue-light); border: 1.5px solid var(--blue-mid); border-radius: var(--radius-md); padding: 14px 16px; margin-bottom: 14px; position: relative; min-height: 80px; }
+    .content-text { font-size: 0.92rem; line-height: 1.65; color: var(--blue-deep); font-weight: 500; }
+    .content-loading { color: var(--gray-mid); font-style: italic; font-size: 0.88rem; }
+    .content-refresh { position: absolute; top: 10px; right: 12px; background: none; border: none; cursor: pointer; font-size: 0.9rem; color: var(--blue); padding: 2px; font-weight: 700; letter-spacing: -1px; }
+
+    .queue-msg { text-align: center; color: var(--gray-mid); font-size: 0.9rem; margin: 10px 0 0; font-weight: 600; }
+    .dots-loader { display: inline-flex; gap: 4px; margin-left: 6px; }
+    .dot-b { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); animation: bounce 1.2s infinite; }
+    .dot-b:nth-child(2) { animation-delay: 0.2s; } .dot-b:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce { 0%,80%,100% { transform: translateY(0); } 40% { transform: translateY(-6px); } }
+
+    .online-strip { display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--green-bg); border: 1.5px solid #BBF7D0; border-radius: 30px; padding: 8px 20px; margin-bottom: 10px; font-weight: 700; font-size: 0.92rem; color: var(--green-dark); }
+    .green-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .green-dot.pulse { animation: glow 1.8s ease-in-out infinite; }
+    @keyframes glow { 0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); } 50% { box-shadow: 0 0 0 7px rgba(34,197,94,0); } }
+
+    .zone-online-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; justify-content: center; }
+    .zone-pill { display: flex; align-items: center; gap: 5px; background: var(--white); border: 1.5px solid var(--blue-mid); border-radius: 20px; padding: 4px 12px; font-size: 0.78rem; font-weight: 700; color: var(--blue-dark); }
+    .z-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+    .lobby-bar { background: var(--white); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1.5px solid var(--blue-mid); box-shadow: var(--shadow-sm); max-width: 440px; width: 100%; position: sticky; top: 0; z-index: 5; }
+    .lobby-bar-logo { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--blue-deep); }
+    .lobby-bar-logo span { color: var(--blue); }
+    .my-mood-badge { display: flex; align-items: center; gap: 5px; background: var(--blue-light); border: 1.5px solid var(--blue-mid); border-radius: 20px; padding: 3px 10px; font-size: 0.8rem; font-weight: 700; color: var(--blue-dark); }
+
+    .chat-header { background: var(--white); padding: 10px 14px; display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-sm); border-bottom: 1.5px solid var(--blue-mid); flex-shrink: 0; }
+    .avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; position: relative; }
+    .avatar-m { background: linear-gradient(135deg, #4A90D9, #1E5FA8); }
+    .avatar-f { background: linear-gradient(135deg, #F472B6, #BE185D); }
+    .av-online::after { content: ''; position: absolute; bottom: 1px; right: 1px; width: 10px; height: 10px; border-radius: 50%; background: var(--green); border: 2px solid white; }
+    .partner-info { flex: 1; min-width: 0; }
+    .partner-name { font-weight: 800; font-size: 0.97rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .partner-sub { font-size: 0.74rem; color: var(--gray-mid); font-weight: 500; }
+    .chat-online-badge { display: flex; align-items: center; gap: 5px; background: var(--green-bg); border: 1.5px solid #BBF7D0; border-radius: 20px; padding: 3px 10px; font-size: 0.74rem; font-weight: 700; color: var(--green-dark); white-space: nowrap; flex-shrink: 0; }
+    .chat-online-badge .cdot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+    .messages { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; scroll-behavior: smooth; }
+    .msg-wrap { display: flex; flex-direction: column; animation: msgIn 0.22s ease-out; position: relative; }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .msg-wrap.me { align-items: flex-end; } .msg-wrap.them { align-items: flex-start; }
+    .bubble { max-width: 78%; padding: 10px 14px; border-radius: 18px; font-size: 0.95rem; line-height: 1.45; word-break: break-word; }
+    .me .bubble { background: var(--blue); color: white; border-bottom-right-radius: 4px; }
+    .them .bubble { background: var(--white); color: var(--gray-text); border-bottom-left-radius: 4px; box-shadow: var(--shadow-sm); border: 1px solid var(--blue-mid); }
+    .msg-time { font-size: 0.67rem; color: var(--gray-mid); margin-top: 3px; padding: 0 4px; }
+    .bubble img { max-width: 200px; border-radius: 10px; display: block; cursor: pointer; }
+    .system-msg { text-align: center; font-size: 0.79rem; color: var(--gray-mid); background: var(--gray-light); border-radius: 20px; padding: 5px 14px; margin: 4px auto; max-width: 85%; font-weight: 500; }
+
+    .reaction-bar { display: flex; gap: 0; margin-top: 3px; opacity: 0; pointer-events: none; transition: opacity 0.18s; background: var(--white); border: 1.5px solid var(--blue-mid); border-radius: 30px; overflow: hidden; box-shadow: var(--shadow-sm); }
+    .msg-wrap:hover .reaction-bar, .reaction-bar.visible { opacity: 1; pointer-events: all; }
+    .rxn-btn { font-size: 1rem; cursor: pointer; padding: 4px 8px; border: none; background: none; transition: background 0.12s, transform 0.1s; line-height: 1; }
+    .rxn-btn:hover { background: var(--blue-light); transform: scale(1.3); }
+    .reaction-counts { display: flex; gap: 4px; margin-top: 3px; flex-wrap: wrap; }
+    .rxn-count { display: flex; align-items: center; gap: 2px; background: var(--white); border: 1.5px solid var(--blue-mid); border-radius: 20px; padding: 2px 8px; font-size: 0.75rem; font-weight: 700; color: var(--blue-dark); cursor: pointer; transition: background 0.15s; }
+    .rxn-count:hover { background: var(--blue-light); }
+    .rxn-count.mine { background: var(--blue-light); border-color: var(--blue); }
+
+    .voice-note-player { display: flex; align-items: center; gap: 8px; min-width: 160px; }
+    .vn-play-btn { width: 32px; height: 32px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+    .me .vn-play-btn { background: rgba(255,255,255,0.25); color: white; }
+    .them .vn-play-btn { background: var(--blue-light); color: var(--blue-dark); }
+    .vn-waveform { flex: 1; height: 24px; }
+    .vn-bars { display: flex; align-items: center; gap: 2px; height: 100%; }
+    .vn-bar { flex: 1; border-radius: 2px; min-height: 3px; }
+    .me .vn-bar { background: rgba(255,255,255,0.4); } .them .vn-bar { background: var(--blue-mid); }
+    .me .vn-bar.played { background: rgba(255,255,255,0.9); } .them .vn-bar.played { background: var(--blue); }
+    .vn-dur { font-size: 0.72rem; font-weight: 600; flex-shrink: 0; }
+    .me .vn-dur { color: rgba(255,255,255,0.8); } .them .vn-dur { color: var(--gray-mid); }
+
+    .input-bar { background: var(--white); padding: 8px 10px; display: flex; align-items: center; gap: 6px; border-top: 1.5px solid var(--blue-mid); flex-shrink: 0; }
+    .msg-iw { flex: 1; }
+    .msg-iw input { border: 1.5px solid var(--blue-mid); border-radius: 22px; padding: 10px 16px; background: var(--blue-light); font-size: 0.93rem; }
+    .msg-iw input:focus { background: var(--white); border-color: var(--blue); }
+    .icon-btn { width: 40px; height: 40px; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: all 0.15s; flex-shrink: 0; }
+    .icon-btn:hover { transform: scale(1.1); }
+    .ib-blue { background: var(--blue); color: white; }
+    .ib-light { background: var(--blue-light); color: var(--blue-dark); border: 1.5px solid var(--blue-mid); font-size: 1.3rem; font-weight: 700; }
+    .ib-red { background: #FEE2E2; color: var(--red); border: 1.5px solid #FCA5A5; font-size: 1rem; }
+    .icon-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    .media-wrap { position: relative; }
+    .media-menu { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: var(--white); border: 1.5px solid var(--blue-mid); border-radius: var(--radius-md); box-shadow: var(--shadow-lg); padding: 6px; display: flex; flex-direction: column; gap: 2px; opacity: 0; pointer-events: none; transition: opacity 0.15s, transform 0.15s; white-space: nowrap; min-width: 160px; z-index: 10; }
+    .media-menu.open { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .media-opt { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: var(--radius-sm); background: none; border: none; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--gray-text); transition: background 0.12s; width: 100%; text-align: left; }
+    .media-opt:hover { background: var(--blue-light); color: var(--blue-dark); }
+
+    .rec-bar { display: none; align-items: center; gap: 8px; flex: 1; background: #FEF2F2; border-radius: 22px; padding: 8px 14px; border: 1.5px solid #FCA5A5; }
+    .rec-bar.active { display: flex; }
+    .rec-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); animation: rpulse 0.8s infinite; flex-shrink: 0; }
+    @keyframes rpulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .rec-time { font-size: 0.9rem; font-weight: 700; color: var(--red); }
+    .rec-cancel { background: none; border: none; cursor: pointer; color: var(--gray-mid); font-size: 0.82rem; font-weight: 700; padding: 2px 6px; margin-left: auto; }
+
+    .match-modal-box { background: var(--white); border-radius: var(--radius-lg); padding: 28px 24px; max-width: 360px; width: 100%; box-shadow: var(--shadow-lg); animation: popIn 0.25s ease-out; text-align: center; }
+    .match-avatar-big { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 10px; font-size: 2.2rem; display: flex; align-items: center; justify-content: center; position: relative; }
+    .match-avatar-big::after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--green); border: 3px solid white; }
+    .match-title { font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--blue-deep); margin-bottom: 6px; }
+    .match-sub { font-size: 0.88rem; color: var(--gray-mid); line-height: 1.55; margin-bottom: 16px; }
+    .match-chips { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+    .match-chip { background: var(--blue-light); border: 1.5px solid var(--blue-mid); border-radius: 20px; padding: 4px 12px; font-size: 0.78rem; font-weight: 700; color: var(--blue-dark); }
+
+    .modal-overlay { position: fixed; inset: 0; background: rgba(15,52,96,0.5); z-index: 100; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: var(--white); border-radius: var(--radius-lg); padding: 24px; max-width: 360px; width: 100%; box-shadow: var(--shadow-lg); animation: popIn 0.2s ease-out; }
+    @keyframes popIn { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; color: var(--blue-dark); }
+    .modal-body { font-size: 0.9rem; color: var(--gray-mid); line-height: 1.6; margin-bottom: 18px; }
+    .modal-actions { display: flex; gap: 10px; }
+
+    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: var(--blue-deep); color: white; padding: 10px 22px; border-radius: 24px; font-size: 0.88rem; font-weight: 600; z-index: 999; display: none; max-width: 88%; text-align: center; box-shadow: var(--shadow-lg); }
+    .toast.show { display: block; animation: toastAnim 2.8s forwards; }
+    @keyframes toastAnim { 0% { opacity: 0; transform: translateX(-50%) translateY(10px); } 15% { opacity: 1; transform: translateX(-50%) translateY(0); } 80% { opacity: 1; } 100% { opacity: 0; } }
+
+    .step-label { font-size: 0.72rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-bottom: 4px; }
+    .section-label { font-weight: 700; font-size: 0.78rem; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .hidden { display: none !important; }
+    .err { color: var(--red); font-size: 0.82rem; margin-top: 6px; font-weight: 600; }
+    hr { border: none; border-top: 1.5px solid var(--blue-mid); margin: 14px 0; }
+    .security-note { text-align: center; color: var(--gray-mid); font-size: 0.77rem; font-weight: 500; margin-top: 12px; }
+  </style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">Leave Chat?</div>
+    <div class="modal-body" id="modal-body">Are you sure? Your partner will be disconnected.</div>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" style="flex:1" id="modal-cancel">Cancel</button>
+      <button class="btn btn-red btn-sm" style="flex:1" id="modal-confirm">Leave</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="match-modal">
+  <div class="match-modal-box">
+    <div class="match-avatar-big avatar-m" id="mm-avatar">👤</div>
+    <div class="match-title" id="mm-match-title">You have a match</div>
+    <div class="match-sub" id="mm-desc">Someone feeling the same way is ready to connect.</div>
+    <div class="match-chips" id="mm-chips"></div>
+    <button class="btn btn-blue" id="mm-start-btn">Start Chatting</button>
+  </div>
+</div>
+
+<!-- SCREEN 1: LANGUAGE -->
+<div class="screen active" id="lang-screen">
+  <div class="logo-wrap">
+    <div class="logo">Naki<span class="two">2</span>Naki</div>
+    <div class="logo-badge">Nakivale Refugee Settlement, Uganda</div>
+  </div>
+  <p class="tagline" id="tl-tagline">Talk to someone new. Feel less alone.</p>
+  <div class="card">
+    <p class="step-label" id="tl-step1">Step 1 of 3 — Language</p>
+    <p style="font-weight:700;text-align:center;margin-bottom:12px;font-size:0.95rem" id="tl-chooselang">Choose your language</p>
+    <div class="lang-grid" id="lang-row">
+      <button class="lang-btn active" data-lang="en">🇬🇧 English</button>
+      <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+      <button class="lang-btn" data-lang="sw">🇹🇿 Kiswahili</button>
+      <button class="lang-btn" data-lang="so">🇸🇴 Soomaali</button>
+      <button class="lang-btn" data-lang="rw">🇷🇼 Kinyarwanda</button>
+      <button class="lang-btn" data-lang="ar">🇸🇦 عربي</button>
+    </div>
+    <button class="btn btn-blue" id="lang-next-btn">Continue</button>
+  </div>
+</div>
+
+<!-- SCREEN 2: PROFILE -->
+<div class="screen" id="profile-screen">
+  <div class="logo-wrap"><div class="logo">Naki<span class="two">2</span>Naki</div></div>
+  <p class="tagline" id="tl-tagline2">Create your anonymous profile</p>
+  <div class="card">
+    <p class="step-label" id="tl-step2">Step 2 of 3 — Profile</p>
+    <div class="field">
+      <label id="tl-username">Username</label>
+      <input type="text" id="username-input" maxlength="20" placeholder="e.g. Amani22" autocomplete="off"/>
+    </div>
+    <div class="field">
+      <label id="tl-gender">I am</label>
+      <div class="gender-row">
+        <button class="gender-btn" data-g="male" id="btn-male">Male</button>
+        <button class="gender-btn" data-g="female" id="btn-female">Female</button>
+      </div>
+    </div>
+    <div class="field">
+      <label id="tl-zone">My Zone in Nakivale</label>
+      <div class="zone-row" id="zone-row">
+        <button class="zone-btn" data-zone="Juru">Juru</button>
+        <button class="zone-btn" data-zone="Basecamp">Basecamp</button>
+        <button class="zone-btn" data-zone="Rubondo">Rubondo</button>
+        <button class="zone-btn" data-zone="Other" id="zone-other-btn">Other</button>
+      </div>
+    </div>
+    <div class="field hidden" id="other-loc-field">
+      <label id="tl-location">Write your location</label>
+      <input type="text" id="location-input" maxlength="50" placeholder="e.g. Zone 5, Nakivale"/>
+    </div>
+    <p class="err hidden" id="profile-err">Please fill in all fields above.</p>
+    <button class="btn btn-blue mt12" id="profile-next-btn">Continue</button>
+  </div>
+</div>
+
+<!-- SCREEN 3: MOOD -->
+<div class="screen" id="mood-screen">
+  <div class="logo-wrap"><div class="logo">Naki<span class="two">2</span>Naki</div></div>
+  <p class="tagline" id="tl-tagline3">Your mood helps us find the right match</p>
+  <div class="card">
+    <p class="step-label" id="tl-step3">Step 3 of 3 — Mood</p>
+    <p style="font-weight:700;text-align:center;margin-bottom:16px;font-size:1rem" id="tl-moodpick">How are you feeling right now?</p>
+    <div class="mood-row" id="mood-row" style="justify-content:center;gap:10px;margin-bottom:20px">
+      <button class="mood-btn selected" data-mood="😊" data-en="Happy" data-fr="Heureux" data-sw="Furaha" data-so="Faraxsan" data-rw="Umunezero" data-ar="سعيد">😊</button>
+      <button class="mood-btn" data-mood="😢" data-en="Sad" data-fr="Triste" data-sw="Huzuni" data-so="Murugsan" data-rw="Agahinda" data-ar="حزين">😢</button>
+      <button class="mood-btn" data-mood="😂" data-en="Playful" data-fr="Joueur" data-sw="Mchezaji" data-so="Cayaaraha" data-rw="Gukina" data-ar="مرح">😂</button>
+      <button class="mood-btn" data-mood="😡" data-en="Frustrated" data-fr="Frustré" data-sw="Hasira" data-so="Caajis" data-rw="Umujinya" data-ar="محبط">😡</button>
+      <button class="mood-btn" data-mood="😴" data-en="Tired" data-fr="Fatigué" data-sw="Uchovu" data-so="Daallan" data-rw="Umunaniro" data-ar="متعب">😴</button>
+      <button class="mood-btn" data-mood="😫" data-en="Exhausted" data-fr="Épuisé" data-sw="Mchovu sana" data-so="Daallan xoog" data-rw="Umunaniro mukaze" data-ar="منهك">😫</button>
+      <button class="mood-btn" data-mood="🙏" data-en="Grateful" data-fr="Reconnaissant" data-sw="Shukrani" data-so="Mahadsan" data-rw="Gushimira" data-ar="ممتن">🙏</button>
+      <button class="mood-btn" data-mood="💪" data-en="Strong" data-fr="Fort" data-sw="Nguvu" data-so="Xoog" data-rw="Ingirakamaro" data-ar="قوي">💪</button>
+      <button class="mood-btn" data-mood="❤️" data-en="Loving" data-fr="Aimant" data-sw="Upendo" data-so="Jacayl" data-rw="Urukundo" data-ar="محب">❤️</button>
+      <button class="mood-btn" data-mood="🌟" data-en="Inspired" data-fr="Inspiré" data-sw="Msukumo" data-so="Maskax" data-rw="Gutumaanwa" data-ar="ملهم">🌟</button>
+    </div>
+    <div id="mood-selected-label" style="text-align:center;font-weight:700;color:var(--blue-dark);margin-bottom:14px;font-size:1rem">Feeling Happy 😊</div>
+    <p style="text-align:center;font-size:0.82rem;color:var(--gray-mid);margin-bottom:16px" id="tl-moodmatch">We match you with someone who shares a similar mood.</p>
+    <button class="btn btn-blue" id="mood-next-btn">Enter Naki2Naki</button>
+  </div>
+</div>
+
+<!-- SCREEN 4: LOBBY -->
+<div class="screen" id="lobby-screen">
+  <div class="lobby-bar">
+    <div class="lobby-bar-logo">Naki<span>2</span>Naki</div>
+    <div class="my-mood-badge" id="my-mood-badge">😊 Happy</div>
+  </div>
+  <div class="lobby-scroll">
+    <div style="height:12px"></div>
+    <div class="online-strip">
+      <div class="green-dot pulse"></div>
+      <span id="online-count">0</span>&nbsp;<span id="tl-online">people online now</span>
+    </div>
+    <div class="zone-online-row">
+      <div class="zone-pill"><div class="z-dot"></div>Juru:&nbsp;<b id="cnt-juru">0</b></div>
+      <div class="zone-pill"><div class="z-dot"></div>Basecamp:&nbsp;<b id="cnt-base">0</b></div>
+      <div class="zone-pill"><div class="z-dot"></div>Rubondo:&nbsp;<b id="cnt-rubondo">0</b></div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-num" id="stat-chats">0</div><div class="stat-label" id="tl-stat-chats">Chats</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-streak">0</div><div class="stat-label" id="tl-stat-streak">Day Streak</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-msgs">0</div><div class="stat-label" id="tl-stat-msgs">Messages</div></div>
+      </div>
+
+      <div class="section-label" id="tl-moodtag">Your mood today</div>
+      <div class="mood-row" id="lobby-mood-row" style="margin-bottom:14px">
+        <button class="mood-btn selected" data-mood="😊" data-en="Happy" data-fr="Heureux" data-sw="Furaha" data-so="Faraxsan" data-rw="Umunezero" data-ar="سعيد">😊</button>
+        <button class="mood-btn" data-mood="😢" data-en="Sad" data-fr="Triste" data-sw="Huzuni" data-so="Murugsan" data-rw="Agahinda" data-ar="حزين">😢</button>
+        <button class="mood-btn" data-mood="😂" data-en="Playful" data-fr="Joueur" data-sw="Mchezaji" data-so="Cayaaraha" data-rw="Gukina" data-ar="مرح">😂</button>
+        <button class="mood-btn" data-mood="😡" data-en="Frustrated" data-fr="Frustré" data-sw="Hasira" data-so="Caajis" data-rw="Umujinya" data-ar="محبط">😡</button>
+        <button class="mood-btn" data-mood="😴" data-en="Tired" data-fr="Fatigué" data-sw="Uchovu" data-so="Daallan" data-rw="Umunaniro" data-ar="متعب">😴</button>
+        <button class="mood-btn" data-mood="😫" data-en="Exhausted" data-fr="Épuisé" data-sw="Mchovu sana" data-so="Daallan xoog" data-rw="Umunaniro mukaze" data-ar="منهك">😫</button>
+        <button class="mood-btn" data-mood="🙏" data-en="Grateful" data-fr="Reconnaissant" data-sw="Shukrani" data-so="Mahadsan" data-rw="Gushimira" data-ar="ممتن">🙏</button>
+        <button class="mood-btn" data-mood="💪" data-en="Strong" data-fr="Fort" data-sw="Nguvu" data-so="Xoog" data-rw="Ingirakamaro" data-ar="قوي">💪</button>
+        <button class="mood-btn" data-mood="❤️" data-en="Loving" data-fr="Aimant" data-sw="Upendo" data-so="Jacayl" data-rw="Urukundo" data-ar="محب">❤️</button>
+        <button class="mood-btn" data-mood="🌟" data-en="Inspired" data-fr="Inspiré" data-sw="Msukumo" data-so="Maskax" data-rw="Gutumaanwa" data-ar="ملهم">🌟</button>
+      </div>
+
+      <hr/>
+
+      <div class="content-tabs">
+        <button class="tab-btn active" data-tab="advice"><span id="tl-tab-advice">Advice</span></button>
+        <button class="tab-btn" data-tab="skills"><span id="tl-tab-skills">Learn</span></button>
+        <button class="tab-btn" data-tab="nakivale"><span id="tl-tab-nakivale">Nakivale</span></button>
+        <button class="tab-btn" data-tab="inspire"><span id="tl-tab-inspire">Inspire</span></button>
+        <button class="tab-btn" data-tab="joke"><span id="tl-tab-joke">Joke</span></button>
+      </div>
+      <div class="content-card">
+        <button class="content-refresh" id="content-refresh" title="Load another">&#8635;</button>
+        <div class="content-text" id="content-text">
+          <span class="content-loading" id="tl-loading">Loading...</span>
+        </div>
+      </div>
+
+      <button class="btn btn-blue" id="find-btn"><span id="tl-findFriend">Find a Friend in Nakivale</span></button>
+      <div class="queue-msg hidden" id="queue-msg">
+        <span id="tl-searching">Looking for someone with a matching mood</span>
+        <span class="dots-loader"><div class="dot-b"></div><div class="dot-b"></div><div class="dot-b"></div></span>
+      </div>
+      <p class="security-note" id="tl-anon">Your identity is protected. Anonymous and private.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 5: CHAT -->
+<div class="screen" id="chat-screen">
+  <div class="inner">
+    <div class="chat-header">
+      <div class="avatar av-online" id="partner-avatar">?</div>
+      <div class="partner-info">
+        <div class="partner-name" id="partner-name">---</div>
+        <div class="partner-sub" id="partner-sub">---</div>
+      </div>
+      <div class="chat-online-badge"><div class="cdot"></div><span id="chat-online-count">0</span>&nbsp;<span id="tl-chat-online">online</span></div>
+      <button class="btn btn-red btn-sm" id="leave-btn">Leave</button>
+    </div>
+    <div class="messages" id="messages"></div>
+    <div class="input-bar">
+      <div class="media-wrap">
+        <button class="icon-btn ib-light" id="media-btn" title="Photo">+</button>
+        <div class="media-menu" id="media-menu">
+          <button class="media-opt" id="opt-upload">Upload from device</button>
+          <button class="media-opt" id="opt-camera">Take a photo</button>
+        </div>
+      </div>
+      <input type="file" id="img-input" accept="image/*" style="display:none"/>
+      <input type="file" id="cam-input" accept="image/*" capture="environment" style="display:none"/>
+      <button class="icon-btn ib-red" id="mic-btn" title="Voice note">&#127908;</button>
+      <div class="rec-bar" id="rec-bar">
+        <div class="rec-dot"></div>
+        <span class="rec-time" id="rec-time">0:00</span>
+        <span style="font-size:0.72rem;color:var(--red);font-weight:600">/ 1:00</span>
+        <button class="rec-cancel" id="rec-cancel">Cancel</button>
+      </div>
+      <div class="msg-iw" id="text-input-wrap">
+        <input type="text" id="msg-input" placeholder="Type a message..." maxlength="500" autocomplete="off"/>
+      </div>
+      <button class="icon-btn ib-blue" id="send-btn">&#10148;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://hesvrqudqleoxqbsacfi.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhlc3ZycXVkcWxlb3hxYnNhY2ZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3MTY0NDQsImV4cCI6MjA5MTI5MjQ0NH0.yL_k7KJ12L0GF-yoTaW67mfm-G_m3Xqx920X6hKIWBw';
+
+// ─── TRANSLATIONS ────────────────────────────────────────────────────────────
+const T = {
+  en:{
+    tagline:'Talk to someone new. Feel less alone.',
+    tagline2:'Create your anonymous profile',
+    tagline3:'Your mood helps us find the right match',
+    step1:'Step 1 of 3 — Language',
+    step2:'Step 2 of 3 — Profile',
+    step3:'Step 3 of 3 — Mood',
+    chooselang:'Choose your language',
+    moodpick:'How are you feeling right now?',
+    moodmatch:'We match you with someone who shares a similar mood.',
+    enter:'Enter Naki2Naki',
+    username:'Username',
+    usernamePH:'e.g. Amani22',
+    gender:'I am',
+    male:'Male',
+    female:'Female',
+    zone:'My Zone in Nakivale',
+    zoneOther:'Other',
+    location:'Write your location',
+    locationPH:'e.g. Zone 5, Nakivale',
+    profileErr:'Please fill in all fields above.',
+    continue:'Continue',
+    online:'people online now',
+    chatOnline:'online',
+    moodtag:'Your mood today',
+    findFriend:'Find a Friend in Nakivale',
+    searching:'Looking for someone with a matching mood',
+    anon:'Your identity is protected. Anonymous and private.',
+    leave:'Leave',
+    leaveTitle:'Leave Chat?',
+    leaveBody:'Are you sure? Your partner will be disconnected.',
+    cancel:'Cancel',
+    partnerleft:'Your partner left the chat.',
+    connected:'Connected with',
+    typeMsg:'Type a message...',
+    tabAdvice:'Advice',
+    tabSkills:'Learn',
+    tabNakivale:'Nakivale',
+    tabInspire:'Inspire',
+    tabJoke:'Joke',
+    loading:'Loading...',
+    matchfound:'You have a match',
+    matchFeeling:'is feeling',
+    matchGoodMatch:'— a good match for you.',
+    startChat:'Start Chatting',
+    statChats:'Chats',
+    statStreak:'Day Streak',
+    statMsgs:'Messages',
+    optUpload:'Upload from device',
+    optCamera:'Take a photo',
+    recCancel:'Cancel',
+    sendingToast:'Sending...',
+    onlyImages:'Only image files are allowed.',
+    imageTooLarge:'Image too large. Maximum 8MB.',
+    uploadFailed:'Upload failed. Please try again.',
+    voiceUploadFailed:'Voice upload failed.',
+    micUnavailable:'Microphone not available.',
+    feelingPrefix:'Feeling',
+  },
+  fr:{
+    tagline:'Parle à quelqu\'un de nouveau. Sens-toi moins seul.',
+    tagline2:'Crée ton profil anonyme',
+    tagline3:'Ton humeur nous aide à trouver la bonne personne',
+    step1:'Étape 1 sur 3 — Langue',
+    step2:'Étape 2 sur 3 — Profil',
+    step3:'Étape 3 sur 3 — Humeur',
+    chooselang:'Choisis ta langue',
+    moodpick:'Comment te sens-tu en ce moment ?',
+    moodmatch:'Nous te trouvons quelqu\'un avec une humeur similaire.',
+    enter:'Entrer dans Naki2Naki',
+    username:'Nom d\'utilisateur',
+    usernamePH:'ex. Amani22',
+    gender:'Je suis',
+    male:'Homme',
+    female:'Femme',
+    zone:'Ma zone à Nakivale',
+    zoneOther:'Autre',
+    location:'Écris ta localisation',
+    locationPH:'ex. Zone 5, Nakivale',
+    profileErr:'Remplis tous les champs ci-dessus.',
+    continue:'Continuer',
+    online:'personnes en ligne',
+    chatOnline:'en ligne',
+    moodtag:'Ton humeur aujourd\'hui',
+    findFriend:'Trouver un ami à Nakivale',
+    searching:'Recherche d\'une personne avec la même humeur',
+    anon:'Ton identité est protégée. Anonyme et privé.',
+    leave:'Quitter',
+    leaveTitle:'Quitter le chat ?',
+    leaveBody:'Tu es sûr ? Ton partenaire sera déconnecté.',
+    cancel:'Annuler',
+    partnerleft:'Ton partenaire a quitté.',
+    connected:'Connecté avec',
+    typeMsg:'Écris un message...',
+    tabAdvice:'Conseil',
+    tabSkills:'Apprendre',
+    tabNakivale:'Nakivale',
+    tabInspire:'Inspiration',
+    tabJoke:'Blague',
+    loading:'Chargement...',
+    matchfound:'Tu as trouvé quelqu\'un',
+    matchFeeling:'ressent',
+    matchGoodMatch:'— un bon match pour toi.',
+    startChat:'Commencer à chatter',
+    statChats:'Chats',
+    statStreak:'Jours',
+    statMsgs:'Messages',
+    optUpload:'Télécharger depuis l\'appareil',
+    optCamera:'Prendre une photo',
+    recCancel:'Annuler',
+    sendingToast:'Envoi...',
+    onlyImages:'Seules les images sont autorisées.',
+    imageTooLarge:'Image trop grande. Maximum 8 Mo.',
+    uploadFailed:'Échec du téléchargement. Réessaie.',
+    voiceUploadFailed:'Échec de l\'envoi vocal.',
+    micUnavailable:'Microphone non disponible.',
+    feelingPrefix:'Humeur',
+  },
+  sw:{
+    tagline:'Zungumza na mtu mpya. Jisikie peke yako kidogo.',
+    tagline2:'Unda wasifu wako wa siri',
+    tagline3:'Hisia zako zinatuwezesha kukupanga vizuri',
+    step1:'Hatua 1 ya 3 — Lugha',
+    step2:'Hatua 2 ya 3 — Wasifu',
+    step3:'Hatua 3 ya 3 — Hisia',
+    chooselang:'Chagua lugha yako',
+    moodpick:'Unajisikiaje sasa hivi?',
+    moodmatch:'Tunakupanga na mtu mwenye hisia kama zako.',
+    enter:'Ingia Naki2Naki',
+    username:'Jina la mtumiaji',
+    usernamePH:'mfano. Amani22',
+    gender:'Mimi ni',
+    male:'Mwanaume',
+    female:'Mwanamke',
+    zone:'Eneo langu Nakivale',
+    zoneOther:'Nyingine',
+    location:'Andika mahali ulipo',
+    locationPH:'mfano. Eneo 5, Nakivale',
+    profileErr:'Tafadhali jaza sehemu zote hapo juu.',
+    continue:'Endelea',
+    online:'watu wako mtandaoni',
+    chatOnline:'mtandaoni',
+    moodtag:'Hisia zako leo',
+    findFriend:'Tafuta Rafiki Nakivale',
+    searching:'Inatafuta mtu mwenye hisia kama zako',
+    anon:'Utambulisho wako umelindwa. Siri na salama.',
+    leave:'Ondoka',
+    leaveTitle:'Ondoka kwenye mazungumzo?',
+    leaveBody:'Una uhakika? Mwenzako atakatwa.',
+    cancel:'Ghairi',
+    partnerleft:'Mwenzako ameacha.',
+    connected:'Umeunganishwa na',
+    typeMsg:'Andika ujumbe...',
+    tabAdvice:'Ushauri',
+    tabSkills:'Jifunza',
+    tabNakivale:'Nakivale',
+    tabInspire:'Hamasa',
+    tabJoke:'Mzaha',
+    loading:'Inapakia...',
+    matchfound:'Umepata mtu',
+    matchFeeling:'anahisi',
+    matchGoodMatch:'— unafanana vizuri.',
+    startChat:'Anza Kuzungumza',
+    statChats:'Mazungumzo',
+    statStreak:'Siku',
+    statMsgs:'Ujumbe',
+    optUpload:'Pakia kutoka kwenye kifaa',
+    optCamera:'Piga picha',
+    recCancel:'Ghairi',
+    sendingToast:'Inatuma...',
+    onlyImages:'Faili za picha tu zinaruhusiwa.',
+    imageTooLarge:'Picha kubwa sana. Ukubwa wa juu 8MB.',
+    uploadFailed:'Kupakia kumeshindwa. Jaribu tena.',
+    voiceUploadFailed:'Kupakia sauti kumeshindwa.',
+    micUnavailable:'Kipaza sauti hakipatikani.',
+    feelingPrefix:'Hisia',
+  },
+  so:{
+    tagline:'La hadal qof cusub. Dareemo kaliya yaraan.',
+    tagline2:'Samee profile sir ah',
+    tagline3:'Dareenkaagu waxa uu na caawinayaa',
+    step1:'Tallaabo 1 ee 3 — Luqadda',
+    step2:'Tallaabo 2 ee 3 — Xogta',
+    step3:'Tallaabo 3 ee 3 — Dareenka',
+    chooselang:'Dooro luqaddaada',
+    moodpick:'Sideed dareemaysaa hadda?',
+    moodmatch:'Waxa aan kuu raadineynaa qof la mid ah dareenkaaga.',
+    enter:'Geli Naki2Naki',
+    username:'Magaca isticmaalaha',
+    usernamePH:'tusaale. Amani22',
+    gender:'Aniga waxaan ahay',
+    male:'Lab',
+    female:'Dheddig',
+    zone:'Goobteeyda Nakivale',
+    zoneOther:'Kale',
+    location:'Qor goobta aad joogto',
+    locationPH:'tusaale. Goob 5, Nakivale',
+    profileErr:'Fadlan buuxi dhammaan goobaha kore.',
+    continue:'Sii wad',
+    online:'qof online ah',
+    chatOnline:'online',
+    moodtag:'Dareenkaaga maanta',
+    findFriend:'Raadi Saaxiib Nakivale',
+    searching:'Waxaa la raadinayaa qof dareen la mid ah',
+    anon:'Aqoonsigaaga waa la ilaalinayaa. Qarsoodi iyo amni.',
+    leave:'Ka bax',
+    leaveTitle:'Ka bax wada hadalka?',
+    leaveBody:'Ma hubtaa? Lammaanaha ayaa la qabti doonaa.',
+    cancel:'Jooji',
+    partnerleft:'Lammaanaha ayaa ka baxay.',
+    connected:'Waad la xidnaatay',
+    typeMsg:'Qor fariin...',
+    tabAdvice:'Talo',
+    tabSkills:'Baaro',
+    tabNakivale:'Nakivale',
+    tabInspire:'Dhiirri',
+    tabJoke:'Majaajil',
+    loading:'Waa la raraya...',
+    matchfound:'Waad heshay qof',
+    matchFeeling:'wuxuu dareemayaa',
+    matchGoodMatch:'— aad u habboon tahay.',
+    startChat:'Bilow Hadallada',
+    statChats:'Xidhiidhyo',
+    statStreak:'Maalmood',
+    statMsgs:'Farriimo',
+    optUpload:'Ka soo geli telefoonka',
+    optCamera:'Sawir qaad',
+    recCancel:'Jooji',
+    sendingToast:'Waa la diraya...',
+    onlyImages:'Sawirrada kaliya ayaa la oggolyahay.',
+    imageTooLarge:'Sawiirka aad buu u weyn yahay. 8MB ayaa ugu badnaan.',
+    uploadFailed:'Rarida ayaa fashilantay. Mar kale isku day.',
+    voiceUploadFailed:'Codka rarida ayaa fashilantay.',
+    micUnavailable:'Microphone lama heli karo.',
+    feelingPrefix:'Dareenka',
+  },
+  rw:{
+    tagline:'Vugana n\'umuntu mushya. Wiyumve neza.',
+    tagline2:'Kora umwirondoro wanditse',
+    tagline3:'Imyumvire yawe itubasiraho gushaka inshuti ikwiye',
+    step1:'Intambwe 1 ya 3 — Ururimi',
+    step2:'Intambwe 2 ya 3 — Umwirondoro',
+    step3:'Intambwe 3 ya 3 — Imyumvire',
+    chooselang:'Hitamo ururimi rwawe',
+    moodpick:'Wumva ute ubu?',
+    moodmatch:'Tushaka umuntu ufite imyumvire nkawe.',
+    enter:'Injira Naki2Naki',
+    username:'Izina ry\'ukoresha',
+    usernamePH:'urugero. Amani22',
+    gender:'Ndi',
+    male:'Gabo',
+    female:'Gore',
+    zone:'Akarere kanjye Nakivale',
+    zoneOther:'Ikindi',
+    location:'Andika aho uri',
+    locationPH:'urugero. Zone 5, Nakivale',
+    profileErr:'Uzuza imirima yose hejuru.',
+    continue:'Komeza',
+    online:'abantu bari kumurongo',
+    chatOnline:'kumurongo',
+    moodtag:'Imyumvire yawe uyu munsi',
+    findFriend:'Shaka Inshuti Nakivale',
+    searching:'Gushaka inshuti ifite imyumvire nkawe',
+    anon:'Indangamuntu yawe irindwa. Ibanga n\'umutekano.',
+    leave:'Sohoka',
+    leaveTitle:'Gusohoka mu kiganiro?',
+    leaveBody:'Uremeza? Inshuti yawe izacikirwa.',
+    cancel:'Hagarika',
+    partnerleft:'Inshuti yawe yasohutse.',
+    connected:'Wahukanye na',
+    typeMsg:'Andika ubutumwa...',
+    tabAdvice:'Inama',
+    tabSkills:'Iga',
+    tabNakivale:'Nakivale',
+    tabInspire:'Shishikariza',
+    tabJoke:'Sesha',
+    loading:'Biratindwa...',
+    matchfound:'Wabonanye n\'umuntu',
+    matchFeeling:'yumva',
+    matchGoodMatch:'— bikwiye cyane.',
+    startChat:'Tangira Ikiganiro',
+    statChats:'Ikiganiro',
+    statStreak:'Iminsi',
+    statMsgs:'Ubutumwa',
+    optUpload:'Kohereza uturere',
+    optCamera:'Fata ifoto',
+    recCancel:'Hagarika',
+    sendingToast:'Koherezwa...',
+    onlyImages:'Amafoto gusa ni yo yemerewe.',
+    imageTooLarge:'Ifoto ni nini cyane. 8MB ni urugero.',
+    uploadFailed:'Kohereza ntibyakunze. Ongera ugerageze.',
+    voiceUploadFailed:'Kohereza ijwi ntibyakunze.',
+    micUnavailable:'Microphone ntiboneka.',
+    feelingPrefix:'Imyumvire',
+  },
+  ar:{
+    tagline:'تحدث مع شخص جديد. اشعر بوحدة أقل.',
+    tagline2:'أنشئ ملفك الشخصي المجهول',
+    tagline3:'مزاجك يساعدنا في إيجاد الشخص المناسب',
+    step1:'الخطوة 1 من 3 — اللغة',
+    step2:'الخطوة 2 من 3 — الملف الشخصي',
+    step3:'الخطوة 3 من 3 — المزاج',
+    chooselang:'اختر لغتك',
+    moodpick:'كيف تشعر الآن؟',
+    moodmatch:'نجد لك شخصاً يشاركك نفس المزاج.',
+    enter:'ادخل إلى Naki2Naki',
+    username:'اسم المستخدم',
+    usernamePH:'مثال: Amani22',
+    gender:'أنا',
+    male:'ذكر',
+    female:'أنثى',
+    zone:'منطقتي في ناكيفالي',
+    zoneOther:'أخرى',
+    location:'اكتب موقعك',
+    locationPH:'مثال: المنطقة 5، ناكيفالي',
+    profileErr:'يرجى ملء جميع الحقول أعلاه.',
+    continue:'متابعة',
+    online:'شخص متصل الآن',
+    chatOnline:'متصل',
+    moodtag:'مزاجك اليوم',
+    findFriend:'ابحث عن صديق في ناكيفالي',
+    searching:'نبحث عن شخص بنفس مزاجك',
+    anon:'هويتك محمية. مجهول وخاص.',
+    leave:'مغادرة',
+    leaveTitle:'مغادرة الدردشة؟',
+    leaveBody:'هل أنت متأكد؟ سيتم فصل شريكك.',
+    cancel:'إلغاء',
+    partnerleft:'غادر شريكك.',
+    connected:'متصل بـ',
+    typeMsg:'اكتب رسالة...',
+    tabAdvice:'نصيحة',
+    tabSkills:'تعلم',
+    tabNakivale:'ناكيفالي',
+    tabInspire:'إلهام',
+    tabJoke:'نكتة',
+    loading:'جارٍ التحميل...',
+    matchfound:'وجدت شريكاً',
+    matchFeeling:'يشعر بـ',
+    matchGoodMatch:'— مطابقة جيدة لك.',
+    startChat:'ابدأ الدردشة',
+    statChats:'محادثات',
+    statStreak:'أيام',
+    statMsgs:'رسائل',
+    optUpload:'رفع من الجهاز',
+    optCamera:'التقاط صورة',
+    recCancel:'إلغاء',
+    sendingToast:'جارٍ الإرسال...',
+    onlyImages:'ملفات الصور فقط مسموح بها.',
+    imageTooLarge:'الصورة كبيرة جداً. الحد الأقصى 8 ميغابايت.',
+    uploadFailed:'فشل الرفع. حاول مرة أخرى.',
+    voiceUploadFailed:'فشل رفع الصوت.',
+    micUnavailable:'الميكروفون غير متاح.',
+    feelingPrefix:'المزاج',
+  },
+};
+
+// ─── LOCAL CONTENT ────────────────────────────────────────────────────────────
+const LOCAL_CONTENT = {
+  advice:[
+    "If you are looking for work inside Nakivale, start by registering with the IRC livelihoods program at the Basecamp office. They connect refugees with income-generating opportunities, vocational training, and small business support.",
+    "The health center at Nakivale Basecamp is free for all registered refugees. Bring your UNHCR registration card and go early in the morning to avoid long queues.",
+    "If you lose your UNHCR registration card or documents, report to the UNHCR office in Basecamp immediately. Your case number is your most important record — keep a photo of it somewhere safe.",
+    "If you are experiencing stress, grief, or anxiety, IRC offers free mental health and psychosocial support sessions in Nakivale. Visit their Basecamp office to register. You do not need a referral.",
+    "Clean water prevents many diseases. If you are unsure about your water source, water purification tablets are distributed through WFP and partner programs. Ask at the community center in Basecamp.",
+    "If you have a child who is out of school, visit the nearest UNHCR-supported learning center. Enrollment is free. Education is one of the most important protections available to children in any settlement.",
+    "If you need to trace family members, UNHCR and INTERSOS run a free family tracing service from their offices in Nakivale Basecamp. You do not need money or a referral to access it.",
+    "Malnutrition is a serious risk for young children. WFP runs nutrition programs in Nakivale. If a child under five in your household is losing weight or not growing normally, bring them to the health center.",
+    "Uganda law gives refugees the right to work, move freely within the country, and access public services. If anyone tells you that you are not allowed to work or start a business, that is incorrect. Ask UNHCR for clarification.",
+  ],
+  skills:[
+    "Campus Digital Hub (campusdigitalhub.org) is located right here in Nakivale and offers free computer training, internet access, and courses in coding, digital marketing, and English. No experience is needed. This is the best place to start if you want to build digital skills.",
+    "Campus Digital Hub in Nakivale also runs DigiLadies, a program specifically for women who want to learn digital skills. If you are a woman interested in computers, coding, or online work, visit campusdigitalhub.org or ask around Nakivale for their current location.",
+    "Coursera (coursera.org) gives free access to courses from Google, Yale, and other universities. On any course page, click Financial Aid to get the full course at no cost. Certificates from Google Career Certificates are recognized by real employers.",
+    "Khan Academy (khanacademy.org) is completely free and teaches English, mathematics, science, and computer basics. It works on a basic Android phone with low data. Starting with English or maths opens up most other opportunities.",
+    "Google Digital Skills for Africa is a free program in internet use, digital marketing, and online business. Available in English, French, and Swahili at learndigital.withgoogle.com/digitalskills. Completing it gives you a Google certificate.",
+    "Microsoft Learn (learn.microsoft.com) has free training in Excel, Word, and basic computer skills. NGOs and organizations in Nakivale and across Uganda frequently hire office assistants and data clerks who know these tools.",
+    "Duolingo is a free app for learning English, French, or Swahili. Ten minutes of daily practice over six months builds a real foundation. Download it once on WiFi and many lessons work offline afterward.",
+    "edX (edx.org) offers free audited courses from Harvard, MIT, and other institutions. Audit any course for free, or apply for financial aid if you want the certificate. Business, data, and IT courses are the most useful for job seekers.",
+  ],
+  nakivale:[
+    "Campus Digital Hub (campusdigitalhub.org) is a refugee-led organization operating inside Nakivale. They offer free computer training, paid advanced courses in coding and AI, and open internet access. It was built by refugees, for refugees in the settlement.",
+    "Nakivale Refugee Settlement is home to over 130,000 people from more than 10 countries including DRC, Burundi, Somalia, Rwanda, South Sudan, and Ethiopia. It is one of the oldest and largest refugee settlements in Africa.",
+    "Uganda's refugee policy gives refugees the legal right to work, start businesses, and access public schools and health centers. You do not need special permission to earn an income. This is one of the most open refugee policies in the world.",
+    "The Nakivale Livelihoods Program supports refugees who want to start small businesses or farming. IRC and UNHCR run this from their Basecamp offices. Ask about eligibility for training and startup support.",
+    "UNHCR, IRC, INTERSOS, World Vision, and WFP all have offices in Nakivale Basecamp. Each runs different services — education, health, legal protection, food, and income support. The community notice board in Basecamp lists current programs.",
+    "Nakivale has primary and secondary schools supported by UNHCR and the Ugandan government. Enrollment is free. If a child in your household has been out of school, they can still enroll at any registered school regardless of how long they have been absent.",
+    "If you want to do online work — such as data entry, translation, or graphic design — Campus Digital Hub provides internet access and can help you get started. Remote work is one of the few income sources that does not depend on your location.",
+    "The Community Center in Nakivale Basecamp regularly posts updates about available services, training programs, and NGO announcements. Visiting it once a week keeps you informed about opportunities that many people miss.",
+  ],
+  inspire:[
+    "You did not choose the circumstances that brought you here. But you are making choices every day about who you are becoming. That agency belongs entirely to you.",
+    "Every skill you learn in Nakivale is something no displacement can take away. A certificate, a language, a technical ability — these travel with you wherever you go.",
+    "Nakivale has produced teachers, engineers, entrepreneurs, and community leaders. The path from this settlement to a larger life is real. Other people have walked it. So can you.",
+    "The difficult thing about resilience is that it does not feel like strength when you are in the middle of it. It just feels like getting through the day. But getting through the day is exactly how it starts.",
+    "Your language, your culture, your way of seeing the world — these are things no displacement can erase. They make you valuable in any room you walk into.",
+    "History has shown repeatedly that people who pass through the hardest circumstances often contribute the most to the communities they join. Your story is not finished. It has barely started.",
+    "Learning something new, no matter how small, is an act of resistance against circumstances that try to limit you. Even one hour of study today is one hour of forward movement.",
+  ],
+  joke:[
+    "A teacher asked: what is the fastest thing in the world? One student answered: a rumor in the camp. Before the person finishes talking, it has already reached the other side of Juru.",
+    "A man told his friend he was on a strict diet. He now eats only one full plate of beans instead of two. His friend said that is not a diet. He said: you have not seen the plate.",
+    "Two friends agreed to meet at 8am. One arrived at 9am and said sorry I am late. The other said I just arrived too. Neither will admit they were both standing there since 7:30.",
+    "A student studied through the night for the exam. In the morning, his mother asked if he had slept. He said yes, eight full hours. She asked when. He said: during the exam.",
+    "My neighbor told me he would repair my roof one of these days. That was two dry seasons ago. He is still planning.",
+    "A man applied for a job and was asked about his experience. He said ten years. They asked in what. He said: in waiting for a response to my applications.",
+    "Someone asked me why I wake up early every day. I said because the morning is quiet and full of possibility. They said I should try sleeping through it. I said I tried. The possibility was still there when I woke up.",
+  ],
+};
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let currentLang = 'en', currentTab = 'advice', contentCache = {}, profile = {};
+let selectedGender = '', selectedZone = '', selectedMood = '😊';
+let supabase_client = null, roomChannel = null, presenceChannel = null;
+let currentRoom = null, partnerInfo = null;
+let isRecording = false, mediaRecorder = null, audioChunks = [], recTimer = null, recSeconds = 0;
+let totalChats = 0, totalMsgs = 0, dayStreak = 0, inQueue = false;
+let mediaMenuOpen = false, msgReactions = {}, msgCounter = 0, currentOnlineCount = 0;
+
+function initSupabase(){ try { supabase_client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); } catch(e){ supabase_client = null; } }
+
+function tr(k){ return (T[currentLang]||T.en)[k] || (T.en[k]||k); }
+
+// ─── APPLY LANGUAGE ────────────────────────────────────────────────────────────
+function applyLang(lang){
+  currentLang = lang;
+  const t = T[lang] || T.en;
+  document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+  // Simple text targets
+  const map = {
+    'tl-tagline':    t.tagline,
+    'tl-tagline2':   t.tagline2,
+    'tl-tagline3':   t.tagline3,
+    'tl-step1':      t.step1,
+    'tl-step2':      t.step2,
+    'tl-step3':      t.step3,
+    'tl-chooselang': t.chooselang,
+    'tl-username':   t.username,
+    'tl-gender':     t.gender,
+    'tl-zone':       t.zone,
+    'tl-location':   t.location,
+    'tl-online':     t.online,
+    'tl-chat-online':t.chatOnline,
+    'tl-moodtag':    t.moodtag,
+    'tl-moodpick':   t.moodpick,
+    'tl-moodmatch':  t.moodmatch,
+    'tl-findFriend': t.findFriend,
+    'tl-searching':  t.searching,
+    'tl-anon':       t.anon,
+    'tl-tab-advice': t.tabAdvice,
+    'tl-tab-skills': t.tabSkills,
+    'tl-tab-nakivale':t.tabNakivale,
+    'tl-tab-inspire':t.tabInspire,
+    'tl-tab-joke':   t.tabJoke,
+    'tl-loading':    t.loading,
+    'tl-stat-chats': t.statChats,
+    'tl-stat-streak':t.statStreak,
+    'tl-stat-msgs':  t.statMsgs,
+    'btn-male':      t.male,
+    'btn-female':    t.female,
+    'zone-other-btn':t.zoneOther,
+    'modal-cancel':  t.cancel,
+    'modal-confirm': t.leave,
+    'mm-match-title':t.matchfound,
+    'mm-start-btn':  t.startChat,
+    'leave-btn':     t.leave,
+    'opt-upload':    t.optUpload,
+    'opt-camera':    t.optCamera,
+    'rec-cancel':    t.recCancel,
+  };
+  for(const [id, val] of Object.entries(map)){
+    const el = document.getElementById(id);
+    if(el) el.textContent = val;
+  }
+
+  // Placeholders
+  const phMap = {
+    'username-input': t.usernamePH,
+    'location-input': t.locationPH,
+    'msg-input':      t.typeMsg,
+  };
+  for(const [id, val] of Object.entries(phMap)){
+    const el = document.getElementById(id);
+    if(el) el.placeholder = val;
+  }
+
+  // Profile error
+  const pe = document.getElementById('profile-err');
+  if(pe) pe.textContent = t.profileErr;
+
+  // lang-next-btn / profile-next-btn / mood-next-btn
+  const lnb = document.getElementById('lang-next-btn');
+  if(lnb) lnb.textContent = t.continue;
+  const pnb = document.getElementById('profile-next-btn');
+  if(pnb) pnb.textContent = t.continue;
+  const mnb = document.getElementById('mood-next-btn');
+  if(mnb) mnb.textContent = t.enter;
+
+  // Modal defaults
+  document.getElementById('modal-title').textContent = t.leaveTitle;
+  document.getElementById('modal-body').textContent  = t.leaveBody;
+
+  // Mood selected label
+  updateMoodSelectedLabel();
+
+  // Mood badge in lobby
+  if(profile.mood) updateMyMoodBadge();
+
+  // Clear content cache so it reloads in the right language direction
+  contentCache = {};
+}
+
+// ─── STATS ────────────────────────────────────────────────────────────────────
+function loadStats(){
+  totalChats = parseInt(localStorage.getItem('n2n_chats')||'0');
+  totalMsgs  = parseInt(localStorage.getItem('n2n_msgs')||'0');
+  const lastDay = localStorage.getItem('n2n_lastday'), today = new Date().toDateString();
+  if(lastDay===today){ dayStreak=parseInt(localStorage.getItem('n2n_streak')||'1'); }
+  else if(lastDay===new Date(Date.now()-86400000).toDateString()){ dayStreak=parseInt(localStorage.getItem('n2n_streak')||'0')+1; localStorage.setItem('n2n_streak',dayStreak); localStorage.setItem('n2n_lastday',today); }
+  else { dayStreak=1; localStorage.setItem('n2n_streak',1); localStorage.setItem('n2n_lastday',today); }
+  document.getElementById('stat-chats').textContent = totalChats;
+  document.getElementById('stat-streak').textContent = dayStreak;
+  document.getElementById('stat-msgs').textContent = totalMsgs;
+}
+function saveStats(){ localStorage.setItem('n2n_chats',totalChats); localStorage.setItem('n2n_msgs',totalMsgs); }
+
+// ─── MOOD HELPERS ──────────────────────────────────────────────────────────────
+function getMoodLabel(emoji, context){
+  const btn = document.querySelector((context||'')+'[data-mood="'+emoji+'"]');
+  if(!btn) return emoji;
+  return btn.getAttribute('data-'+currentLang) || btn.getAttribute('data-en') || emoji;
+}
+function updateMoodSelectedLabel(){
+  const el = document.getElementById('mood-selected-label');
+  if(!el) return;
+  el.textContent = tr('feelingPrefix') + ' ' + getMoodLabel(selectedMood,'#mood-row ') + ' ' + selectedMood;
+}
+function updateMyMoodBadge(){
+  const el = document.getElementById('my-mood-badge');
+  if(!el) return;
+  el.textContent = profile.mood + ' ' + getMoodLabel(profile.mood,'#lobby-mood-row ');
+}
+function syncLobbyMood(mood){
+  document.querySelectorAll('#lobby-mood-row .mood-btn').forEach(b=>b.classList.toggle('selected', b.dataset.mood===mood));
+}
+
+// ─── SCREENS ──────────────────────────────────────────────────────────────────
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ─── SCREEN 1: LANGUAGE ───────────────────────────────────────────────────────
+document.querySelectorAll('#lang-row .lang-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#lang-row .lang-btn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  applyLang(b.dataset.lang);
+}));
+document.getElementById('lang-next-btn').addEventListener('click',()=>showScreen('profile-screen'));
+
+// ─── SCREEN 2: PROFILE ────────────────────────────────────────────────────────
+document.querySelectorAll('.gender-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.gender-btn').forEach(x=>x.classList.remove('selected'));
+  b.classList.add('selected'); selectedGender=b.dataset.g;
+}));
+document.querySelectorAll('#zone-row .zone-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#zone-row .zone-btn').forEach(x=>x.classList.remove('selected'));
+  b.classList.add('selected'); selectedZone=b.dataset.zone;
+  document.getElementById('other-loc-field').classList.toggle('hidden', selectedZone!=='Other');
+}));
+document.getElementById('profile-next-btn').addEventListener('click',()=>{
+  const raw = document.getElementById('username-input').value.trim();
+  let loc = selectedZone;
+  if(selectedZone==='Other') loc = document.getElementById('location-input').value.trim();
+  const err = document.getElementById('profile-err');
+  if(!raw||!selectedGender||!selectedZone||(selectedZone==='Other'&&!loc)){err.classList.remove('hidden');return;}
+  const safe = raw.replace(/[^a-zA-Z0-9_\-]/g,'').substring(0,20);
+  if(!safe){err.classList.remove('hidden');return;}
+  err.classList.add('hidden');
+  profile = {username:safe, gender:selectedGender, zone:selectedZone, location:loc, mood:selectedMood};
+  showScreen('mood-screen');
+});
+
+// ─── SCREEN 3: MOOD ───────────────────────────────────────────────────────────
+document.querySelectorAll('#mood-row .mood-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#mood-row .mood-btn').forEach(x=>x.classList.remove('selected'));
+  b.classList.add('selected'); selectedMood=b.dataset.mood; profile.mood=selectedMood;
+  updateMoodSelectedLabel();
+}));
+document.getElementById('mood-next-btn').addEventListener('click',()=>{
+  profile.mood = selectedMood;
+  initSupabase(); loadStats();
+  syncLobbyMood(selectedMood); updateMyMoodBadge();
+  showScreen('lobby-screen'); joinPresence(); loadContent(currentTab);
+});
+
+// ─── SCREEN 4: LOBBY MOOD ─────────────────────────────────────────────────────
+document.querySelectorAll('#lobby-mood-row .mood-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#lobby-mood-row .mood-btn').forEach(x=>x.classList.remove('selected'));
+  b.classList.add('selected'); selectedMood=b.dataset.mood; profile.mood=selectedMood;
+  updateMyMoodBadge();
+  if(presenceChannel) presenceChannel.track({username:profile.username,gender:profile.gender,zone:profile.zone,mood:profile.mood,ts:Date.now()});
+}));
+
+// ─── PRESENCE ─────────────────────────────────────────────────────────────────
+function joinPresence(){
+  updateOnlineUI(0,0,0,0);
+  if(!supabase_client||SUPABASE_URL==='https://YOUR_PROJECT.supabase.co'){
+    setTimeout(()=>{
+      const j=profile.zone==='Juru'?1:0, b=profile.zone==='Basecamp'?1:0, r=profile.zone==='Rubondo'?1:0;
+      updateOnlineUI(1,j,b,r);
+    },600);
+    return;
+  }
+  presenceChannel = supabase_client.channel('n2n-presence',{config:{presence:{key:profile.username}}});
+  presenceChannel.on('presence',{event:'sync'},()=>{
+    const state = presenceChannel.presenceState();
+    let total=0,j=0,b=0,r=0;
+    for(const v of Object.values(state)){const u=v[0];if(!u)continue;total++;if(u.zone==='Juru')j++;else if(u.zone==='Basecamp')b++;else if(u.zone==='Rubondo')r++;}
+    updateOnlineUI(total,j,b,r);
+  }).subscribe(async status=>{
+    if(status==='SUBSCRIBED') await presenceChannel.track({username:profile.username,gender:profile.gender,zone:profile.zone,mood:profile.mood,ts:Date.now()});
+  });
+}
+function updateOnlineUI(total,j,b,r){
+  currentOnlineCount=total;
+  document.getElementById('online-count').textContent=total;
+  document.getElementById('chat-online-count').textContent=total;
+  document.getElementById('cnt-juru').textContent=j;
+  document.getElementById('cnt-base').textContent=b;
+  document.getElementById('cnt-rubondo').textContent=r;
+}
+
+// ─── CONTENT ──────────────────────────────────────────────────────────────────
+async function loadContent(tab){
+  currentTab = tab;
+  const el = document.getElementById('content-text');
+  el.innerHTML = `<span class="content-loading">${tr('loading')}</span>`;
+  if(contentCache[tab]){displayContent(contentCache[tab]);return;}
+  if(supabase_client&&SUPABASE_URL!=='https://YOUR_PROJECT.supabase.co'){
+    try{
+      const langName={en:'English',fr:'French',sw:'Kiswahili',so:'Somali',rw:'Kinyarwanda',ar:'Arabic'}[currentLang]||'English';
+      const prompts={
+        advice:`You assist refugees at Nakivale Refugee Settlement, Uganda (zones: Juru, Basecamp, Rubondo). Give one short, practical, specific piece of advice (3-4 sentences) about health, safety, legal rights, or daily life in the settlement. Reference real organizations — UNHCR, IRC, INTERSOS, WFP — where relevant. No emojis. Write in ${langName}.`,
+        skills:`You assist refugees at Nakivale Settlement, Uganda. Recommend one specific free learning resource that can help a refugee get a job or build a skill. Always mention Campus Digital Hub (campusdigitalhub.org) as the first option when relevant — it is physically located in Nakivale. Then online options like Coursera, Khan Academy, Google Digital Skills, or edX. Include how to access them. No emojis. 3-4 sentences. Write in ${langName}.`,
+        nakivale:`You assist refugees at Nakivale Settlement, Uganda. Share one factual, useful piece of information about life, rights, services, work, or learning opportunities in Nakivale. Mention Campus Digital Hub (campusdigitalhub.org) where relevant — it is a refugee-led organization inside the settlement. No emojis. 3-4 sentences. Write in ${langName}.`,
+        inspire:`Write one short, grounded, honest message of encouragement (3-4 sentences) for someone living at Nakivale Refugee Settlement who is trying to build a better future. Make it specific to the refugee experience — not generic. No emojis. Write in ${langName}.`,
+        joke:`Tell one short, clean, friendly joke (2-4 lines) that would make someone in East Africa smile. Avoid any stereotypes or sensitive topics. No emojis. Write in ${langName}.`,
+      };
+      const resp = await supabase_client.functions.invoke('naki-ai',{body:{prompt:prompts[tab]||prompts.advice}});
+      if(resp.data?.text){contentCache[tab]=resp.data.text;displayContent(resp.data.text);return;}
+    }catch(e){}
+  }
+  const arr = LOCAL_CONTENT[tab]||LOCAL_CONTENT.advice;
+  const item = arr[Math.floor(Math.random()*arr.length)];
+  contentCache[tab]=item; displayContent(item);
+}
+function displayContent(text){ document.getElementById('content-text').textContent=text; }
+
+document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  delete contentCache[b.dataset.tab];
+  loadContent(b.dataset.tab);
+}));
+document.getElementById('content-refresh').addEventListener('click',()=>{ delete contentCache[currentTab]; loadContent(currentTab); });
+
+// ─── MATCHMAKING ──────────────────────────────────────────────────────────────
+document.getElementById('find-btn').addEventListener('click',async()=>{
+  if(inQueue)return; inQueue=true;
+  document.getElementById('find-btn').disabled=true;
+  document.getElementById('queue-msg').classList.remove('hidden');
+  if(!supabase_client||SUPABASE_URL==='https://YOUR_PROJECT.supabase.co'){
+    // Supabase not configured yet — just wait, no fake users
+    return;
+  }
+  await supabase_client.from('queue').upsert({username:profile.username,gender:profile.gender,zone:profile.zone,location:profile.location,mood:profile.mood,lang:currentLang,joined_at:new Date().toISOString(),room_id:null});
+  pollForMatch();
+});
+async function pollForMatch(){
+  if(!supabase_client)return;
+  const iv=setInterval(async()=>{
+    const{data:me}=await supabase_client.from('queue').select('*').eq('username',profile.username).single();
+    if(me?.room_id){clearInterval(iv);enterRoom(me.room_id);return;}
+    const{data:mood}=await supabase_client.from('queue').select('*').is('room_id',null).eq('mood',profile.mood).neq('username',profile.username).order('joined_at').limit(1);
+    let match=mood?.[0];
+    if(!match){const{data:any}=await supabase_client.from('queue').select('*').is('room_id',null).neq('username',profile.username).order('joined_at').limit(1);match=any?.[0];}
+    if(match){const rid='room_'+Date.now()+'_'+Math.random().toString(36).substring(2,7);await supabase_client.from('queue').update({room_id:rid}).in('username',[profile.username,match.username]);}
+  },2500);
+}
+async function enterRoom(roomId){
+  currentRoom=roomId;
+  if(supabase_client){const{data:q}=await supabase_client.from('queue').select('*').eq('room_id',roomId);partnerInfo=q?.find(u=>u.username!==profile.username)||{username:'Friend',gender:'male',zone:'Nakivale',mood:'😊'};}
+  showMatchModal(()=>startChat());
+}
+
+
+
+// ─── MATCH MODAL ──────────────────────────────────────────────────────────────
+function showMatchModal(onStart){
+  const p = partnerInfo||{username:'Friend',gender:'male',zone:'Nakivale',mood:'😊'};
+  const av = document.getElementById('mm-avatar');
+  av.textContent = p.gender==='female'?'👩':'👨';
+  av.className = 'match-avatar-big '+(p.gender==='female'?'avatar-f':'avatar-m');
+  const moodLabel = getMoodLabel(p.mood,'#lobby-mood-row ');
+  document.getElementById('mm-match-title').textContent = tr('matchfound');
+  document.getElementById('mm-desc').textContent = p.username+' '+tr('matchFeeling')+' '+moodLabel+' '+p.mood+' '+tr('matchGoodMatch');
+  document.getElementById('mm-start-btn').textContent = tr('startChat');
+  const chips = document.getElementById('mm-chips'); chips.innerHTML='';
+  [p.zone, moodLabel].forEach(l=>{const c=document.createElement('span');c.className='match-chip';c.textContent=l;chips.appendChild(c);});
+  document.getElementById('match-modal').classList.add('open');
+  document.getElementById('mm-start-btn').onclick=()=>{ document.getElementById('match-modal').classList.remove('open'); onStart(); };
+}
+
+// ─── CHAT ─────────────────────────────────────────────────────────────────────
+function startChat(){
+  inQueue=false; document.getElementById('find-btn').disabled=false; document.getElementById('queue-msg').classList.add('hidden');
+  totalChats++; saveStats(); document.getElementById('stat-chats').textContent=totalChats;
+  showScreen('chat-screen');
+  const av = document.getElementById('partner-avatar');
+  av.textContent = partnerInfo.gender==='female'?'👩':'👨';
+  av.className = 'avatar av-online '+(partnerInfo.gender==='female'?'avatar-f':'avatar-m');
+  document.getElementById('partner-name').textContent = partnerInfo.username+' '+partnerInfo.mood;
+  document.getElementById('partner-sub').textContent = partnerInfo.zone;
+  document.getElementById('chat-online-count').textContent = currentOnlineCount;
+  document.getElementById('leave-btn').textContent = tr('leave');
+  addMessage(tr('connected')+' '+partnerInfo.username,'system');
+  if(supabase_client&&currentRoom!=='demo'){
+    roomChannel = supabase_client.channel(currentRoom);
+    roomChannel
+      .on('broadcast',{event:'message'},({payload})=>{ if(payload.sender!==profile.username) addMessage(payload.content,'them',payload.type,payload.url,payload.duration); })
+      .on('broadcast',{event:'leave'},()=>addMessage(tr('partnerleft'),'system'))
+      .on('broadcast',{event:'reaction'},({payload})=>{ if(payload.sender!==profile.username) applyReaction(payload.msgId,payload.emoji); })
+      .subscribe();
+  }
+}
+
+function addMessage(content,from,type='text',url=null,duration=null){
+  const msgs = document.getElementById('messages');
+  const wrap = document.createElement('div');
+  const msgId = 'msg-'+(++msgCounter);
+  wrap.setAttribute('data-msgid',msgId);
+  if(from==='system'){
+    wrap.className='system-msg'; wrap.textContent=content;
+  } else {
+    wrap.className='msg-wrap '+from;
+    const bubble=document.createElement('div'); bubble.className='bubble';
+    if(type==='image'&&url){ const img=document.createElement('img'); img.src=url; img.alt='image'; img.onclick=()=>window.open(url,'_blank'); bubble.appendChild(img); }
+    else if(type==='audio'&&url){ bubble.appendChild(buildVoicePlayer(url,duration,from)); }
+    else { bubble.textContent=content; }
+    const time=document.createElement('div'); time.className='msg-time'; time.textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    const rBar=document.createElement('div'); rBar.className='reaction-bar';
+    ['❤️','😂','👍','🙏','😮'].forEach(em=>{
+      const r=document.createElement('button'); r.className='rxn-btn'; r.textContent=em;
+      r.addEventListener('click',e=>{ e.stopPropagation(); toggleReaction(msgId,em,wrap); rBar.classList.remove('visible'); });
+      rBar.appendChild(r);
+    });
+    const rCounts=document.createElement('div'); rCounts.className='reaction-counts';
+    let pt;
+    bubble.addEventListener('touchstart',()=>{ pt=setTimeout(()=>rBar.classList.add('visible'),400); });
+    bubble.addEventListener('touchend',()=>clearTimeout(pt));
+    bubble.addEventListener('touchmove',()=>clearTimeout(pt));
+    bubble.addEventListener('dblclick',()=>rBar.classList.toggle('visible'));
+    wrap.appendChild(bubble); wrap.appendChild(rBar); wrap.appendChild(rCounts); wrap.appendChild(time);
+  }
+  msgs.appendChild(wrap); msgs.scrollTop=msgs.scrollHeight;
+  if(from==='me'){ totalMsgs++; saveStats(); document.getElementById('stat-msgs').textContent=totalMsgs; }
+}
+
+function buildVoicePlayer(url,duration,from){
+  const wrap=document.createElement('div'); wrap.className='voice-note-player';
+  const audio=new Audio(url);
+  const playBtn=document.createElement('button'); playBtn.className='vn-play-btn'; playBtn.textContent='▶';
+  const ww=document.createElement('div'); ww.className='vn-waveform';
+  const bars=document.createElement('div'); bars.className='vn-bars';
+  const N=18, barEls=[];
+  for(let i=0;i<N;i++){ const b=document.createElement('div'); b.className='vn-bar'; b.style.height=(20+Math.random()*60)+'%'; bars.appendChild(b); barEls.push(b); }
+  ww.appendChild(bars);
+  const dur=document.createElement('span'); dur.className='vn-dur'; dur.textContent=duration?formatDur(duration):'0:00';
+  let playing=false, af;
+  function upd(){ if(!audio.duration)return; const p=audio.currentTime/audio.duration, n=Math.floor(p*N); barEls.forEach((b,i)=>b.classList.toggle('played',i<n)); dur.textContent=formatDur(audio.currentTime); if(playing)af=requestAnimationFrame(upd); }
+  playBtn.addEventListener('click',()=>{ if(playing){audio.pause();playBtn.textContent='▶';playing=false;cancelAnimationFrame(af);}else{audio.play();playBtn.textContent='⏸';playing=true;upd();} });
+  audio.addEventListener('ended',()=>{ playBtn.textContent='▶'; playing=false; barEls.forEach(b=>b.classList.remove('played')); dur.textContent=duration?formatDur(duration):'0:00'; });
+  wrap.appendChild(playBtn); wrap.appendChild(ww); wrap.appendChild(dur);
+  return wrap;
+}
+function formatDur(s){ const t=Math.round(s); return Math.floor(t/60)+':'+(t%60<10?'0':'')+(t%60); }
+
+function toggleReaction(msgId,emoji,wrapEl){
+  if(!msgReactions[msgId]) msgReactions[msgId]={};
+  const key=msgId+'_'+emoji, mine=sessionStorage.getItem(key);
+  if(mine){ msgReactions[msgId][emoji]=Math.max(0,(msgReactions[msgId][emoji]||1)-1); if(!msgReactions[msgId][emoji])delete msgReactions[msgId][emoji]; sessionStorage.removeItem(key); }
+  else { msgReactions[msgId][emoji]=(msgReactions[msgId][emoji]||0)+1; sessionStorage.setItem(key,'1'); }
+  renderRxnCounts(msgId,wrapEl);
+  if(supabase_client&&roomChannel&&currentRoom!=='demo') roomChannel.send({type:'broadcast',event:'reaction',payload:{sender:profile.username,msgId,emoji}});
+}
+function applyReaction(msgId,emoji){ if(!msgReactions[msgId])msgReactions[msgId]={}; msgReactions[msgId][emoji]=(msgReactions[msgId][emoji]||0)+1; renderRxnCounts(msgId,document.querySelector('[data-msgid="'+msgId+'"]')); }
+function renderRxnCounts(msgId,wrap){
+  if(!wrap)return;
+  const c=wrap.querySelector('.reaction-counts'); if(!c)return; c.innerHTML='';
+  const rxns=msgReactions[msgId]||{};
+  Object.entries(rxns).forEach(([em,cnt])=>{
+    if(cnt<=0)return;
+    const mine=sessionStorage.getItem(msgId+'_'+em);
+    const chip=document.createElement('div'); chip.className='rxn-count'+(mine?' mine':''); chip.textContent=em+' '+cnt;
+    chip.addEventListener('click',()=>toggleReaction(msgId,em,wrap));
+    c.appendChild(chip);
+  });
+}
+
+async function sendMessage(content,type='text',url=null,duration=null){
+  addMessage(content,'me',type,url,duration);
+  if(supabase_client&&roomChannel&&currentRoom!=='demo') await roomChannel.send({type:'broadcast',event:'message',payload:{sender:profile.username,content,type,url,duration}});
+}
+document.getElementById('send-btn').addEventListener('click',sendText);
+document.getElementById('msg-input').addEventListener('keydown',e=>{ if(e.key==='Enter')sendText(); });
+function sendText(){ const inp=document.getElementById('msg-input'), t=inp.value.trim(); if(!t)return; sendMessage(t.replace(/</g,'&lt;').replace(/>/g,'&gt;').substring(0,500)); inp.value=''; }
+
+// ─── MEDIA ────────────────────────────────────────────────────────────────────
+document.getElementById('media-btn').addEventListener('click',e=>{ e.stopPropagation(); mediaMenuOpen=!mediaMenuOpen; document.getElementById('media-menu').classList.toggle('open',mediaMenuOpen); });
+document.addEventListener('click',()=>{ if(mediaMenuOpen){ mediaMenuOpen=false; document.getElementById('media-menu').classList.remove('open'); } });
+document.getElementById('opt-upload').addEventListener('click',()=>{ document.getElementById('img-input').click(); mediaMenuOpen=false; document.getElementById('media-menu').classList.remove('open'); });
+document.getElementById('opt-camera').addEventListener('click',()=>{ document.getElementById('cam-input').click(); mediaMenuOpen=false; document.getElementById('media-menu').classList.remove('open'); });
+
+async function handleImageFile(file){
+  if(!file)return;
+  if(!file.type.startsWith('image/')){ showToast(tr('onlyImages')); return; }
+  if(file.size>8*1024*1024){ showToast(tr('imageTooLarge')); return; }
+  showToast(tr('sendingToast'));
+  if(supabase_client&&currentRoom!=='demo'){
+    const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+    const path='chat/'+currentRoom+'/'+Date.now()+'_'+safeName;
+    const{error}=await supabase_client.storage.from('naki2naki-media').upload(path,file);
+    if(!error){ const{data:ud}=supabase_client.storage.from('naki2naki-media').getPublicUrl(path); sendMessage('[photo]','image',ud.publicUrl); }
+    else showToast(tr('uploadFailed'));
+  } else { sendMessage('[photo]','image',URL.createObjectURL(file)); }
+}
+document.getElementById('img-input').addEventListener('change',async e=>{ await handleImageFile(e.target.files[0]); e.target.value=''; });
+document.getElementById('cam-input').addEventListener('change',async e=>{ await handleImageFile(e.target.files[0]); e.target.value=''; });
+
+// ─── VOICE ────────────────────────────────────────────────────────────────────
+document.getElementById('mic-btn').addEventListener('click',async()=>{ if(!isRecording)startRecording(); });
+document.getElementById('rec-cancel').addEventListener('click',()=>cancelRecording());
+
+async function startRecording(){
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const mimeType=MediaRecorder.isTypeSupported('audio/webm')?'audio/webm':'audio/mp4';
+    mediaRecorder=new MediaRecorder(stream,{mimeType}); audioChunks=[];
+    mediaRecorder.ondataavailable=e=>audioChunks.push(e.data);
+    mediaRecorder.onstop=handleRecordingStop; mediaRecorder.start();
+    isRecording=true; recSeconds=0;
+    document.getElementById('mic-btn').style.display='none';
+    document.getElementById('rec-bar').classList.add('active');
+    document.getElementById('text-input-wrap').style.display='none';
+    document.getElementById('send-btn').style.display='none';
+    recTimer=setInterval(()=>{ recSeconds++; document.getElementById('rec-time').textContent=formatDur(recSeconds); if(recSeconds>=60)stopRecording(); },1000);
+  }catch(e){ showToast(tr('micUnavailable')); }
+}
+function stopRecording(){
+  if(!mediaRecorder)return;
+  mediaRecorder.stop(); mediaRecorder.stream.getTracks().forEach(t=>t.stop());
+  isRecording=false; clearInterval(recTimer);
+  document.getElementById('mic-btn').style.display='';
+  document.getElementById('rec-bar').classList.remove('active');
+  document.getElementById('text-input-wrap').style.display='';
+  document.getElementById('send-btn').style.display='';
+}
+function cancelRecording(){
+  if(!mediaRecorder)return;
+  mediaRecorder.ondataavailable=null; mediaRecorder.onstop=null;
+  try{ mediaRecorder.stop(); mediaRecorder.stream.getTracks().forEach(t=>t.stop()); }catch(e){}
+  isRecording=false; clearInterval(recTimer); audioChunks=[];
+  document.getElementById('mic-btn').style.display='';
+  document.getElementById('rec-bar').classList.remove('active');
+  document.getElementById('text-input-wrap').style.display='';
+  document.getElementById('send-btn').style.display='';
+}
+async function handleRecordingStop(){
+  const dur=recSeconds;
+  const mimeType=audioChunks[0]?.type||'audio/webm';
+  const blob=new Blob(audioChunks,{type:mimeType});
+  const ext=mimeType.includes('mp4')?'mp4':'webm';
+  if(supabase_client&&currentRoom!=='demo'){
+    const path='chat/'+currentRoom+'/'+Date.now()+'.'+ext;
+    const{error}=await supabase_client.storage.from('naki2naki-media').upload(path,blob);
+    if(!error){ const{data:ud}=supabase_client.storage.from('naki2naki-media').getPublicUrl(path); sendMessage('[voice note]','audio',ud.publicUrl,dur); }
+    else showToast(tr('voiceUploadFailed'));
+  } else { sendMessage('[voice note]','audio',URL.createObjectURL(blob),dur); }
+}
+
+// ─── LEAVE ────────────────────────────────────────────────────────────────────
+document.getElementById('leave-btn').addEventListener('click',()=>{
+  openModal(tr('leaveTitle'), tr('leaveBody'), doLeave);
+});
+function doLeave(){
+  if(supabase_client&&roomChannel){ roomChannel.send({type:'broadcast',event:'leave',payload:{}}); supabase_client.removeChannel(roomChannel); roomChannel=null; }
+  document.getElementById('messages').innerHTML=''; msgReactions={};
+  currentRoom=null; partnerInfo=null; delete contentCache[currentTab];
+  showScreen('lobby-screen'); loadContent(currentTab);
+}
+
+function openModal(title,body,onConfirm){
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('modal-body').textContent=body;
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('modal-confirm').onclick=()=>{ closeModal(); onConfirm(); };
+}
+function closeModal(){ document.getElementById('modal').classList.remove('open'); }
+document.getElementById('modal-cancel').addEventListener('click',closeModal);
+
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+let _tt=null;
+function showToast(msg,dur=2600){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.classList.remove('show'); void el.offsetWidth;
+  el.style.display='block'; el.classList.add('show');
+  clearTimeout(_tt); _tt=setTimeout(()=>{ el.classList.remove('show'); el.style.display='none'; },dur);
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+applyLang('en');
+</script>
+</body>
+</html>
