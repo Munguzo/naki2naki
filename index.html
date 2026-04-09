@@ -5,33 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naki2Naki — Connect in Nakivale</title>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAbN0lEQVR4nO3de5yVdb3o8TUzMMN9uAgKCipeUkmRI6WmiZrXvKRSloppmebRMsu9t2nlPpX7UO12+dpesiztKHnJS4qXvCSSpe1Qg1ITLyGKCshdGO7M7D84Lw5HUGDNM+t5fs/3/f6rP1o/fr36zu/zPGvNrKeueeSZFQDiqc97AwDkQwAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKA65b2BjtU87Ki8t0DRLXr+wby3APkoYQAc+myR9QdGDAilPAFw7tN+66ZICYgg+QA49+kISkAECQfA0U8NrB0zGaCUkgyAo58akwFKKb1fA3X6kxezR8mkdAfgx4/cuRWgTJK5A3D6UxymkXJIIwB+3igaM0kJFP0tID9mFJa3g0hdoe8AnP4UnyklXcUNgJ8rUmFWSVRBA+AnirSYWFJU0AAA0NGKGAAXU6TI3JKcwgXATxHpMr2kpVgB8PND6swwCSlWAAComQIFwKUT5WCSSUVRAuBnhjIxzyShKAEAoMYKEQCXS5SPqab4ChEAAGov/wC4UKKszDYFl38AAMiFAAAElXMA3CNTbiacInMHABCUAAAElWcA3B0TgTmnsNwBAAQlAABBCQBAULkFwBujxGHaKSZ3AABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIA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"/>
-  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAbN0lEQVR4nO3de5yVdb3o8TUzMMN9uAgKCipeUkmRI6WmiZrXvKRSloppmebRMsu9t2nlPpX7UO12+dpesiztKHnJS4qXvCSSpe1Qg1ITLyGKCshdGO7M7D84Lw5HUGDNM+t5fs/3/f6rP1o/fr36zu/zPGvNrKeueeSZFQDiqc97AwDkQwAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKA65b2BjtU87Ki8t0DRLXr+wby3APkoYQAc+myR9QdGDAilPAFw7tN+66ZICYgg+QA49+kISkAECQfA0U8NrB0zGaCUkgyAo58akwFKKb1fA3X6kxezR8mkdAfgx4/cuRWgTJK5A3D6UxymkXJIIwB+3igaM0kJFP0tID9mFJa3g0hdoe8AnP4UnyklXcUNgJ8rUmFWSVRBA+AnirSYWFJU0AAA0NGKGAAXU6TI3JKcwgXATxHpMr2kpVgB8PND6swwCSlWAAComQIFwKUT5WCSSUVRAuBnhjIxzyShKAEAoMYKEQCXS5SPqab4ChEAAGov/wC4UKKszDYFl38AAMiFAAAElXMA3CNTbiacInMHABCUAAAElWcA3B0TgTmnsNwBAAQlAABBCQBAULkFwBujxGHaKSZ3AABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEFSnvDcAefrgiBE1+pdq9g+RtSfGjc17Cx1FAAindoc+pXDAmEvW/eeSxUAAiMK5T/uti0E5SiAAlJxzn45QjhIIAKXl6KcG1pYg0QwIACXk6KfGEs2AXwOlbJz+5GX9j4uT4A6A8nD0k7u0bgXcAVASTn+KI5VbAQGgDJz+FE0SDfAWEGlz9FNYxX87yB0ACXP6U3xFvhUQAFLl9CcVhW2AAJAkpz9pKWYDBAAgKAEgPS7/SVEBbwIEgMQ4/UlX0RogAKTE6U/qCtUAAQAISgBIhst/yqE4NwECQBqc/pRJQRogAABBCQAJcPlP+RThJkAAAIISAIrO5T9llftNgAAABCUAAEEJAIXm/R/KLd93gQQAICgBAAhKACgu7/8QQY7vAgkAQFACABCUAAAEJQAUlA8AiCOvjwEEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKByC8Ci5x/M658GoOIOACAsAQAISgAAgsozAD4GAMiROwCAoAQAIKicA+BdIIC8uAMACEoAAILKPwDeBQLIRf4BACAXhQiAmwCA2itEAACovaIEwE0AQI0VJQAVDQCorQIFAIBaKlYA3AQA1EyxAlDRAIBaKVwAKhoAUBNFDAAANVDQALgJAOhoBQ1ARQMAOlhxA1DRAICOVOgAVCqVRc8/KAMAHaHoAVhLAwAyl0YAKhoAkLVkAlDxdhBAplIKwFoaAJCJ9AJQcSsAkIUkA7CWDAC0R6e8N9Be6xrQPOyofHcCkJbkA7COEgBskSQD4IgHaL8kA1BAPo3I3ogRee8ASi69ABTt8t/RDyQq4d8CKgKnP5CuxO4AinP57+gHUpdYAIrA0Q+UQ0oByP3y39EPlInPADaX0x8omWTuAHK8/Hf0A6WUTABy4egHSiyNANT+8t/RD5SezwA2wukPRJDAHUAtL/8d/UAcCQSgNhz9QDRFD0ANLv8d/UBM0T8DcPoDYRX6DqBDL/8d/UBwhQ5AB3H0A1SKHICOuPx39AOsE+gzAKc/wPoKegeQ7eW/ox9gQwUNQFYc/QDvpYgByOTy39EP8P7K+RmA0x9gkwp3B9DOy39HP8BmKlwAquboB9gixQpAdZf/jn6AKiT/GYDTH6A6BboD2NLLf0c/QHsUKACbz9EP0H5FCcBmXv47+gGyktJnAE5/gAwV4g5gk5f/jn6AzBUiAO/D0Q/QQfIPwHtd/jv6ATpUQT8DcPoDdLSc7wA2vPx39APURv5vAa3j6AeopTwDsO7y39EPUHv5fwbg9AfIRW53AM3DjnL0A+QotzsApz9AvvJ/CwiAXAgAQFACABCUAAAEJQAAQQkAQFACABCUAAAEJQAAQQkAQFACABCUAAAEJQAAQQkAQFACABCUAFBQT4wbm/cWoEbymnYBAAhKAACCEgCAoASA4vIxABHkOOcCABCUAAAEJQAUmneBKLd8J1wAAIISAICgBICi8y4QZZX7bAsAQFACQAJyv1CCzBVhqgUAICgBIA1FuFyCrBRkngWAZBTkZwbaqTiTLAAAQQkAKSnOpRNUp1AzLAAkplA/P7BFija9AkB6ivZTBJujgHMrAABBCQBJKuDFFLyPYk6sAJCqYv5EwYYKO6sCQMIK+3MF6xR5SuuaR56Z9x6gvQ4Yc0neW4B3K/LRv5Y7AMqg+D9pRJPETAoAJZHEzxtBpDKN3gKibLwdRI5SOfrXcgdA2aT1E0iZJDd77gAoLbcC1ExyR/9aAkDJyQAdKtGjfy0BIAolIENJn/vrCADhKAFVK8e5v44AEJoYsEklO/TXJwBADtqT3hKfyDUmAEBuqs6ABmRCAIA8uRXIkQAA+XMrkAsBAIqiugxoQNUEACiWKjKgAdURAKBw3ArUhgAABeVWoKMJAFBoW5oBDdh8AgAkYIsyoAGbSQCANLgVyJwAAClxK5AhAQDSs/kZ0ID3IQBAqjYzAxrwXgQASJhbgfYQACB5bgWqIwBASWxOBjRgfQIAlMomM6AB6wgAUDZuBTaTAADl5FZgkwQAKLP3z0DwBggAUH7vk4HIDRAAIAS3AhsSACAQtwLrEwAgnPfKQLQGCAAQ1EYzEKoBAgDEFfxWQACA6MLeCggAQKWysQyUvgECAPD/vCsD5W6AAAD8f+LcCggAwEZEuBUQAID3tH4GytcAAQDYhHUZKFkDBABg00p5KyAAAJurZLcCAgCwZdZmoAQNEACAahww5pLUGyAAAFVK/VZAAADaJd1bAQEACKo+7w0AkA8BAAiqU94bgIx17d6jd78BzX379erbr7nPVt169urarXvX7j26dOveubGpvqGhU6fO9Q0Nra1rVq9atWb16tWrVy1vaWlZvKhl8aKWdxYtmDN73uyZc2e/tXxpS97/U6BjCQBpq6uv7z9w24FDhg4YNHirbQb122bb7j17bc4LGxo6NTT83/nv1btvpTL4Xf+FxQsXvDHtpRn/eHHGP16aO+vNjPcNBeBD4Ow19+z22oSrs13zez+7+3vX3ZPtmhs66qPDb/3Rhe1c5NU33h5x4sVZbOc9NTY1bTd01yE777btjjtvvd0OnRsbO/Sfq1QqC+a+/eKUp6ZOeWr2G6919L+1UYaqo4cqJncAafjSmKOuu/3ReQuX5L2R3NTV1Q3cfuhOewzfYdc9thmyY319TT++6rPVgP0OO2a/w46ZNWP6UxMfnjplUuuaNbXcQEcwVAhAGnp063LR54679Me35L2RWuvc2Dh09712/uDeQ3ffq1uPnnlvp7LN4B2OO/2cQ44/+YmH7vnrn37f1taW946qF3aoWEcAknHWJw+9+uaH3pw9P++N1EKnzo077bHXB/b+0M7DhndubMp7O+/Wo7n3kSef8T8OPPR3v7nl9ZdfyHs71Qs1VGzIr4Emo6mx0yXnnJD3Lmpk5KjDT/jc+buP+HABT/91+g8afMp5//yxE09t6JTqhVSooWJDApCSU449YNcdBua9C9ZTVzdy1OFnfO2yPlsNyHsrVTJUkQlAShrq679x7kl574J36z9o8JgLvzlwyI55b6QahioyAUjM8YfuM2L3HfLeBe/WrUfPU7508fa77J73RqphqMISgMTU1dVddv4n894FG9G5semkL1wwYNt3/0FZ8RmqsAQgPYfsO+ygDyV5pVl6jU1dPnXO13r27pP3RraYoYpJAJJ02Xmu1wqqR3PvY087u1JXl/dGtpihCkgAkjTyg0OPPXifvHfBxg3ZZfeRBx2e9y62mKEKSABS9c3zTqqvT+8yM4iDjhndvVdz3rvYYoYqGgFI1W47Dvr0xz+S9y7YuM6NjR854ri8d7HFDFU0ApCwS885sbFzqn+DWnrD9x/Vq3ffvHexxQxVKP6fTtjggf0+P/qQa299JO+NFMuSRQtnTHtp7qw35789a/7bs5YvbVmxfNnKFcsbGjo1NjX17N23T/+tt9lu+x0+MGzrbYd03Ke1DQ2d9tz3o0881OHft5wtQxWKAKTtos8de9P4x1uWrsh7IzlrXbNm+kvPv/S3v7z+ytQFc2Zv9L+zunXl6lUrly5ZPPuN16ZOnlS59/bmfv333n/UiAMPberStSN2teeHD3ji4fGV1L4x1FDFIQBp69+31/mnHvmDn4/PeyO5ef2Vqc9O+uPLz05esWzplr520bw5v7/vjkmPPTjquE8N3++gzPfW3K//ttvv9Ob0VzJfuUMZqjh8BpC8L485qm9zj7x3UWsrli195vFHfj720luu+v5zk56o4vRfZ1nLkgdvveGuX/znyhXLM9zhWkPS/HKImEMVkAAkr2f3rl8785i8d1E7LYvfmXjv7df8r4t+d9fN82bPzGrZl5+dfMtV329PSDZq+112y3bB2og2VGEJQBl84eSPDRqQ3tcPbKkl7yx85M5x137nn/786AMdcbU+a8b0O667IttnPQ7aYacMV6ulIEMVnACUQZfGzl8/+4S8d9GBVq5Y/off/uZnl1/8lz88unrVqo77h96Y9vLj99+Z4YKdG5t6NPfOcMGaKf1QURGA0jjt+AN3HrJN3rvIXltb2+QnHvvpdy9+8qHxq1aurMG/OGniQ3NmvpHhgn36b53harVU1qFiHQEoiYb6+m/+z7I91mPm66/e+KPvPHz7jUuXvFOzf7SttfXJh+/NcMHmPltluFotlXKoWJ8AlMcnPjZy+G7b572LbCxf2vLw7Tfe9OPvzpoxvfb/+kt/fXpZy5KsVmts6pLVUrVXpqFiQwJQHnV1df9alsd6THly4uQnHmvL6U+oWltbX3l+SlardW4q7nPtN6lMQ8WGBKBUDt3vgwfuk+TvHRbNG/94KaulOnduzGqpXBiqEhOAsnG9lokM/8Jg5crsf2O1xgxVWQlA2Xxoz50+PmpE3rtI3jsL52W11IqlGf9xWe0ZqrISgOKq+h3wy84b7bEe7bRyRWZfhbY8678ubg9DxfoEoLjuemRSdS/cbei2Jx/tsR7t0tCQ2fcktiyu3e+wbpKhYn0CUFw/+uX97yxZVt1rL/3iCR7r0R5dunXLZqG2tjlvzchmqSwYKtYnAMW1YNGSK8f9trrXDhm41edOOjjT7cTS3Debv96aP3f2iuVVHrgdwVCxPgEotKtvfnjO/CrfQLjo88d165rwb6Dna+vtsvnrp1kzXstknQwZKtYRgEJbumzFf9xwX3WvHdC313mnHJHtfuIYvNMHMlnn9Zf+nsk6GTJUrCMARXf9nY+9PnNuda+94PSj+/Tqnu1+IujSrfsOu+7R/nVa16x58W/PtH+dzBkq1hKAolu5avXYn91d3Wt79ej6VY/12HJ77LNffUND+9eZNvXZ5Utb2r9O5gwVawlAAm574Mmp096s7rXnnPyxgf091mML1NfX73vI0Zks9fdn/iuTdTqCoaIiAElobW377k/uqu61XZoaLz77+Gz3U27D9x/Vq2+/9q+zcO7bL055qv3rdBBDRUUAUnH/xL88/dy06l475viDdhqc6jNJaqx7z16jjs3me2+eeHh8a2trJkt1EEOFACTj21ffUd0LOzXUf8NjPTbPEZ/6bFPXDP4EbP6cWc8//af2r9PRDFVwApCMPzz9wmN/fr6615542If2+oDHemzCyFGH77rXPpksNXH8r9uKffm/lqEKTgBS8u2r76juy7zq6uouO3905vspk8E7f+CQ4z+dyVJTpzz18rOTM1mqBgxVZAKQkikvTB8/ocrfKz9s/z0/MiKbP24qn/4Dtxv9ha9k8qufixcuePj2G9u/Ts0YqsgEIDGX/+TONdW+t/CvX/JYj43os9WAk8+9qKlL1/Yv1dbaOv7GazN8nnBtGKqwBCAxL7826+Z7/1jda/fda+ejPrp3pttJXr+tB5365Ut6NPfOZLVH777ljWmZPUuyZgxVWAKQnrE/u3v5ylXVvdZjPdY3YNshp3754qxO/ylPTnzm8d9lslTtGaqYBCA9b7294Be3T6jutXvsvN2njtwv2/0kasfdPnjaBZd069Erk9WmvfC3R+64KZOlcmGoYhKAJP3ol/ctbqn2sR7nnti5UwafdiZtz30P/OQ5X21s6pLJajNfn3b3DdcU/M++NslQBSQASZq3cMlV4x6q7rXbD+p/5okHZ7mb1Bxw5Cc+fspZ9fXZDP/cWW/e/tMfr1qZ2TOE82KoAhKAVF1184NzFyyu7rX/dNZxXbs0ZrufJNTX1x99yucPPPqErBZcMGf2rdf8e3K/9vNeDFU0ApCqlqUrfnj9vdW9dut+zQEf69HY1DT67Av32vejWS24cN6cW67+fss7i7JaMHeGKhoBSNgNdz02Y+a86l57welH9470WI/uvZpP/fIlQ3ffM6sFF8x9++Yrxy5euCCrBQvCUIUiAAlbsbL6x3o09+z21TM+nul2iqvf1oM+e+G3snrMb6VSmT9nVilP/4qhCkYA0nbbA0+++Opb1b32i58+bJv+vTPdThFtN3TXMV+5NJOv+F9rzlszbv7PsUsWLcxqwaIxVHEIQNrWtLZe3o7HevzLWSV/rMduIz78mfP+uUu3zN6XeHP6K7+68nsti9/JasECMlRxCEDy7n3smWeer/KxHp89YdTQwQOy3U9xfOjgIz/x2XMbOnXKasFXpz532zU/XLFsaVYLFpahCkIAyqA9j/W49IslfKxHXV3dYSedeugJn6nUZfYVBX9/5k93XHdFCX7ffzMZqggEoAwef+qFiZP+Xt1rRx/x4T13HZLtfvLVqXPnEz53/j4HHZ7hmk9NfOjecde1rlmT4ZoFZ6giEICS+PZVt1f3wrq6um+dV57HenTt3uMz5/9LVg/2qlQqbW1tE+6+ZcLdt1aqempK0gxV6QlASUx+Yfr4CU9X99ojDthr/xG7ZrufXPTu13/Mhd/Ydoeds1pw9apV9/zymqcmPpzVgmkxVKUnAOVx+U/uqv6xHucn/1iPgUN2PP2r3+zbf5usFlzWsuTWa37w4l+rPAHLIfhQlZ4AlMdL02feev+T1b12v+G7HHng8Gz3U0s7DRt+ype+ntV3O1cqlYVz377pisvffPWVrBZMVOShikAASuV///Q3K1auru61l503ulJJ8rEee3/k4NFnXdC5MbNvInvrtWk3XXH5gjmzs1owaTGHKggBKJU3Z8+//s4qH+sxbJfBn0zusR51dQcdM/rIk8+oy+i7nSuVysvP/uWWq76/dEmVX4pZPuGGKhIBKJsfXn/vkqXLq3vt6CM+nO1mOlR9Q8Oxp529/+HHZrjmM4//7jfXX7V61coM1yyBOEMVjQCUzbyFS676VZWP9ajL7s+mOlpTl64nn3vRsJH7Z7ZiW9tj42/73V2/aov3656bFGSoAhKAErpq3IPzFpbkESUb1bN3n9O+cun2u+ye1YKrV6265//8ZNKEB7NasHxKP1QxCUAJLVm6/D9uqPKxHsXXf+B2p1/4rf4Dt8tqwWUtS2675t+nTnkqqwVLqdxDFZYAlNMv7pjw5uz5ee8ie9vvsvtpX7m0Z+8+WS24cN6ccVf82xuvvpzVgiVW1qGKTADKqT2P9SisYSP3P/nci5q6dM1qwZmvT7vpx5fPnzMrqwXLrZRDFZwAlNYt9z3x0vSZee8iM/sddsyxY86pb2jIasFXnpt8y1XfX7qkzN/sn7mSDRUCUFrteaxHodTV1x958hmjjs3yewX+8sdH7/rFlatW+nXPLVOaoWItASiz8ROenvzC9Lx30S6dG5tGn3XB3h85OLMV29omjv/1I3eM8+ue1SnBULGOAJRc1d/oWwTdevQ69ctf32lYZt8ns2b16ntuvPbPE36b1YIxJT1UrE8ASm7ipL8//tQLee+iGn37b3P6V7+5zeAdslpw+dKWW6/5wdTJk7JaMKx0h4p3EYDyq/rZfjnadsedx1z4jd79+me14KJ5c2664vI3pvl1z2ykOFRsKLPnZVNYzzw/7b6Jzxx7cGYPyaqBA478RNfuPTJcsLlf/7MvHZvhglvk52MvnTe7VL88k+JQsSF3ACFcfk31j/WAjTJUJSAAIUx99a3bHqjysR6wUYaqBAQgirE/u7vqx3rARhmq1AlAFDNmzrvhrsfy3gWlYqhSJwCB/PD6e1uWrsh7F5SKoUqaAAQyd8Hiq2+u8rEesFGGKmkCEMuV4x6cv8hjPciSoUqXAMSyuGXZj355f967oFQMVboEIJyf//rRt95ekPcuKBVDlSgBCGf5ylXfu+7uvHdBqRiqRAlARL8a/8eXX/MYLLJkqFIkABGtaW39t2s91oMsGaoUCUBQ9zz69BSP9SBThio5AhBUW1vbd665M+9dUCqGKjkCENeE/3ruD097rAdZMlRpEYDQPNaDzBmqhAhAaE8/N+2B30/OexeUiqFKSF3zyDPz3gMAOXAHABCUAAAEJQAAQQkAQFACABCUAAAEJQAAQQkAQFACABCUAAAEJQAAQQkAQFACABCUAAAEJQAAQQkAQFACABCUAAAEJQAAQQkAQFACABCUAAAEJQAAQQkAQFACABCUAAAEJQAAQQkAQFACABCUAAAE9d/iEAwwbTAh9gAAAABJRU5ErkJggg=="/>
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAbN0lEQVR4nO3de5yVdb3o8TUzMMN9uAgKCipeUkmRI6WmiZrXvKRSloppmebRMsu9t2nlPpX7UO12+dpesiztKHnJS4qXvCSSpe1Qg1ITLyGKCshdGO7M7D84Lw5HUGDNM+t5fs/3/f6rP1o/fr36zu/zPGvNrKeueeSZFQDiqc97AwDkQwAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKA65b2BjtU87Ki8t0DRLXr+wby3APkoYQAc+myR9QdGDAilPAFw7tN+66ZICYgg+QA49+kISkAECQfA0U8NrB0zGaCUkgyAo58akwFKKb1fA3X6kxezR8mkdAfgx4/cuRWgTJK5A3D6UxymkXJIIwB+3igaM0kJFP0tID9mFJa3g0hdoe8AnP4UnyklXcUNgJ8rUmFWSVRBA+AnirSYWFJU0AAA0NGKGAAXU6TI3JKcwgXATxHpMr2kpVgB8PND6swwCSlWAAComQIFwKUT5WCSSUVRAuBnhjIxzyShKAEAoMYKEQCXS5SPqab4ChEAAGov/wC4UKKszDYFl38AAMiFAAAElXMA3CNTbiacInMHABCUAAAElWcA3B0TgTmnsNwBAAQlAABBCQBAULkFwBujxGHaKSZ3AABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIA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"/>
 
-  <!-- PWA basics -->
   <meta name="theme-color" content="#0F3460"/>
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <meta name="apple-mobile-web-app-title" content="Naki2Naki"/>
+  <meta name="description" content="Talk to someone in Nakivale Refugee Settlement. Anonymous, safe, and free."/>
 
-  <!-- SEO -->
-  <meta name="description" content="Talk to someone in Nakivale Refugee Settlement. Anonymous, safe, and free. Available in English, French, Swahili, Somali, Kinyarwanda, and Arabic."/>
-
-  <!-- Open Graph — WhatsApp, Facebook, Telegram previews -->
   <meta property="og:type"        content="website"/>
   <meta property="og:title"       content="Naki2Naki — Connect in Nakivale"/>
   <meta property="og:description" content="Talk to someone in Nakivale Refugee Settlement. Anonymous, safe, and free."/>
   <meta property="og:image"       content="https://naki2naki.vercel.app/og.png"/>
   <meta property="og:url"         content="https://naki2naki.vercel.app"/>
-  <meta property="og:locale"      content="en_US"/>
-
-  <!-- Twitter card -->
-  <meta name="twitter:card"        content="summary_large_image"/>
-  <meta name="twitter:title"       content="Naki2Naki — Connect in Nakivale"/>
-  <meta name="twitter:description" content="Talk to someone in Nakivale Refugee Settlement. Anonymous, safe, and free."/>
-  <meta name="twitter:image"       content="https://naki2naki.vercel.app/og.png"/>
+  <meta name="twitter:card"       content="summary_large_image"/>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -144,80 +132,30 @@
     .lobby-bar-logo span { color: var(--blue); }
     .my-mood-badge { display: flex; align-items: center; gap: 5px; background: var(--blue-light); border: 1.5px solid var(--blue-mid); border-radius: 20px; padding: 3px 10px; font-size: 0.8rem; font-weight: 700; color: var(--blue-dark); }
 
-    .chat-header {
-      background: linear-gradient(135deg, var(--blue-deep) 0%, #1E5FA8 100%);
-      padding: 13px 16px; display: flex; align-items: center; gap: 12px;
-      flex-shrink: 0; box-shadow: 0 3px 18px rgba(15,52,96,0.3);
-    }
-    .avatar {
-      width: 48px; height: 48px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; flex-shrink: 0; position: relative;
-      border: 2.5px solid rgba(255,255,255,0.25);
-    }
+    .chat-header { background: linear-gradient(135deg, var(--blue-deep) 0%, #1E5FA8 100%); padding: 13px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; box-shadow: 0 3px 18px rgba(15,52,96,0.3); }
+    .avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; position: relative; border: 2.5px solid rgba(255,255,255,0.25); }
     .avatar-m { background: linear-gradient(135deg, #60A8E8, #2B72C2); }
     .avatar-f { background: linear-gradient(135deg, #F9A8D4, #DB2777); }
-    .av-online::after {
-      content: ''; position: absolute; bottom: 1px; right: 1px;
-      width: 12px; height: 12px; border-radius: 50%;
-      background: var(--green); border: 2.5px solid #0F3460;
-    }
+    .av-online::after { content: ''; position: absolute; bottom: 1px; right: 1px; width: 12px; height: 12px; border-radius: 50%; background: var(--green); border: 2.5px solid #0F3460; }
     .partner-info { flex: 1; min-width: 0; }
-    .partner-name {
-      font-weight: 800; font-size: 1rem; color: #fff;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
+    .partner-name { font-weight: 800; font-size: 1rem; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .partner-sub { font-size: 0.74rem; color: rgba(255,255,255,0.6); font-weight: 500; margin-top: 1px; }
-    .chat-online-badge {
-      display: flex; align-items: center; gap: 5px;
-      background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.2);
-      border-radius: 20px; padding: 4px 11px;
-      font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.9);
-      white-space: nowrap; flex-shrink: 0;
-    }
+    .chat-online-badge { display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 4px 11px; font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.9); white-space: nowrap; flex-shrink: 0; }
     .chat-online-badge .cdot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
-    #leave-btn {
-      background: rgba(239,68,68,0.2) !important;
-      border: 1.5px solid rgba(239,68,68,0.45) !important;
-      color: #FCA5A5 !important; border-radius: 20px !important;
-      font-size: 0.82rem !important; padding: 7px 13px !important;
-    }
+    #leave-btn { background: rgba(239,68,68,0.2) !important; border: 1.5px solid rgba(239,68,68,0.45) !important; color: #FCA5A5 !important; border-radius: 20px !important; font-size: 0.82rem !important; padding: 7px 13px !important; }
     #leave-btn:hover { background: rgba(239,68,68,0.38) !important; }
 
-    .messages {
-      flex: 1; overflow-y: auto; padding: 16px 14px;
-      display: flex; flex-direction: column; gap: 12px;
-      scroll-behavior: smooth;
-      background: linear-gradient(180deg, #EBF4FF 0%, #F4F8FD 100%);
-    }
+    .messages { flex: 1; overflow-y: auto; padding: 16px 14px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; background: linear-gradient(180deg, #EBF4FF 0%, #F4F8FD 100%); }
     .msg-wrap { display: flex; flex-direction: column; animation: msgIn 0.22s ease-out; position: relative; }
     @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
     .msg-wrap.me { align-items: flex-end; }
     .msg-wrap.them { align-items: flex-start; }
-    .bubble {
-      max-width: 80%; padding: 12px 16px;
-      border-radius: 22px; font-size: 1rem;
-      line-height: 1.5; word-break: break-word;
-    }
-    .me .bubble {
-      background: linear-gradient(135deg, #4A90D9, #1E5FA8);
-      color: white; border-bottom-right-radius: 5px;
-      box-shadow: 0 3px 12px rgba(74,144,217,0.4);
-    }
-    .them .bubble {
-      background: #fff; color: var(--gray-text);
-      border-bottom-left-radius: 5px;
-      box-shadow: 0 2px 10px rgba(30,95,168,0.1);
-      border: 1.5px solid var(--blue-mid);
-    }
+    .bubble { max-width: 80%; padding: 12px 16px; border-radius: 22px; font-size: 1rem; line-height: 1.5; word-break: break-word; }
+    .me .bubble { background: linear-gradient(135deg, #4A90D9, #1E5FA8); color: white; border-bottom-right-radius: 5px; box-shadow: 0 3px 12px rgba(74,144,217,0.4); }
+    .them .bubble { background: #fff; color: var(--gray-text); border-bottom-left-radius: 5px; box-shadow: 0 2px 10px rgba(30,95,168,0.1); border: 1.5px solid var(--blue-mid); }
     .msg-time { font-size: 0.68rem; color: var(--gray-mid); margin-top: 4px; padding: 0 5px; }
     .bubble img { max-width: 230px; border-radius: 14px; display: block; cursor: pointer; }
-    .system-msg {
-      text-align: center; font-size: 0.8rem; font-weight: 600;
-      color: var(--blue-dark); background: var(--blue-light);
-      border: 1.5px solid var(--blue-mid); border-radius: 20px;
-      padding: 7px 18px; margin: 2px auto; max-width: 88%;
-    }
+    .system-msg { text-align: center; font-size: 0.8rem; font-weight: 600; color: var(--blue-dark); background: var(--blue-light); border: 1.5px solid var(--blue-mid); border-radius: 20px; padding: 7px 18px; margin: 2px auto; max-width: 88%; }
 
     .reaction-bar { display: flex; gap: 0; margin-top: 3px; opacity: 0; pointer-events: none; transition: opacity 0.18s; background: var(--white); border: 1.5px solid var(--blue-mid); border-radius: 30px; overflow: hidden; box-shadow: var(--shadow-sm); }
     .msg-wrap:hover .reaction-bar, .reaction-bar.visible { opacity: 1; pointer-events: all; }
@@ -240,58 +178,22 @@
     .vn-dur { font-size: 0.72rem; font-weight: 600; flex-shrink: 0; }
     .me .vn-dur { color: rgba(255,255,255,0.8); } .them .vn-dur { color: var(--gray-mid); }
 
-    .typing-indicator {
-      display: flex; align-items: center; gap: 10px;
-      padding: 6px 16px 2px; flex-shrink: 0;
-      animation: msgIn 0.2s ease-out;
-    }
+    .typing-indicator { display: flex; align-items: center; gap: 10px; padding: 6px 16px 2px; flex-shrink: 0; animation: msgIn 0.2s ease-out; }
     .typing-indicator.hidden { display: none !important; }
-    .typing-avatar {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: linear-gradient(135deg, #4A90D9, #1E5FA8);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; flex-shrink: 0;
-    }
-    .typing-bubble {
-      background: var(--white); border: 1.5px solid var(--blue-mid);
-      border-radius: 18px; border-bottom-left-radius: 5px;
-      padding: 8px 14px; display: flex; align-items: center; gap: 6px;
-      box-shadow: 0 2px 8px rgba(30,95,168,0.08);
-    }
+    .typing-avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #4A90D9, #1E5FA8); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+    .typing-bubble { background: var(--white); border: 1.5px solid var(--blue-mid); border-radius: 18px; border-bottom-left-radius: 5px; padding: 8px 14px; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(30,95,168,0.08); }
     #typing-label { font-size: 0.78rem; font-weight: 600; color: var(--gray-mid); }
     .typing-dots { display: flex; gap: 3px; align-items: center; }
-    .typing-dots span {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--blue); display: block;
-      animation: typingBounce 1.2s infinite ease-in-out;
-    }
+    .typing-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); display: block; animation: typingBounce 1.2s infinite ease-in-out; }
     .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
     .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typingBounce {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-      30% { transform: translateY(-5px); opacity: 1; }
-    }
+    @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-5px); opacity: 1; } }
 
-    .input-bar {
-      background: var(--white); padding: 10px 14px;
-      display: flex; align-items: center; gap: 8px;
-      border-top: 2px solid var(--blue-light); flex-shrink: 0;
-      box-shadow: 0 -2px 14px rgba(30,95,168,0.08);
-    }
+    .input-bar { background: var(--white); padding: 10px 14px; display: flex; align-items: center; gap: 8px; border-top: 2px solid var(--blue-light); flex-shrink: 0; box-shadow: 0 -2px 14px rgba(30,95,168,0.08); }
     .msg-iw { flex: 1; }
-    .msg-iw input {
-      border: 2px solid var(--blue-mid); border-radius: 26px;
-      padding: 12px 18px; background: var(--bg); font-size: 0.97rem;
-      width: 100%; font-family: 'Plus Jakarta Sans', sans-serif;
-      color: var(--gray-text); outline: none;
-      transition: border 0.2s, box-shadow 0.2s, background 0.2s;
-    }
+    .msg-iw input { border: 2px solid var(--blue-mid); border-radius: 26px; padding: 12px 18px; background: var(--bg); font-size: 0.97rem; width: 100%; font-family: 'Plus Jakarta Sans', sans-serif; color: var(--gray-text); outline: none; transition: border 0.2s, box-shadow 0.2s, background 0.2s; }
     .msg-iw input:focus { background: var(--white); border-color: var(--blue); box-shadow: 0 0 0 3px rgba(74,144,217,0.13); }
-    .icon-btn {
-      width: 46px; height: 46px; border: none; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 1.2rem; transition: all 0.15s; flex-shrink: 0;
-    }
+    .icon-btn { width: 46px; height: 46px; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; transition: all 0.15s; flex-shrink: 0; }
     .icon-btn:active { transform: scale(0.9); }
     .ib-blue { background: var(--blue); color: white; box-shadow: 0 3px 12px rgba(74,144,217,0.45); }
     .ib-blue:hover { background: var(--blue-dark); }
@@ -301,40 +203,18 @@
     .ib-red:hover { background: #FECACA; }
     .icon-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
 
-    /* bottom sheet for media options */
-    .media-wrap { position: static; }
-    .media-overlay {
-      position: fixed; inset: 0; background: rgba(15,52,96,0.45);
-      z-index: 60; display: none; align-items: flex-end; justify-content: center;
-    }
+    .media-overlay { position: fixed; inset: 0; background: rgba(15,52,96,0.45); z-index: 60; display: none; align-items: flex-end; justify-content: center; }
     .media-overlay.open { display: flex; }
-    .media-sheet {
-      background: var(--white); border-radius: 28px 28px 0 0;
-      padding: 16px 20px 40px; width: 100%; max-width: 480px;
-      box-shadow: 0 -8px 40px rgba(30,95,168,0.18);
-      animation: slideUp 0.22s ease-out;
-    }
+    .media-sheet { background: var(--white); border-radius: 28px 28px 0 0; padding: 16px 20px 40px; width: 100%; max-width: 480px; box-shadow: 0 -8px 40px rgba(30,95,168,0.18); animation: slideUp 0.22s ease-out; }
     @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
     .sheet-handle { width: 40px; height: 4px; border-radius: 4px; background: var(--blue-mid); margin: 0 auto 18px; }
     .sheet-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; color: var(--blue-deep); margin-bottom: 16px; }
     .sheet-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .sheet-opt {
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
-      padding: 20px 10px; border-radius: 18px;
-      background: var(--blue-light); border: 2px solid var(--blue-mid);
-      cursor: pointer; transition: all 0.15s; font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.9rem; font-weight: 700; color: var(--blue-dark);
-    }
+    .sheet-opt { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 20px 10px; border-radius: 18px; background: var(--blue-light); border: 2px solid var(--blue-mid); cursor: pointer; transition: all 0.15s; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--blue-dark); }
     .sheet-opt:hover { background: var(--blue-mid); transform: scale(1.03); }
     .sheet-opt:active { transform: scale(0.97); }
     .sheet-opt-icon { font-size: 2rem; line-height: 1; }
-    .sheet-cancel {
-      margin-top: 14px; width: 100%; padding: 14px;
-      background: var(--gray-light); border: none; border-radius: 18px;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.97rem;
-      font-weight: 700; color: var(--gray-mid); cursor: pointer;
-      transition: background 0.15s;
-    }
+    .sheet-cancel { margin-top: 14px; width: 100%; padding: 14px; background: var(--gray-light); border: none; border-radius: 18px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.97rem; font-weight: 700; color: var(--gray-mid); cursor: pointer; transition: background 0.15s; }
     .sheet-cancel:hover { background: #D1D5DB; }
 
     .rec-bar { display: none; align-items: center; gap: 8px; flex: 1; background: #FEF2F2; border-radius: 22px; padding: 8px 14px; border: 1.5px solid #FCA5A5; }
@@ -372,37 +252,22 @@
     hr { border: none; border-top: 1.5px solid var(--blue-mid); margin: 14px 0; }
     .security-note { text-align: center; color: var(--gray-mid); font-size: 0.77rem; font-weight: 500; margin-top: 12px; }
 
-    .prev-chat-card {
-      display: flex; align-items: center; gap: 12px;
-      background: var(--white); border: 1.5px solid var(--blue-mid);
-      border-radius: var(--radius-md); padding: 12px 14px;
-      transition: all 0.15s;
-    }
+    .prev-chat-card { display: flex; align-items: center; gap: 12px; background: var(--white); border: 1.5px solid var(--blue-mid); border-radius: var(--radius-md); padding: 12px 14px; transition: all 0.15s; }
     .prev-chat-card:hover { background: var(--blue-light); border-color: var(--blue); }
-    .prev-chat-av {
-      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
-    }
+    .prev-chat-av { width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
     .prev-chat-av.m { background: linear-gradient(135deg,#4A90D9,#1E5FA8); }
     .prev-chat-av.f { background: linear-gradient(135deg,#F472B6,#BE185D); }
     .prev-chat-info { flex: 1; min-width: 0; }
     .prev-chat-name { font-weight: 800; font-size: 0.93rem; color: var(--blue-deep); }
     .prev-chat-meta { font-size: 0.75rem; color: var(--gray-mid); margin-top: 2px; }
-    .prev-chat-reconnect {
-      background: var(--blue); color: white; border: none;
-      border-radius: 20px; padding: 7px 14px; font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.8rem; font-weight: 700; cursor: pointer; flex-shrink: 0;
-      transition: background 0.15s;
-    }
+    .prev-chat-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .prev-chat-reconnect { background: var(--blue); color: white; border: none; border-radius: 20px; padding: 7px 14px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: background 0.15s; }
     .prev-chat-reconnect:hover { background: var(--blue-dark); }
     .prev-chat-reconnect:disabled { opacity: 0.5; cursor: not-allowed; }
-    .reconnect-pending {
-      background: var(--blue-light); color: var(--blue-dark);
-      border: 1.5px solid var(--blue-mid); border-radius: 20px;
-      padding: 6px 12px; font-size: 0.78rem; font-weight: 700; flex-shrink: 0;
-    }
+    .prev-chat-delete { background: #FEE2E2; color: var(--red); border: none; border-radius: 20px; padding: 7px 10px; font-size: 0.8rem; cursor: pointer; transition: background 0.15s; font-weight: 700; }
+    .prev-chat-delete:hover { background: #FECACA; }
+    .reconnect-pending { background: var(--blue-light); color: var(--blue-dark); border: 1.5px solid var(--blue-mid); border-radius: 20px; padding: 6px 12px; font-size: 0.78rem; font-weight: 700; flex-shrink: 0; }
 
-    /* ── MOBILE FIXES ── */
     @media (max-width: 480px) {
       .screen { padding: 12px; }
       .logo { font-size: 2.1rem; }
@@ -413,7 +278,6 @@
       .chat-header { padding: 8px 10px; gap: 7px; }
       .partner-name { font-size: 0.88rem; }
       .chat-online-badge { font-size: 0.68rem; padding: 2px 7px; }
-      .leave-btn { padding: 6px 10px !important; font-size: 0.8rem !important; }
       .bubble { font-size: 0.9rem; max-width: 85%; }
       .input-bar { padding: 6px 8px; gap: 4px; }
       .icon-btn { width: 36px; height: 36px; font-size: 1rem; }
@@ -461,7 +325,6 @@
   </div>
 </div>
 
-<!-- RECONNECT REQUEST MODAL -->
 <div class="modal-overlay" id="reconnect-modal">
   <div class="match-modal-box">
     <div class="match-avatar-big avatar-m" id="rm-avatar">👤</div>
@@ -642,7 +505,7 @@
         <span id="tl-opt-camera">Take Photo</span>
       </button>
     </div>
-    <button class="sheet-cancel" id="sheet-cancel" id="tl-sheet-cancel">Cancel</button>
+    <button class="sheet-cancel" id="sheet-cancel">Cancel</button>
   </div>
 </div>
 
@@ -690,451 +553,145 @@
 const SUPABASE_URL = 'https://hesvrqudqleoxqbsacfi.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhlc3ZycXVkcWxlb3hxYnNhY2ZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3MTY0NDQsImV4cCI6MjA5MTI5MjQ0NH0.yL_k7KJ12L0GF-yoTaW67mfm-G_m3Xqx920X6hKIWBw';
 
-// ─── TRANSLATIONS ────────────────────────────────────────────────────────────
+// ─── TRANSLATIONS ─────────────────────────────────────────────────────────────
 const T = {
   en:{
-    tagline:'Talk to someone new. Feel less alone.',
-    tagline2:'Create your anonymous profile',
-    tagline3:'Your mood helps us find the right match',
-    step1:'Step 1 of 3 — Language',
-    step2:'Step 2 of 3 — Profile',
-    step3:'Step 3 of 3 — Mood',
-    chooselang:'Choose your language',
-    moodpick:'How are you feeling right now?',
-    moodmatch:'We match you with someone who shares a similar mood.',
-    enter:'Enter Naki2Naki',
-    username:'Username',
-    usernamePH:'e.g. Amani22',
-    gender:'I am',
-    male:'Male',
-    female:'Female',
-    zone:'My Zone in Nakivale',
-    zoneOther:'Other',
-    location:'Write your location',
-    locationPH:'e.g. Zone 5, Nakivale',
-    profileErr:'Please fill in all fields above.',
-    continue:'Continue',
-    online:'people online now',
-    chatOnline:'online',
-    moodtag:'Your mood today',
-    findFriend:'Find a Friend in Nakivale',
-    searching:'Looking for someone with a matching mood',
-    anon:'Your identity is protected. Anonymous and private.',
-    leave:'Leave',
-    leaveTitle:'Leave Chat?',
-    leaveBody:'Are you sure? Your partner will be disconnected.',
-    cancel:'Cancel',
-    partnerleft:'Your partner left the chat.',
-    connected:'Connected with',
-    typeMsg:'Type a message...',
-    tabAdvice:'Advice',
-    tabSkills:'Learn',
-    tabNakivale:'Nakivale',
-    tabInspire:'Inspire',
-    tabJoke:'Joke',
-    loading:'Loading...',
-    matchfound:'You have a match',
-    matchFeeling:'is feeling',
-    matchGoodMatch:'— a good match for you.',
-    startChat:'Start Chatting',
-    statChats:'Chats',
-    statStreak:'Day Streak',
-    statMsgs:'Messages',
-    sheetTitle:'Send a Photo',
-    optUpload:'From Gallery',
-    optCamera:'Take a photo',
-    recCancel:'Cancel',
-    sendingToast:'Sending...',
-    onlyImages:'Only image files are allowed.',
-    imageTooLarge:'Image too large. Maximum 8MB.',
-    uploadFailed:'Upload failed. Please try again.',
-    voiceUploadFailed:'Voice upload failed.',
-    micUnavailable:'Microphone not available.',
-    feelingPrefix:'Feeling',
-    prevChats:'People you talked to before',
-    reconnectBtn:'Reconnect',
-    reconnecting:'Waiting for reply...',
-    reconnectRequest:'Reconnect Request',
-    wantsToChat:'wants to chat with you again.',
-    keepLooking:'Keep Looking',
-    accept:'Accept ✓',
-    decline:'Decline',
-    declinedMatch:'Match declined. Looking for someone else...',
-    reconnectDeclined:'They are not available right now.',
-    reconnected:'You are back in the chat.',
-    partnerReturned:'is back.',
-    typingLabel:'is typing',
-    recordingLabel:'is recording a voice note',
+    tagline:'Talk to someone new. Feel less alone.',tagline2:'Create your anonymous profile',tagline3:'Your mood helps us find the right match',
+    step1:'Step 1 of 3 — Language',step2:'Step 2 of 3 — Profile',step3:'Step 3 of 3 — Mood',
+    chooselang:'Choose your language',moodpick:'How are you feeling right now?',moodmatch:'We match you with someone who shares a similar mood.',
+    enter:'Enter Naki2Naki',username:'Username',usernamePH:'e.g. Amani22',gender:'I am',male:'Male',female:'Female',
+    zone:'My Zone in Nakivale',zoneOther:'Other',location:'Write your location',locationPH:'e.g. Zone 5, Nakivale',
+    profileErr:'Please fill in all fields above.',continue:'Continue',
+    online:'people online now',onlineSingular:'person online now',chatOnline:'online',
+    moodtag:'Your mood today',findFriend:'Find a Friend in Nakivale',searching:'Looking for someone with a matching mood',
+    anon:'Your identity is protected. Anonymous and private.',leave:'Leave',leaveTitle:'Leave Chat?',
+    leaveBody:'Are you sure? Your partner will be disconnected.',cancel:'Cancel',partnerleft:'Your partner left the chat.',
+    connected:'Connected with',typeMsg:'Type a message...',tabAdvice:'Advice',tabSkills:'Learn',tabNakivale:'Nakivale',
+    tabInspire:'Inspire',tabJoke:'Joke',loading:'Loading...',matchfound:'You have a match',matchFeeling:'is feeling',
+    matchGoodMatch:'— a good match for you.',startChat:'Start Chatting',statChats:'Chats',statStreak:'Day Streak',statMsgs:'Messages',
+    sheetTitle:'Send a Photo',optUpload:'From Gallery',optCamera:'Take a photo',recCancel:'Cancel',sendingToast:'Sending...',
+    onlyImages:'Only image files are allowed.',imageTooLarge:'Image too large. Maximum 8MB.',uploadFailed:'Upload failed. Please try again.',
+    voiceUploadFailed:'Voice upload failed.',micUnavailable:'Microphone not available.',feelingPrefix:'Feeling',
+    prevChats:'People you talked to before',reconnectBtn:'Reconnect',reconnecting:'Waiting for reply...',
+    reconnectRequest:'Reconnect Request',wantsToChat:'wants to chat with you again.',keepLooking:'Keep Looking',
+    accept:'Accept ✓',decline:'Decline',declinedMatch:'Match declined. Looking for someone else...',
+    reconnectDeclined:'They are not available right now.',reconnected:'You are back in the chat.',partnerReturned:'is back.',
+    typingLabel:'is typing',recordingLabel:'is recording a voice note',deleteChat:'Delete',
   },
   fr:{
-    tagline:'Parle à quelqu\'un de nouveau. Sens-toi moins seul.',
-    tagline2:'Crée ton profil anonyme',
-    tagline3:'Ton humeur nous aide à trouver la bonne personne',
-    step1:'Étape 1 sur 3 — Langue',
-    step2:'Étape 2 sur 3 — Profil',
-    step3:'Étape 3 sur 3 — Humeur',
-    chooselang:'Choisis ta langue',
-    moodpick:'Comment te sens-tu en ce moment ?',
-    moodmatch:'Nous te trouvons quelqu\'un avec une humeur similaire.',
-    enter:'Entrer dans Naki2Naki',
-    username:'Nom d\'utilisateur',
-    usernamePH:'ex. Amani22',
-    gender:'Je suis',
-    male:'Homme',
-    female:'Femme',
-    zone:'Ma zone à Nakivale',
-    zoneOther:'Autre',
-    location:'Écris ta localisation',
-    locationPH:'ex. Zone 5, Nakivale',
-    profileErr:'Remplis tous les champs ci-dessus.',
-    continue:'Continuer',
-    online:'personnes en ligne',
-    chatOnline:'en ligne',
-    moodtag:'Ton humeur aujourd\'hui',
-    findFriend:'Trouver un ami à Nakivale',
-    searching:'Recherche d\'une personne avec la même humeur',
-    anon:'Ton identité est protégée. Anonyme et privé.',
-    leave:'Quitter',
-    leaveTitle:'Quitter le chat ?',
-    leaveBody:'Tu es sûr ? Ton partenaire sera déconnecté.',
-    cancel:'Annuler',
-    partnerleft:'Ton partenaire a quitté.',
-    connected:'Connecté avec',
-    typeMsg:'Écris un message...',
-    tabAdvice:'Conseil',
-    tabSkills:'Apprendre',
-    tabNakivale:'Nakivale',
-    tabInspire:'Inspiration',
-    tabJoke:'Blague',
-    loading:'Chargement...',
-    matchfound:'Tu as trouvé quelqu\'un',
-    matchFeeling:'ressent',
-    matchGoodMatch:'— un bon match pour toi.',
-    startChat:'Commencer à chatter',
-    statChats:'Chats',
-    statStreak:'Jours',
-    statMsgs:'Messages',
-    sheetTitle:'Envoyer une photo',
-    optUpload:'Depuis la galerie',
-    optCamera:'Prendre une photo',
-    recCancel:'Annuler',
-    sendingToast:'Envoi...',
-    onlyImages:'Seules les images sont autorisées.',
-    imageTooLarge:'Image trop grande. Maximum 8 Mo.',
-    uploadFailed:'Échec du téléchargement. Réessaie.',
-    voiceUploadFailed:'Échec de l\'envoi vocal.',
-    micUnavailable:'Microphone non disponible.',
-    feelingPrefix:'Humeur',
-    prevChats:'Personnes avec qui tu as parlé',
-    reconnectBtn:'Reconnecter',
-    reconnecting:'En attente de réponse...',
-    reconnectRequest:'Demande de reconnexion',
-    wantsToChat:'veut à nouveau te parler.',
-    keepLooking:'Continuer à chercher',
-    accept:'Accepter ✓',
-    decline:'Refuser',
-    declinedMatch:'Refusé. Recherche en cours...',
-    reconnectDeclined:'Pas disponible pour l\'instant.',
-    reconnected:'Tu es de retour dans le chat.',
-    partnerReturned:'est de retour.',
-    typingLabel:'est en train d\'écrire',
-    recordingLabel:'enregistre un message vocal',
+    tagline:'Parle à quelqu\'un de nouveau. Sens-toi moins seul.',tagline2:'Crée ton profil anonyme',tagline3:'Ton humeur nous aide à trouver la bonne personne',
+    step1:'Étape 1 sur 3 — Langue',step2:'Étape 2 sur 3 — Profil',step3:'Étape 3 sur 3 — Humeur',
+    chooselang:'Choisis ta langue',moodpick:'Comment te sens-tu en ce moment ?',moodmatch:'Nous te trouvons quelqu\'un avec une humeur similaire.',
+    enter:'Entrer dans Naki2Naki',username:'Nom d\'utilisateur',usernamePH:'ex. Amani22',gender:'Je suis',male:'Homme',female:'Femme',
+    zone:'Ma zone à Nakivale',zoneOther:'Autre',location:'Écris ta localisation',locationPH:'ex. Zone 5, Nakivale',
+    profileErr:'Remplis tous les champs ci-dessus.',continue:'Continuer',
+    online:'personnes en ligne',onlineSingular:'personne en ligne',chatOnline:'en ligne',
+    moodtag:'Ton humeur aujourd\'hui',findFriend:'Trouver un ami à Nakivale',searching:'Recherche d\'une personne avec la même humeur',
+    anon:'Ton identité est protégée. Anonyme et privé.',leave:'Quitter',leaveTitle:'Quitter le chat ?',
+    leaveBody:'Tu es sûr ? Ton partenaire sera déconnecté.',cancel:'Annuler',partnerleft:'Ton partenaire a quitté.',
+    connected:'Connecté avec',typeMsg:'Écris un message...',tabAdvice:'Conseil',tabSkills:'Apprendre',tabNakivale:'Nakivale',
+    tabInspire:'Inspiration',tabJoke:'Blague',loading:'Chargement...',matchfound:'Tu as trouvé quelqu\'un',matchFeeling:'ressent',
+    matchGoodMatch:'— un bon match pour toi.',startChat:'Commencer à chatter',statChats:'Chats',statStreak:'Jours',statMsgs:'Messages',
+    sheetTitle:'Envoyer une photo',optUpload:'Depuis la galerie',optCamera:'Prendre une photo',recCancel:'Annuler',sendingToast:'Envoi...',
+    onlyImages:'Seules les images sont autorisées.',imageTooLarge:'Image trop grande. Maximum 8 Mo.',uploadFailed:'Échec du téléchargement. Réessaie.',
+    voiceUploadFailed:'Échec de l\'envoi vocal.',micUnavailable:'Microphone non disponible.',feelingPrefix:'Humeur',
+    prevChats:'Personnes avec qui tu as parlé',reconnectBtn:'Reconnecter',reconnecting:'En attente de réponse...',
+    reconnectRequest:'Demande de reconnexion',wantsToChat:'veut à nouveau te parler.',keepLooking:'Continuer à chercher',
+    accept:'Accepter ✓',decline:'Refuser',declinedMatch:'Refusé. Recherche en cours...',reconnectDeclined:'Pas disponible pour l\'instant.',
+    reconnected:'Tu es de retour dans le chat.',partnerReturned:'est de retour.',typingLabel:'est en train d\'écrire',
+    recordingLabel:'enregistre un message vocal',deleteChat:'Supprimer',
   },
   sw:{
-    tagline:'Zungumza na mtu mpya. Jisikie peke yako kidogo.',
-    tagline2:'Unda wasifu wako wa siri',
-    tagline3:'Hisia zako zinatuwezesha kukupanga vizuri',
-    step1:'Hatua 1 ya 3 — Lugha',
-    step2:'Hatua 2 ya 3 — Wasifu',
-    step3:'Hatua 3 ya 3 — Hisia',
-    chooselang:'Chagua lugha yako',
-    moodpick:'Unajisikiaje sasa hivi?',
-    moodmatch:'Tunakupanga na mtu mwenye hisia kama zako.',
-    enter:'Ingia Naki2Naki',
-    username:'Jina la mtumiaji',
-    usernamePH:'mfano. Amani22',
-    gender:'Mimi ni',
-    male:'Mwanaume',
-    female:'Mwanamke',
-    zone:'Eneo langu Nakivale',
-    zoneOther:'Nyingine',
-    location:'Andika mahali ulipo',
-    locationPH:'mfano. Eneo 5, Nakivale',
-    profileErr:'Tafadhali jaza sehemu zote hapo juu.',
-    continue:'Endelea',
-    online:'watu wako mtandaoni',
-    chatOnline:'mtandaoni',
-    moodtag:'Hisia zako leo',
-    findFriend:'Tafuta Rafiki Nakivale',
-    searching:'Inatafuta mtu mwenye hisia kama zako',
-    anon:'Utambulisho wako umelindwa. Siri na salama.',
-    leave:'Ondoka',
-    leaveTitle:'Ondoka kwenye mazungumzo?',
-    leaveBody:'Una uhakika? Mwenzako atakatwa.',
-    cancel:'Ghairi',
-    partnerleft:'Mwenzako ameacha.',
-    connected:'Umeunganishwa na',
-    typeMsg:'Andika ujumbe...',
-    tabAdvice:'Ushauri',
-    tabSkills:'Jifunza',
-    tabNakivale:'Nakivale',
-    tabInspire:'Hamasa',
-    tabJoke:'Mzaha',
-    loading:'Inapakia...',
-    matchfound:'Umepata mtu',
-    matchFeeling:'anahisi',
-    matchGoodMatch:'— unafanana vizuri.',
-    startChat:'Anza Kuzungumza',
-    statChats:'Mazungumzo',
-    statStreak:'Siku',
-    statMsgs:'Ujumbe',
-    sheetTitle:'Tuma Picha',
-    optUpload:'Kutoka Gallery',
-    optCamera:'Piga picha',
-    recCancel:'Ghairi',
-    sendingToast:'Inatuma...',
-    onlyImages:'Faili za picha tu zinaruhusiwa.',
-    imageTooLarge:'Picha kubwa sana. Ukubwa wa juu 8MB.',
-    uploadFailed:'Kupakia kumeshindwa. Jaribu tena.',
-    voiceUploadFailed:'Kupakia sauti kumeshindwa.',
-    micUnavailable:'Kipaza sauti hakipatikani.',
-    feelingPrefix:'Hisia',
-    prevChats:'Watu uliozungumza nao',
-    reconnectBtn:'Unganika tena',
-    reconnecting:'Inasubiri jibu...',
-    reconnectRequest:'Ombi la kuunganika tena',
-    wantsToChat:'anataka kuzungumza nawe tena.',
-    keepLooking:'Endelea kutafuta',
-    accept:'Kubali ✓',
-    decline:'Kataa',
-    declinedMatch:'Imekataliwa. Inatafuta mtu mwingine...',
-    reconnectDeclined:'Hawapatikani sasa hivi.',
-    reconnected:'Umerudi kwenye mazungumzo.',
-    partnerReturned:'amerudi.',
-    typingLabel:'anaandika',
-    recordingLabel:'anarekodia ujumbe wa sauti',
+    tagline:'Zungumza na mtu mpya. Jisikie peke yako kidogo.',tagline2:'Unda wasifu wako wa siri',tagline3:'Hisia zako zinatuwezesha kukupanga vizuri',
+    step1:'Hatua 1 ya 3 — Lugha',step2:'Hatua 2 ya 3 — Wasifu',step3:'Hatua 3 ya 3 — Hisia',
+    chooselang:'Chagua lugha yako',moodpick:'Unajisikiaje sasa hivi?',moodmatch:'Tunakupanga na mtu mwenye hisia kama zako.',
+    enter:'Ingia Naki2Naki',username:'Jina la mtumiaji',usernamePH:'mfano. Amani22',gender:'Mimi ni',male:'Mwanaume',female:'Mwanamke',
+    zone:'Eneo langu Nakivale',zoneOther:'Nyingine',location:'Andika mahali ulipo',locationPH:'mfano. Eneo 5, Nakivale',
+    profileErr:'Tafadhali jaza sehemu zote hapo juu.',continue:'Endelea',
+    online:'watu wako mtandaoni',onlineSingular:'mtu yuko mtandaoni',chatOnline:'mtandaoni',
+    moodtag:'Hisia zako leo',findFriend:'Tafuta Rafiki Nakivale',searching:'Inatafuta mtu mwenye hisia kama zako',
+    anon:'Utambulisho wako umelindwa. Siri na salama.',leave:'Ondoka',leaveTitle:'Ondoka kwenye mazungumzo?',
+    leaveBody:'Una uhakika? Mwenzako atakatwa.',cancel:'Ghairi',partnerleft:'Mwenzako ameacha.',
+    connected:'Umeunganishwa na',typeMsg:'Andika ujumbe...',tabAdvice:'Ushauri',tabSkills:'Jifunza',tabNakivale:'Nakivale',
+    tabInspire:'Hamasa',tabJoke:'Mzaha',loading:'Inapakia...',matchfound:'Umepata mtu',matchFeeling:'anahisi',
+    matchGoodMatch:'— unafanana vizuri.',startChat:'Anza Kuzungumza',statChats:'Mazungumzo',statStreak:'Siku',statMsgs:'Ujumbe',
+    sheetTitle:'Tuma Picha',optUpload:'Kutoka Gallery',optCamera:'Piga picha',recCancel:'Ghairi',sendingToast:'Inatuma...',
+    onlyImages:'Faili za picha tu zinaruhusiwa.',imageTooLarge:'Picha kubwa sana. Ukubwa wa juu 8MB.',uploadFailed:'Kupakia kumeshindwa. Jaribu tena.',
+    voiceUploadFailed:'Kupakia sauti kumeshindwa.',micUnavailable:'Kipaza sauti hakipatikani.',feelingPrefix:'Hisia',
+    prevChats:'Watu uliozungumza nao',reconnectBtn:'Unganika tena',reconnecting:'Inasubiri jibu...',
+    reconnectRequest:'Ombi la kuunganika tena',wantsToChat:'anataka kuzungumza nawe tena.',keepLooking:'Endelea kutafuta',
+    accept:'Kubali ✓',decline:'Kataa',declinedMatch:'Imekataliwa. Inatafuta mtu mwingine...',reconnectDeclined:'Hawapatikani sasa hivi.',
+    reconnected:'Umerudi kwenye mazungumzo.',partnerReturned:'amerudi.',typingLabel:'anaandika',
+    recordingLabel:'anarekodia ujumbe wa sauti',deleteChat:'Futa',
   },
   so:{
-    tagline:'La hadal qof cusub. Dareemo kaliya yaraan.',
-    tagline2:'Samee profile sir ah',
-    tagline3:'Dareenkaagu waxa uu na caawinayaa',
-    step1:'Tallaabo 1 ee 3 — Luqadda',
-    step2:'Tallaabo 2 ee 3 — Xogta',
-    step3:'Tallaabo 3 ee 3 — Dareenka',
-    chooselang:'Dooro luqaddaada',
-    moodpick:'Sideed dareemaysaa hadda?',
-    moodmatch:'Waxa aan kuu raadineynaa qof la mid ah dareenkaaga.',
-    enter:'Geli Naki2Naki',
-    username:'Magaca isticmaalaha',
-    usernamePH:'tusaale. Amani22',
-    gender:'Aniga waxaan ahay',
-    male:'Lab',
-    female:'Dheddig',
-    zone:'Goobteeyda Nakivale',
-    zoneOther:'Kale',
-    location:'Qor goobta aad joogto',
-    locationPH:'tusaale. Goob 5, Nakivale',
-    profileErr:'Fadlan buuxi dhammaan goobaha kore.',
-    continue:'Sii wad',
-    online:'qof online ah',
-    chatOnline:'online',
-    moodtag:'Dareenkaaga maanta',
-    findFriend:'Raadi Saaxiib Nakivale',
-    searching:'Waxaa la raadinayaa qof dareen la mid ah',
-    anon:'Aqoonsigaaga waa la ilaalinayaa. Qarsoodi iyo amni.',
-    leave:'Ka bax',
-    leaveTitle:'Ka bax wada hadalka?',
-    leaveBody:'Ma hubtaa? Lammaanaha ayaa la qabti doonaa.',
-    cancel:'Jooji',
-    partnerleft:'Lammaanaha ayaa ka baxay.',
-    connected:'Waad la xidnaatay',
-    typeMsg:'Qor fariin...',
-    tabAdvice:'Talo',
-    tabSkills:'Baaro',
-    tabNakivale:'Nakivale',
-    tabInspire:'Dhiirri',
-    tabJoke:'Majaajil',
-    loading:'Waa la raraya...',
-    matchfound:'Waad heshay qof',
-    matchFeeling:'wuxuu dareemayaa',
-    matchGoodMatch:'— aad u habboon tahay.',
-    startChat:'Bilow Hadallada',
-    statChats:'Xidhiidhyo',
-    statStreak:'Maalmood',
-    statMsgs:'Farriimo',
-    sheetTitle:'Dir Sawir',
-    optUpload:'Ka Galari',
-    optCamera:'Sawir qaad',
-    recCancel:'Jooji',
-    sendingToast:'Waa la diraya...',
-    onlyImages:'Sawirrada kaliya ayaa la oggolyahay.',
-    imageTooLarge:'Sawiirka aad buu u weyn yahay. 8MB ayaa ugu badnaan.',
-    uploadFailed:'Rarida ayaa fashilantay. Mar kale isku day.',
-    voiceUploadFailed:'Codka rarida ayaa fashilantay.',
-    micUnavailable:'Microphone lama heli karo.',
-    feelingPrefix:'Dareenka',
-    prevChats:'Dadka aad la hadashay',
-    reconnectBtn:'Xidh mar kale',
-    reconnecting:'Sugaya jawaab...',
-    reconnectRequest:'Codsi dib u xidid',
-    wantsToChat:'wuxuu doonayaa inuu kula hadlo mar kale.',
-    keepLooking:'Sii raadi',
-    accept:'Aqbal ✓',
-    decline:'Diid',
-    declinedMatch:'Diidmay. Waxaa la raadinayaa qof kale...',
-    reconnectDeclined:'Kuma heli karo hadda.',
-    reconnected:'Waad ku noqotay wada hadalka.',
-    partnerReturned:'ayaa soo noqday.',
-    typingLabel:'wuxuu qorayo',
-    recordingLabel:'wuxuu duubayo codad',
+    tagline:'La hadal qof cusub. Dareemo kaliya yaraan.',tagline2:'Samee profile sir ah',tagline3:'Dareenkaagu waxa uu na caawinayaa',
+    step1:'Tallaabo 1 ee 3 — Luqadda',step2:'Tallaabo 2 ee 3 — Xogta',step3:'Tallaabo 3 ee 3 — Dareenka',
+    chooselang:'Dooro luqaddaada',moodpick:'Sideed dareemaysaa hadda?',moodmatch:'Waxa aan kuu raadineynaa qof la mid ah dareenkaaga.',
+    enter:'Geli Naki2Naki',username:'Magaca isticmaalaha',usernamePH:'tusaale. Amani22',gender:'Aniga waxaan ahay',male:'Lab',female:'Dheddig',
+    zone:'Goobteeyda Nakivale',zoneOther:'Kale',location:'Qor goobta aad joogto',locationPH:'tusaale. Goob 5, Nakivale',
+    profileErr:'Fadlan buuxi dhammaan goobaha kore.',continue:'Sii wad',
+    online:'qof online ah',onlineSingular:'qof online ah',chatOnline:'online',
+    moodtag:'Dareenkaaga maanta',findFriend:'Raadi Saaxiib Nakivale',searching:'Waxaa la raadinayaa qof dareen la mid ah',
+    anon:'Aqoonsigaaga waa la ilaalinayaa. Qarsoodi iyo amni.',leave:'Ka bax',leaveTitle:'Ka bax wada hadalka?',
+    leaveBody:'Ma hubtaa? Lammaanaha ayaa la qabti doonaa.',cancel:'Jooji',partnerleft:'Lammaanaha ayaa ka baxay.',
+    connected:'Waad la xidnaatay',typeMsg:'Qor fariin...',tabAdvice:'Talo',tabSkills:'Baaro',tabNakivale:'Nakivale',
+    tabInspire:'Dhiirri',tabJoke:'Majaajil',loading:'Waa la raraya...',matchfound:'Waad heshay qof',matchFeeling:'wuxuu dareemayaa',
+    matchGoodMatch:'— aad u habboon tahay.',startChat:'Bilow Hadallada',statChats:'Xidhiidhyo',statStreak:'Maalmood',statMsgs:'Farriimo',
+    sheetTitle:'Dir Sawir',optUpload:'Ka Galari',optCamera:'Sawir qaad',recCancel:'Jooji',sendingToast:'Waa la diraya...',
+    onlyImages:'Sawirrada kaliya ayaa la oggolyahay.',imageTooLarge:'Sawiirka aad buu u weyn yahay. 8MB ayaa ugu badnaan.',uploadFailed:'Rarida ayaa fashilantay. Mar kale isku day.',
+    voiceUploadFailed:'Codka rarida ayaa fashilantay.',micUnavailable:'Microphone lama heli karo.',feelingPrefix:'Dareenka',
+    prevChats:'Dadka aad la hadashay',reconnectBtn:'Xidh mar kale',reconnecting:'Sugaya jawaab...',
+    reconnectRequest:'Codsi dib u xidid',wantsToChat:'wuxuu doonayaa inuu kula hadlo mar kale.',keepLooking:'Sii raadi',
+    accept:'Aqbal ✓',decline:'Diid',declinedMatch:'Diidmay. Waxaa la raadinayaa qof kale...',reconnectDeclined:'Kuma heli karo hadda.',
+    reconnected:'Waad ku noqotay wada hadalka.',partnerReturned:'ayaa soo noqday.',typingLabel:'wuxuu qorayo',
+    recordingLabel:'wuxuu duubayo codad',deleteChat:'Tirtir',
   },
   rw:{
-    tagline:'Vugana n\'umuntu mushya. Wiyumve neza.',
-    tagline2:'Kora umwirondoro wanditse',
-    tagline3:'Imyumvire yawe itubasiraho gushaka inshuti ikwiye',
-    step1:'Intambwe 1 ya 3 — Ururimi',
-    step2:'Intambwe 2 ya 3 — Umwirondoro',
-    step3:'Intambwe 3 ya 3 — Imyumvire',
-    chooselang:'Hitamo ururimi rwawe',
-    moodpick:'Wumva ute ubu?',
-    moodmatch:'Tushaka umuntu ufite imyumvire nkawe.',
-    enter:'Injira Naki2Naki',
-    username:'Izina ry\'ukoresha',
-    usernamePH:'urugero. Amani22',
-    gender:'Ndi',
-    male:'Gabo',
-    female:'Gore',
-    zone:'Akarere kanjye Nakivale',
-    zoneOther:'Ikindi',
-    location:'Andika aho uri',
-    locationPH:'urugero. Zone 5, Nakivale',
-    profileErr:'Uzuza imirima yose hejuru.',
-    continue:'Komeza',
-    online:'abantu bari kumurongo',
-    chatOnline:'kumurongo',
-    moodtag:'Imyumvire yawe uyu munsi',
-    findFriend:'Shaka Inshuti Nakivale',
-    searching:'Gushaka inshuti ifite imyumvire nkawe',
-    anon:'Indangamuntu yawe irindwa. Ibanga n\'umutekano.',
-    leave:'Sohoka',
-    leaveTitle:'Gusohoka mu kiganiro?',
-    leaveBody:'Uremeza? Inshuti yawe izacikirwa.',
-    cancel:'Hagarika',
-    partnerleft:'Inshuti yawe yasohutse.',
-    connected:'Wahukanye na',
-    typeMsg:'Andika ubutumwa...',
-    tabAdvice:'Inama',
-    tabSkills:'Iga',
-    tabNakivale:'Nakivale',
-    tabInspire:'Shishikariza',
-    tabJoke:'Sesha',
-    loading:'Biratindwa...',
-    matchfound:'Wabonanye n\'umuntu',
-    matchFeeling:'yumva',
-    matchGoodMatch:'— bikwiye cyane.',
-    startChat:'Tangira Ikiganiro',
-    statChats:'Ikiganiro',
-    statStreak:'Iminsi',
-    statMsgs:'Ubutumwa',
-    sheetTitle:'Ohereza Ifoto',
-    optUpload:'Kuva Gallery',
-    optCamera:'Fata ifoto',
-    recCancel:'Hagarika',
-    sendingToast:'Koherezwa...',
-    onlyImages:'Amafoto gusa ni yo yemerewe.',
-    imageTooLarge:'Ifoto ni nini cyane. 8MB ni urugero.',
-    uploadFailed:'Kohereza ntibyakunze. Ongera ugerageze.',
-    voiceUploadFailed:'Kohereza ijwi ntibyakunze.',
-    micUnavailable:'Microphone ntiboneka.',
-    feelingPrefix:'Imyumvire',
-    prevChats:'Abantu wabagaganye',
-    reconnectBtn:'Ongera uhuze',
-    reconnecting:'Tegereza igisubizo...',
-    reconnectRequest:'Ubusabe bwo gusubirana',
-    wantsToChat:'ashaka kuvugana nawe nanone.',
-    keepLooking:'Komeza gushaka',
-    accept:'Emera ✓',
-    decline:'Anga',
-    declinedMatch:'Yanganiwe. Gushaka uwundi...',
-    reconnectDeclined:'Ntabwo aboneka ubu.',
-    reconnected:'Waramuye mu kiganiro.',
-    partnerReturned:'aragarutse.',
-    typingLabel:'arimo andika',
-    recordingLabel:'arimo vuga ubutumwa',
+    tagline:'Vugana n\'umuntu mushya. Wiyumve neza.',tagline2:'Kora umwirondoro wanditse',tagline3:'Imyumvire yawe itubasiraho gushaka inshuti ikwiye',
+    step1:'Intambwe 1 ya 3 — Ururimi',step2:'Intambwe 2 ya 3 — Umwirondoro',step3:'Intambwe 3 ya 3 — Imyumvire',
+    chooselang:'Hitamo ururimi rwawe',moodpick:'Wumva ute ubu?',moodmatch:'Tushaka umuntu ufite imyumvire nkawe.',
+    enter:'Injira Naki2Naki',username:'Izina ry\'ukoresha',usernamePH:'urugero. Amani22',gender:'Ndi',male:'Gabo',female:'Gore',
+    zone:'Akarere kanjye Nakivale',zoneOther:'Ikindi',location:'Andika aho uri',locationPH:'urugero. Zone 5, Nakivale',
+    profileErr:'Uzuza imirima yose hejuru.',continue:'Komeza',
+    online:'abantu bari kumurongo',onlineSingular:'umuntu uri kumurongo',chatOnline:'kumurongo',
+    moodtag:'Imyumvire yawe uyu munsi',findFriend:'Shaka Inshuti Nakivale',searching:'Gushaka inshuti ifite imyumvire nkawe',
+    anon:'Indangamuntu yawe irindwa. Ibanga n\'umutekano.',leave:'Sohoka',leaveTitle:'Gusohoka mu kiganiro?',
+    leaveBody:'Uremeza? Inshuti yawe izacikirwa.',cancel:'Hagarika',partnerleft:'Inshuti yawe yasohutse.',
+    connected:'Wahukanye na',typeMsg:'Andika ubutumwa...',tabAdvice:'Inama',tabSkills:'Iga',tabNakivale:'Nakivale',
+    tabInspire:'Shishikariza',tabJoke:'Sesha',loading:'Biratindwa...',matchfound:'Wabonanye n\'umuntu',matchFeeling:'yumva',
+    matchGoodMatch:'— bikwiye cyane.',startChat:'Tangira Ikiganiro',statChats:'Ikiganiro',statStreak:'Iminsi',statMsgs:'Ubutumwa',
+    sheetTitle:'Ohereza Ifoto',optUpload:'Kuva Gallery',optCamera:'Fata ifoto',recCancel:'Hagarika',sendingToast:'Koherezwa...',
+    onlyImages:'Amafoto gusa ni yo yemerewe.',imageTooLarge:'Ifoto ni nini cyane. 8MB ni urugero.',uploadFailed:'Kohereza ntibyakunze. Ongera ugerageze.',
+    voiceUploadFailed:'Kohereza ijwi ntibyakunze.',micUnavailable:'Microphone ntiboneka.',feelingPrefix:'Imyumvire',
+    prevChats:'Abantu wabagaganye',reconnectBtn:'Ongera uhuze',reconnecting:'Tegereza igisubizo...',
+    reconnectRequest:'Ubusabe bwo gusubirana',wantsToChat:'ashaka kuvugana nawe nanone.',keepLooking:'Komeza gushaka',
+    accept:'Emera ✓',decline:'Anga',declinedMatch:'Yanganiwe. Gushaka uwundi...',reconnectDeclined:'Ntabwo aboneka ubu.',
+    reconnected:'Waramuye mu kiganiro.',partnerReturned:'aragarutse.',typingLabel:'arimo andika',
+    recordingLabel:'arimo vuga ubutumwa',deleteChat:'Siba',
   },
   ar:{
-    tagline:'تحدث مع شخص جديد. اشعر بوحدة أقل.',
-    tagline2:'أنشئ ملفك الشخصي المجهول',
-    tagline3:'مزاجك يساعدنا في إيجاد الشخص المناسب',
-    step1:'الخطوة 1 من 3 — اللغة',
-    step2:'الخطوة 2 من 3 — الملف الشخصي',
-    step3:'الخطوة 3 من 3 — المزاج',
-    chooselang:'اختر لغتك',
-    moodpick:'كيف تشعر الآن؟',
-    moodmatch:'نجد لك شخصاً يشاركك نفس المزاج.',
-    enter:'ادخل إلى Naki2Naki',
-    username:'اسم المستخدم',
-    usernamePH:'مثال: Amani22',
-    gender:'أنا',
-    male:'ذكر',
-    female:'أنثى',
-    zone:'منطقتي في ناكيفالي',
-    zoneOther:'أخرى',
-    location:'اكتب موقعك',
-    locationPH:'مثال: المنطقة 5، ناكيفالي',
-    profileErr:'يرجى ملء جميع الحقول أعلاه.',
-    continue:'متابعة',
-    online:'شخص متصل الآن',
-    chatOnline:'متصل',
-    moodtag:'مزاجك اليوم',
-    findFriend:'ابحث عن صديق في ناكيفالي',
-    searching:'نبحث عن شخص بنفس مزاجك',
-    anon:'هويتك محمية. مجهول وخاص.',
-    leave:'مغادرة',
-    leaveTitle:'مغادرة الدردشة؟',
-    leaveBody:'هل أنت متأكد؟ سيتم فصل شريكك.',
-    cancel:'إلغاء',
-    partnerleft:'غادر شريكك.',
-    connected:'متصل بـ',
-    typeMsg:'اكتب رسالة...',
-    tabAdvice:'نصيحة',
-    tabSkills:'تعلم',
-    tabNakivale:'ناكيفالي',
-    tabInspire:'إلهام',
-    tabJoke:'نكتة',
-    loading:'جارٍ التحميل...',
-    matchfound:'وجدت شريكاً',
-    matchFeeling:'يشعر بـ',
-    matchGoodMatch:'— مطابقة جيدة لك.',
-    startChat:'ابدأ الدردشة',
-    statChats:'محادثات',
-    statStreak:'أيام',
-    statMsgs:'رسائل',
-    sheetTitle:'إرسال صورة',
-    optUpload:'من المعرض',
-    optCamera:'التقاط صورة',
-    recCancel:'إلغاء',
-    sendingToast:'جارٍ الإرسال...',
-    onlyImages:'ملفات الصور فقط مسموح بها.',
-    imageTooLarge:'الصورة كبيرة جداً. الحد الأقصى 8 ميغابايت.',
-    uploadFailed:'فشل الرفع. حاول مرة أخرى.',
-    voiceUploadFailed:'فشل رفع الصوت.',
-    micUnavailable:'الميكروفون غير متاح.',
-    feelingPrefix:'المزاج',
-    prevChats:'الأشخاص الذين تحدثت معهم',
-    reconnectBtn:'إعادة الاتصال',
-    reconnecting:'في انتظار الرد...',
-    reconnectRequest:'طلب إعادة الاتصال',
-    wantsToChat:'يريد التحدث معك مجدداً.',
-    keepLooking:'الاستمرار في البحث',
-    accept:'قبول ✓',
-    decline:'رفض',
-    declinedMatch:'تم الرفض. البحث عن شخص آخر...',
-    reconnectDeclined:'غير متاح الآن.',
-    reconnected:'عدت إلى المحادثة.',
-    partnerReturned:'عاد.',
-    typingLabel:'يكتب',
-    recordingLabel:'يسجل رسالة صوتية',
+    tagline:'تحدث مع شخص جديد. اشعر بوحدة أقل.',tagline2:'أنشئ ملفك الشخصي المجهول',tagline3:'مزاجك يساعدنا في إيجاد الشخص المناسب',
+    step1:'الخطوة 1 من 3 — اللغة',step2:'الخطوة 2 من 3 — الملف الشخصي',step3:'الخطوة 3 من 3 — المزاج',
+    chooselang:'اختر لغتك',moodpick:'كيف تشعر الآن؟',moodmatch:'نجد لك شخصاً يشاركك نفس المزاج.',
+    enter:'ادخل إلى Naki2Naki',username:'اسم المستخدم',usernamePH:'مثال: Amani22',gender:'أنا',male:'ذكر',female:'أنثى',
+    zone:'منطقتي في ناكيفالي',zoneOther:'أخرى',location:'اكتب موقعك',locationPH:'مثال: المنطقة 5، ناكيفالي',
+    profileErr:'يرجى ملء جميع الحقول أعلاه.',continue:'متابعة',
+    online:'شخص متصل الآن',onlineSingular:'شخص متصل الآن',chatOnline:'متصل',
+    moodtag:'مزاجك اليوم',findFriend:'ابحث عن صديق في ناكيفالي',searching:'نبحث عن شخص بنفس مزاجك',
+    anon:'هويتك محمية. مجهول وخاص.',leave:'مغادرة',leaveTitle:'مغادرة الدردشة؟',
+    leaveBody:'هل أنت متأكد؟ سيتم فصل شريكك.',cancel:'إلغاء',partnerleft:'غادر شريكك.',
+    connected:'متصل بـ',typeMsg:'اكتب رسالة...',tabAdvice:'نصيحة',tabSkills:'تعلم',tabNakivale:'ناكيفالي',
+    tabInspire:'إلهام',tabJoke:'نكتة',loading:'جارٍ التحميل...',matchfound:'وجدت شريكاً',matchFeeling:'يشعر بـ',
+    matchGoodMatch:'— مطابقة جيدة لك.',startChat:'ابدأ الدردشة',statChats:'محادثات',statStreak:'أيام',statMsgs:'رسائل',
+    sheetTitle:'إرسال صورة',optUpload:'من المعرض',optCamera:'التقاط صورة',recCancel:'إلغاء',sendingToast:'جارٍ الإرسال...',
+    onlyImages:'ملفات الصور فقط مسموح بها.',imageTooLarge:'الصورة كبيرة جداً. الحد الأقصى 8 ميغابايت.',uploadFailed:'فشل الرفع. حاول مرة أخرى.',
+    voiceUploadFailed:'فشل رفع الصوت.',micUnavailable:'الميكروفون غير متاح.',feelingPrefix:'المزاج',
+    prevChats:'الأشخاص الذين تحدثت معهم',reconnectBtn:'إعادة الاتصال',reconnecting:'في انتظار الرد...',
+    reconnectRequest:'طلب إعادة الاتصال',wantsToChat:'يريد التحدث معك مجدداً.',keepLooking:'الاستمرار في البحث',
+    accept:'قبول ✓',decline:'رفض',declinedMatch:'تم الرفض. البحث عن شخص آخر...',reconnectDeclined:'غير متاح الآن.',
+    reconnected:'عدت إلى المحادثة.',partnerReturned:'عاد.',typingLabel:'يكتب',
+    recordingLabel:'يسجل رسالة صوتية',deleteChat:'حذف',
   },
 };
 
@@ -1148,28 +705,24 @@ const LOCAL_CONTENT = {
     "Clean water prevents many diseases. If you are unsure about your water source, water purification tablets are distributed through WFP and partner programs. Ask at the community center in Basecamp.",
     "If you have a child who is out of school, visit the nearest UNHCR-supported learning center. Enrollment is free. Education is one of the most important protections available to children in any settlement.",
     "If you need to trace family members, UNHCR and INTERSOS run a free family tracing service from their offices in Nakivale Basecamp. You do not need money or a referral to access it.",
-    "Malnutrition is a serious risk for young children. WFP runs nutrition programs in Nakivale. If a child under five in your household is losing weight or not growing normally, bring them to the health center.",
     "Uganda law gives refugees the right to work, move freely within the country, and access public services. If anyone tells you that you are not allowed to work or start a business, that is incorrect. Ask UNHCR for clarification.",
   ],
   skills:[
-    "Campus Digital Hub (campusdigitalhub.org) is located right here in Nakivale and offers free computer training, internet access, and courses in coding, digital marketing, and English. No experience is needed. This is the best place to start if you want to build digital skills.",
-    "Campus Digital Hub in Nakivale also runs DigiLadies, a program specifically for women who want to learn digital skills. If you are a woman interested in computers, coding, or online work, visit campusdigitalhub.org or ask around Nakivale for their current location.",
-    "Coursera (coursera.org) gives free access to courses from Google, Yale, and other universities. On any course page, click Financial Aid to get the full course at no cost. Certificates from Google Career Certificates are recognized by real employers.",
-    "Khan Academy (khanacademy.org) is completely free and teaches English, mathematics, science, and computer basics. It works on a basic Android phone with low data. Starting with English or maths opens up most other opportunities.",
-    "Google Digital Skills for Africa is a free program in internet use, digital marketing, and online business. Available in English, French, and Swahili at learndigital.withgoogle.com/digitalskills. Completing it gives you a Google certificate.",
-    "Microsoft Learn (learn.microsoft.com) has free training in Excel, Word, and basic computer skills. NGOs and organizations in Nakivale and across Uganda frequently hire office assistants and data clerks who know these tools.",
-    "Duolingo is a free app for learning English, French, or Swahili. Ten minutes of daily practice over six months builds a real foundation. Download it once on WiFi and many lessons work offline afterward.",
-    "edX (edx.org) offers free audited courses from Harvard, MIT, and other institutions. Audit any course for free, or apply for financial aid if you want the certificate. Business, data, and IT courses are the most useful for job seekers.",
+    "Campus Digital Hub (campusdigitalhub.org) is located right here in Nakivale and offers free computer training, internet access, and courses in coding, digital marketing, and English. No experience is needed.",
+    "Coursera (coursera.org) gives free access to courses from Google, Yale, and other universities. On any course page, click Financial Aid to get the full course at no cost.",
+    "Khan Academy (khanacademy.org) is completely free and teaches English, mathematics, science, and computer basics. It works on a basic Android phone with low data.",
+    "Google Digital Skills for Africa is a free program available at learndigital.withgoogle.com/digitalskills. Completing it gives you a Google certificate recognized by employers.",
+    "Microsoft Learn (learn.microsoft.com) has free training in Excel, Word, and basic computer skills. NGOs in Nakivale frequently hire office assistants who know these tools.",
+    "Duolingo is a free app for learning English, French, or Swahili. Ten minutes of daily practice over six months builds a real foundation.",
+    "edX (edx.org) offers free audited courses from Harvard, MIT, and other institutions. Business, data, and IT courses are the most useful for job seekers.",
   ],
   nakivale:[
-    "Campus Digital Hub (campusdigitalhub.org) is a refugee-led organization operating inside Nakivale. They offer free computer training, paid advanced courses in coding and AI, and open internet access. It was built by refugees, for refugees in the settlement.",
-    "Nakivale Refugee Settlement is home to over 130,000 people from more than 10 countries including DRC, Burundi, Somalia, Rwanda, South Sudan, and Ethiopia. It is one of the oldest and largest refugee settlements in Africa.",
-    "Uganda's refugee policy gives refugees the legal right to work, start businesses, and access public schools and health centers. You do not need special permission to earn an income. This is one of the most open refugee policies in the world.",
-    "The Nakivale Livelihoods Program supports refugees who want to start small businesses or farming. IRC and UNHCR run this from their Basecamp offices. Ask about eligibility for training and startup support.",
-    "UNHCR, IRC, INTERSOS, World Vision, and WFP all have offices in Nakivale Basecamp. Each runs different services — education, health, legal protection, food, and income support. The community notice board in Basecamp lists current programs.",
-    "Nakivale has primary and secondary schools supported by UNHCR and the Ugandan government. Enrollment is free. If a child in your household has been out of school, they can still enroll at any registered school regardless of how long they have been absent.",
-    "If you want to do online work — such as data entry, translation, or graphic design — Campus Digital Hub provides internet access and can help you get started. Remote work is one of the few income sources that does not depend on your location.",
-    "The Community Center in Nakivale Basecamp regularly posts updates about available services, training programs, and NGO announcements. Visiting it once a week keeps you informed about opportunities that many people miss.",
+    "Campus Digital Hub (campusdigitalhub.org) is a refugee-led organization operating inside Nakivale. They offer free computer training, paid advanced courses in coding and AI, and open internet access.",
+    "Nakivale Refugee Settlement is home to over 130,000 people from more than 10 countries including DRC, Burundi, Somalia, Rwanda, South Sudan, and Ethiopia.",
+    "Uganda's refugee policy gives refugees the legal right to work, start businesses, and access public schools and health centers. This is one of the most open refugee policies in the world.",
+    "UNHCR, IRC, INTERSOS, World Vision, and WFP all have offices in Nakivale Basecamp. Each runs different services — education, health, legal protection, food, and income support.",
+    "Nakivale has primary and secondary schools supported by UNHCR and the Ugandan government. Enrollment is free regardless of how long a child has been out of school.",
+    "If you want to do online work — such as data entry, translation, or graphic design — Campus Digital Hub provides internet access and can help you get started.",
   ],
   inspire:[
     "You did not choose the circumstances that brought you here. But you are making choices every day about who you are becoming. That agency belongs entirely to you.",
@@ -1177,17 +730,14 @@ const LOCAL_CONTENT = {
     "Nakivale has produced teachers, engineers, entrepreneurs, and community leaders. The path from this settlement to a larger life is real. Other people have walked it. So can you.",
     "The difficult thing about resilience is that it does not feel like strength when you are in the middle of it. It just feels like getting through the day. But getting through the day is exactly how it starts.",
     "Your language, your culture, your way of seeing the world — these are things no displacement can erase. They make you valuable in any room you walk into.",
-    "History has shown repeatedly that people who pass through the hardest circumstances often contribute the most to the communities they join. Your story is not finished. It has barely started.",
-    "Learning something new, no matter how small, is an act of resistance against circumstances that try to limit you. Even one hour of study today is one hour of forward movement.",
+    "History has shown repeatedly that people who pass through the hardest circumstances often contribute the most to the communities they join. Your story is not finished.",
   ],
   joke:[
     "A teacher asked: what is the fastest thing in the world? One student answered: a rumor in the camp. Before the person finishes talking, it has already reached the other side of Juru.",
     "A man told his friend he was on a strict diet. He now eats only one full plate of beans instead of two. His friend said that is not a diet. He said: you have not seen the plate.",
     "Two friends agreed to meet at 8am. One arrived at 9am and said sorry I am late. The other said I just arrived too. Neither will admit they were both standing there since 7:30.",
     "A student studied through the night for the exam. In the morning, his mother asked if he had slept. He said yes, eight full hours. She asked when. He said: during the exam.",
-    "My neighbor told me he would repair my roof one of these days. That was two dry seasons ago. He is still planning.",
     "A man applied for a job and was asked about his experience. He said ten years. They asked in what. He said: in waiting for a response to my applications.",
-    "Someone asked me why I wake up early every day. I said because the morning is quiet and full of possibility. They said I should try sleeping through it. I said I tried. The possibility was still there when I woke up.",
   ],
 };
 
@@ -1199,104 +749,78 @@ let currentRoom = null, partnerInfo = null;
 let isRecording = false, mediaRecorder = null, audioChunks = [], recTimer = null, recSeconds = 0;
 let typingTimer = null, isTypingBroadcast = false;
 let totalChats = 0, totalMsgs = 0, dayStreak = 0, inQueue = false;
-let msgReactions = {}, msgCounter = 0, currentOnlineCount = 0;
+// FIX 2: msgReactions keyed by shared message UUID, not local counter
+let msgReactions = {}, currentOnlineCount = 0;
+// Guard against duplicate channel subscriptions
+let roomChannelActive = false;
 
 function initSupabase(){ try { supabase_client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY); } catch(e){ supabase_client = null; } }
 
 function tr(k){ return (T[currentLang]||T.en)[k] || (T.en[k]||k); }
 
-// ─── APPLY LANGUAGE ────────────────────────────────────────────────────────────
+// FIX 3: Match sound using Web Audio API — no file dependency
+function playMatchSound(){
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const notes = [523, 659, 784]; // C5, E5, G5 — a pleasant major chord arpeggio
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.12);
+      gain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + i * 0.12 + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.35);
+      osc.start(ctx.currentTime + i * 0.12);
+      osc.stop(ctx.currentTime + i * 0.12 + 0.4);
+    });
+  } catch(e) {}
+}
+
+// ─── APPLY LANGUAGE ───────────────────────────────────────────────────────────
 function applyLang(lang){
   currentLang = lang;
   const t = T[lang] || T.en;
   document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-
-  // Simple text targets
   const map = {
-    'tl-tagline':    t.tagline,
-    'tl-tagline2':   t.tagline2,
-    'tl-tagline3':   t.tagline3,
-    'tl-step1':      t.step1,
-    'tl-step2':      t.step2,
-    'tl-step3':      t.step3,
-    'tl-chooselang': t.chooselang,
-    'tl-username':   t.username,
-    'tl-gender':     t.gender,
-    'tl-zone':       t.zone,
-    'tl-location':   t.location,
-    'tl-online':     t.online,
-    'tl-chat-online':t.chatOnline,
-    'tl-sheet-title': t.sheetTitle||'Send a Photo',
-    'tl-opt-upload':  t.optUpload,
-    'tl-opt-camera':  t.optCamera,
-    'sheet-cancel':   t.cancel,
-    'tl-moodtag':    t.moodtag,
-    'tl-moodpick':   t.moodpick,
-    'tl-moodmatch':  t.moodmatch,
-    'tl-findFriend': t.findFriend,
-    'tl-searching':  t.searching,
-    'tl-anon':       t.anon,
-    'tl-prev-chats':  t.prevChats,
-    'tl-tab-advice': t.tabAdvice,
-    'tl-tab-skills': t.tabSkills,
-    'tl-tab-nakivale':t.tabNakivale,
-    'tl-tab-inspire':t.tabInspire,
-    'tl-tab-joke':   t.tabJoke,
-    'tl-loading':    t.loading,
-    'tl-stat-chats': t.statChats,
-    'tl-stat-streak':t.statStreak,
-    'tl-stat-msgs':  t.statMsgs,
-    'btn-male':      t.male,
-    'btn-female':    t.female,
-    'zone-other-btn':t.zoneOther,
-    'modal-cancel':  t.cancel,
-    'modal-confirm': t.leave,
-    'mm-match-title':t.matchfound,
-    'mm-start-btn':  t.startChat,
-    'leave-btn':     t.leave,
-    'opt-upload':    t.optUpload,
-    'opt-camera':    t.optCamera,
-    'rec-cancel':    t.recCancel,
+    'tl-tagline':t.tagline,'tl-tagline2':t.tagline2,'tl-tagline3':t.tagline3,
+    'tl-step1':t.step1,'tl-step2':t.step2,'tl-step3':t.step3,
+    'tl-chooselang':t.chooselang,'tl-username':t.username,'tl-gender':t.gender,
+    'tl-zone':t.zone,'tl-location':t.location,'tl-online':t.online,
+    'tl-chat-online':t.chatOnline,'tl-sheet-title':t.sheetTitle,
+    'tl-opt-upload':t.optUpload,'tl-opt-camera':t.optCamera,'sheet-cancel':t.cancel,
+    'tl-moodtag':t.moodtag,'tl-moodpick':t.moodpick,'tl-moodmatch':t.moodmatch,
+    'tl-findFriend':t.findFriend,'tl-searching':t.searching,'tl-anon':t.anon,
+    'tl-prev-chats':t.prevChats,'tl-tab-advice':t.tabAdvice,'tl-tab-skills':t.tabSkills,
+    'tl-tab-nakivale':t.tabNakivale,'tl-tab-inspire':t.tabInspire,'tl-tab-joke':t.tabJoke,
+    'tl-loading':t.loading,'tl-stat-chats':t.statChats,'tl-stat-streak':t.statStreak,
+    'tl-stat-msgs':t.statMsgs,'btn-male':t.male,'btn-female':t.female,
+    'zone-other-btn':t.zoneOther,'modal-cancel':t.cancel,'modal-confirm':t.leave,
+    'mm-match-title':t.matchfound,'mm-start-btn':t.startChat,'leave-btn':t.leave,
+    'opt-upload':t.optUpload,'opt-camera':t.optCamera,'rec-cancel':t.recCancel,
   };
   for(const [id, val] of Object.entries(map)){
     const el = document.getElementById(id);
     if(el) el.textContent = val;
   }
-
-  // Placeholders
-  const phMap = {
-    'username-input': t.usernamePH,
-    'location-input': t.locationPH,
-    'msg-input':      t.typeMsg,
-  };
+  const phMap = {'username-input':t.usernamePH,'location-input':t.locationPH,'msg-input':t.typeMsg};
   for(const [id, val] of Object.entries(phMap)){
     const el = document.getElementById(id);
     if(el) el.placeholder = val;
   }
-
-  // Profile error
   const pe = document.getElementById('profile-err');
   if(pe) pe.textContent = t.profileErr;
-
-  // lang-next-btn / profile-next-btn / mood-next-btn
   const lnb = document.getElementById('lang-next-btn');
   if(lnb) lnb.textContent = t.continue;
   const pnb = document.getElementById('profile-next-btn');
   if(pnb) pnb.textContent = t.continue;
   const mnb = document.getElementById('mood-next-btn');
   if(mnb) mnb.textContent = t.enter;
-
-  // Modal defaults
   document.getElementById('modal-title').textContent = t.leaveTitle;
   document.getElementById('modal-body').textContent  = t.leaveBody;
-
-  // Mood selected label
   updateMoodSelectedLabel();
-
-  // Mood badge in lobby
   if(profile.mood) updateMyMoodBadge();
-
-  // Clear content cache so it reloads in the right language direction
   contentCache = {};
 }
 
@@ -1314,7 +838,7 @@ function loadStats(){
 }
 function saveStats(){ localStorage.setItem('n2n_chats',totalChats); localStorage.setItem('n2n_msgs',totalMsgs); }
 
-// ─── MOOD HELPERS ──────────────────────────────────────────────────────────────
+// ─── MOOD HELPERS ─────────────────────────────────────────────────────────────
 function getMoodLabel(emoji, context){
   const btn = document.querySelector((context||'')+'[data-mood="'+emoji+'"]');
   if(!btn) return emoji;
@@ -1340,15 +864,14 @@ function showScreen(id){
   document.getElementById(id).classList.add('active');
 }
 
-// ─── SCREEN 1: LANGUAGE ───────────────────────────────────────────────────────
+// ─── SCREEN 1: LANGUAGE ──────────────────────────────────────────────────────
 document.querySelectorAll('#lang-row .lang-btn').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('#lang-row .lang-btn').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  applyLang(b.dataset.lang);
+  b.classList.add('active'); applyLang(b.dataset.lang);
 }));
 document.getElementById('lang-next-btn').addEventListener('click',()=>showScreen('profile-screen'));
 
-// ─── SCREEN 2: PROFILE ────────────────────────────────────────────────────────
+// ─── SCREEN 2: PROFILE ───────────────────────────────────────────────────────
 document.querySelectorAll('.gender-btn').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('.gender-btn').forEach(x=>x.classList.remove('selected'));
   b.classList.add('selected'); selectedGender=b.dataset.g;
@@ -1372,7 +895,7 @@ document.getElementById('profile-next-btn').addEventListener('click',()=>{
   showScreen('mood-screen');
 });
 
-// ─── SCREEN 3: MOOD ───────────────────────────────────────────────────────────
+// ─── SCREEN 3: MOOD ──────────────────────────────────────────────────────────
 document.querySelectorAll('#mood-row .mood-btn').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('#mood-row .mood-btn').forEach(x=>x.classList.remove('selected'));
   b.classList.add('selected'); selectedMood=b.dataset.mood; profile.mood=selectedMood;
@@ -1388,7 +911,7 @@ document.getElementById('mood-next-btn').addEventListener('click',()=>{
   listenForReconnectRequests();
 });
 
-// ─── SCREEN 4: LOBBY MOOD ─────────────────────────────────────────────────────
+// ─── SCREEN 4: LOBBY MOOD ────────────────────────────────────────────────────
 document.querySelectorAll('#lobby-mood-row .mood-btn').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('#lobby-mood-row .mood-btn').forEach(x=>x.classList.remove('selected'));
   b.classList.add('selected'); selectedMood=b.dataset.mood; profile.mood=selectedMood;
@@ -1399,7 +922,7 @@ document.querySelectorAll('#lobby-mood-row .mood-btn').forEach(b=>b.addEventList
 // ─── PRESENCE ─────────────────────────────────────────────────────────────────
 function joinPresence(){
   updateOnlineUI(0,0,0,0);
-  if(!supabase_client||SUPABASE_URL==='https://YOUR_PROJECT.supabase.co'){
+  if(!supabase_client){
     setTimeout(()=>{
       const j=profile.zone==='Juru'?1:0, b=profile.zone==='Basecamp'?1:0, r=profile.zone==='Rubondo'?1:0;
       updateOnlineUI(1,j,b,r);
@@ -1416,6 +939,8 @@ function joinPresence(){
     if(status==='SUBSCRIBED') await presenceChannel.track({username:profile.username,gender:profile.gender,zone:profile.zone,mood:profile.mood,ts:Date.now()});
   });
 }
+
+// FIX 5: Correct grammar — "1 person online now" vs "N people online now"
 function updateOnlineUI(total,j,b,r){
   currentOnlineCount=total;
   document.getElementById('online-count').textContent=total;
@@ -1423,6 +948,11 @@ function updateOnlineUI(total,j,b,r){
   document.getElementById('cnt-juru').textContent=j;
   document.getElementById('cnt-base').textContent=b;
   document.getElementById('cnt-rubondo').textContent=r;
+  // Grammar fix
+  const onlineLabel = document.getElementById('tl-online');
+  if(onlineLabel){
+    onlineLabel.textContent = total === 1 ? tr('onlineSingular').replace(/^\d+\s*/, '') : tr('online');
+  }
 }
 
 // ─── CONTENT ──────────────────────────────────────────────────────────────────
@@ -1431,15 +961,15 @@ async function loadContent(tab){
   const el = document.getElementById('content-text');
   el.innerHTML = `<span class="content-loading">${tr('loading')}</span>`;
   if(contentCache[tab]){displayContent(contentCache[tab]);return;}
-  if(supabase_client&&SUPABASE_URL!=='https://YOUR_PROJECT.supabase.co'){
+  if(supabase_client){
     try{
       const langName={en:'English',fr:'French',sw:'Kiswahili',so:'Somali',rw:'Kinyarwanda',ar:'Arabic'}[currentLang]||'English';
       const prompts={
-        advice:`You assist refugees at Nakivale Refugee Settlement, Uganda (zones: Juru, Basecamp, Rubondo). Give one short, practical, specific piece of advice (3-4 sentences) about health, safety, legal rights, or daily life in the settlement. Reference real organizations — UNHCR, IRC, INTERSOS, WFP — where relevant. No emojis. Write in ${langName}.`,
-        skills:`You assist refugees at Nakivale Settlement, Uganda. Recommend one specific free learning resource that can help a refugee get a job or build a skill. Always mention Campus Digital Hub (campusdigitalhub.org) as the first option when relevant — it is physically located in Nakivale. Then online options like Coursera, Khan Academy, Google Digital Skills, or edX. Include how to access them. No emojis. 3-4 sentences. Write in ${langName}.`,
-        nakivale:`You assist refugees at Nakivale Settlement, Uganda. Share one factual, useful piece of information about life, rights, services, work, or learning opportunities in Nakivale. Mention Campus Digital Hub (campusdigitalhub.org) where relevant — it is a refugee-led organization inside the settlement. No emojis. 3-4 sentences. Write in ${langName}.`,
-        inspire:`Write one short, grounded, honest message of encouragement (3-4 sentences) for someone living at Nakivale Refugee Settlement who is trying to build a better future. Make it specific to the refugee experience — not generic. No emojis. Write in ${langName}.`,
-        joke:`Tell one short, clean, friendly joke (2-4 lines) that would make someone in East Africa smile. Avoid any stereotypes or sensitive topics. No emojis. Write in ${langName}.`,
+        advice:`You assist refugees at Nakivale Refugee Settlement, Uganda. Give one short, practical, specific piece of advice (3-4 sentences) about health, safety, legal rights, or daily life. Reference real organizations — UNHCR, IRC, INTERSOS, WFP — where relevant. No emojis. Write in ${langName}.`,
+        skills:`You assist refugees at Nakivale Settlement, Uganda. Recommend one specific free learning resource. Always mention Campus Digital Hub (campusdigitalhub.org) as the first option when relevant — it is physically located in Nakivale. No emojis. 3-4 sentences. Write in ${langName}.`,
+        nakivale:`You assist refugees at Nakivale Settlement, Uganda. Share one factual, useful piece of information about life, rights, services, work, or learning in Nakivale. Mention Campus Digital Hub (campusdigitalhub.org) where relevant. No emojis. 3-4 sentences. Write in ${langName}.`,
+        inspire:`Write one short, grounded, honest message of encouragement (3-4 sentences) for someone living at Nakivale Refugee Settlement. Make it specific to the refugee experience. No emojis. Write in ${langName}.`,
+        joke:`Tell one short, clean, friendly joke (2-4 lines) that would make someone in East Africa smile. Avoid stereotypes or sensitive topics. No emojis. Write in ${langName}.`,
       };
       const resp = await supabase_client.functions.invoke('naki-ai',{body:{prompt:prompts[tab]||prompts.advice}});
       if(resp.data?.text){contentCache[tab]=resp.data.text;displayContent(resp.data.text);return;}
@@ -1464,10 +994,7 @@ document.getElementById('find-btn').addEventListener('click',async()=>{
   if(inQueue)return; inQueue=true;
   document.getElementById('find-btn').disabled=true;
   document.getElementById('queue-msg').classList.remove('hidden');
-  if(!supabase_client||SUPABASE_URL==='https://YOUR_PROJECT.supabase.co'){
-    // Supabase not configured yet — just wait, no fake users
-    return;
-  }
+  if(!supabase_client) return;
   await supabase_client.from('queue').upsert({username:profile.username,gender:profile.gender,zone:profile.zone,location:profile.location,mood:profile.mood,lang:currentLang,joined_at:new Date().toISOString(),room_id:null});
   pollForMatch();
 });
@@ -1488,23 +1015,16 @@ async function enterRoom(roomId){
     const{data:q}=await supabase_client.from('queue').select('*').eq('room_id',roomId);
     partnerInfo=q?.find(u=>u.username!==profile.username)||{username:'Friend',gender:'male',zone:'Nakivale',mood:'😊'};
   }
-  showMatchModal(
-    ()=>startChat(),
-    async()=>{
-      // Declined — clear room_id for both and re-enter queue
-      showToast(tr('declinedMatch')||'Declined. Looking for someone else...');
-      if(supabase_client){
-        await supabase_client.from('queue').update({room_id:null}).eq('room_id',roomId);
-        // re-upsert self into queue
-        await supabase_client.from('queue').upsert({username:profile.username,gender:profile.gender,zone:profile.zone,location:profile.location,mood:profile.mood,lang:currentLang,joined_at:new Date().toISOString(),room_id:null});
-      }
-      currentRoom=null; partnerInfo=null;
-      pollForMatch();
+  showMatchModal(()=>startChat(), async()=>{
+    showToast(tr('declinedMatch'));
+    if(supabase_client){
+      await supabase_client.from('queue').update({room_id:null}).eq('room_id',roomId);
+      await supabase_client.from('queue').upsert({username:profile.username,gender:profile.gender,zone:profile.zone,location:profile.location,mood:profile.mood,lang:currentLang,joined_at:new Date().toISOString(),room_id:null});
     }
-  );
+    currentRoom=null; partnerInfo=null;
+    pollForMatch();
+  });
 }
-
-
 
 // ─── MATCH MODAL ──────────────────────────────────────────────────────────────
 function showMatchModal(onStart, onDecline){
@@ -1515,11 +1035,14 @@ function showMatchModal(onStart, onDecline){
   const moodLabel = getMoodLabel(p.mood,'#lobby-mood-row ');
   document.getElementById('mm-match-title').textContent = tr('matchfound');
   document.getElementById('mm-desc').textContent = p.username+' '+tr('matchFeeling')+' '+moodLabel+' '+p.mood+' '+tr('matchGoodMatch');
-  document.getElementById('mm-start-btn').textContent = tr('accept') || 'Accept ✓';
-  document.getElementById('mm-decline-btn').textContent = tr('keepLooking') || 'Keep Looking';
+  document.getElementById('mm-start-btn').textContent = tr('accept');
+  document.getElementById('mm-decline-btn').textContent = tr('keepLooking');
+  document.getElementById('mm-decline-btn').style.display = '';
   const chips = document.getElementById('mm-chips'); chips.innerHTML='';
   [p.zone, moodLabel].forEach(l=>{const c=document.createElement('span');c.className='match-chip';c.textContent=l;chips.appendChild(c);});
   document.getElementById('match-modal').classList.add('open');
+  // FIX 3: Play match sound when modal opens
+  playMatchSound();
   document.getElementById('mm-start-btn').onclick=()=>{
     document.getElementById('match-modal').classList.remove('open');
     onStart();
@@ -1530,20 +1053,22 @@ function showMatchModal(onStart, onDecline){
   };
 }
 
-// ─── PREVIOUS CHATS ────────────────────────────────────────────────────────────
-function loadPrevChats(){
-  const raw = localStorage.getItem('n2n_prev_chats');
-  return raw ? JSON.parse(raw) : [];
-}
+// ─── PREVIOUS CHATS ──────────────────────────────────────────────────────────
+function loadPrevChats(){ const raw = localStorage.getItem('n2n_prev_chats'); return raw ? JSON.parse(raw) : []; }
 
 function savePrevChat(partner){
   const chats = loadPrevChats();
-  // Avoid duplicates — update existing entry
   const idx = chats.findIndex(c=>c.username===partner.username);
   const entry = {...partner, lastChat: Date.now()};
   if(idx>=0) chats[idx]=entry; else chats.unshift(entry);
-  // Keep only last 5
   localStorage.setItem('n2n_prev_chats', JSON.stringify(chats.slice(0,5)));
+}
+
+// FIX 4: Delete conversation from history
+function deletePrevChat(username){
+  const chats = loadPrevChats().filter(c=>c.username!==username);
+  localStorage.setItem('n2n_prev_chats', JSON.stringify(chats));
+  renderPrevChats();
 }
 
 function renderPrevChats(){
@@ -1570,27 +1095,34 @@ function renderPrevChats(){
     meta.className='prev-chat-meta';
     meta.textContent = p.zone+' · '+new Date(p.lastChat).toLocaleDateString();
     info.appendChild(name); info.appendChild(meta);
-    const btn = document.createElement('button');
-    btn.className='prev-chat-reconnect';
-    btn.textContent = tr('reconnectBtn')||'Reconnect';
-    btn.addEventListener('click',()=>sendReconnectRequest(p, btn));
-    card.appendChild(av); card.appendChild(info); card.appendChild(btn);
+    const actions = document.createElement('div');
+    actions.className='prev-chat-actions';
+    const reconnectBtn = document.createElement('button');
+    reconnectBtn.className='prev-chat-reconnect';
+    reconnectBtn.textContent = tr('reconnectBtn');
+    reconnectBtn.addEventListener('click',()=>sendReconnectRequest(p, reconnectBtn));
+    // FIX 4: Delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className='prev-chat-delete';
+    deleteBtn.textContent = '✕';
+    deleteBtn.title = tr('deleteChat');
+    deleteBtn.addEventListener('click',()=>deletePrevChat(p.username));
+    actions.appendChild(reconnectBtn);
+    actions.appendChild(deleteBtn);
+    card.appendChild(av); card.appendChild(info); card.appendChild(actions);
     list.appendChild(card);
   });
 }
 
-// ─── RECONNECT REQUEST ─────────────────────────────────────────────────────────
+// ─── RECONNECT REQUEST ────────────────────────────────────────────────────────
 let reconnectChannel = null;
 
 async function sendReconnectRequest(targetPartner, btn){
   btn.disabled=true;
-  btn.textContent = tr('reconnecting')||'Waiting...';
+  btn.textContent = tr('reconnecting');
   const reqRoom = 'reconnect_'+profile.username+'_'+targetPartner.username+'_'+Date.now();
   localStorage.setItem('n2n_pending_reconnect', JSON.stringify({room:reqRoom, target:targetPartner}));
-
   if(!supabase_client) return;
-
-  // Open a channel to the target and send request
   reconnectChannel = supabase_client.channel('reconnect_'+targetPartner.username);
   reconnectChannel
     .on('broadcast',{event:'reconnect_response'},({payload})=>{
@@ -1603,30 +1135,24 @@ async function sendReconnectRequest(targetPartner, btn){
         partnerInfo   = targetPartner;
         saveSession();
         showMatchModal(()=>startChat(), null);
-        // hide accept/decline since this is a pre-accepted reconnect
         document.getElementById('mm-decline-btn').style.display='none';
       } else {
         btn.disabled=false;
-        btn.textContent=tr('reconnectBtn')||'Reconnect';
-        showToast(tr('reconnectDeclined')||'Not available right now.');
+        btn.textContent=tr('reconnectBtn');
+        showToast(tr('reconnectDeclined'));
       }
     })
     .subscribe(async()=>{
-      await reconnectChannel.send({
-        type:'broadcast', event:'reconnect_request',
-        payload:{ from:profile.username, fromInfo:profile, room:reqRoom }
-      });
+      await reconnectChannel.send({type:'broadcast', event:'reconnect_request', payload:{ from:profile.username, fromInfo:profile, room:reqRoom }});
     });
-
-  // Timeout after 30s
   setTimeout(()=>{
     if(!reconnectChannel) return;
     supabase_client.removeChannel(reconnectChannel);
     reconnectChannel=null;
     btn.disabled=false;
-    btn.textContent=tr('reconnectBtn')||'Reconnect';
+    btn.textContent=tr('reconnectBtn');
     localStorage.removeItem('n2n_pending_reconnect');
-    showToast(tr('reconnectDeclined')||'No response. They may be offline.');
+    showToast(tr('reconnectDeclined'));
   }, 30000);
 }
 
@@ -1644,13 +1170,12 @@ function showReconnectModal(fromName, fromInfo, roomId, channel){
   const av = document.getElementById('rm-avatar');
   av.textContent = fromInfo.gender==='female'?'👩':'👨';
   av.className = 'match-avatar-big '+(fromInfo.gender==='female'?'avatar-f':'avatar-m');
-  document.getElementById('rm-title').textContent = tr('reconnectRequest')||'Reconnect Request';
-  document.getElementById('rm-desc').textContent  = fromName+' '+(tr('wantsToChat')||'wants to chat with you again.');
+  document.getElementById('rm-title').textContent = tr('reconnectRequest');
+  document.getElementById('rm-desc').textContent  = fromName+' '+(tr('wantsToChat'));
   document.getElementById('reconnect-modal').classList.add('open');
-
-  document.getElementById('rm-accept-btn').textContent  = tr('accept')||'Accept ✓';
-  document.getElementById('rm-decline-btn').textContent = tr('decline')||'Decline';
-
+  document.getElementById('rm-accept-btn').textContent  = tr('accept');
+  document.getElementById('rm-decline-btn').textContent = tr('decline');
+  playMatchSound();
   document.getElementById('rm-accept-btn').onclick=async()=>{
     document.getElementById('reconnect-modal').classList.remove('open');
     await channel.send({type:'broadcast',event:'reconnect_response',payload:{from:profile.username,accepted:true,room:roomId}});
@@ -1666,6 +1191,15 @@ function showReconnectModal(fromName, fromInfo, roomId, channel){
 }
 
 // ─── CHAT ─────────────────────────────────────────────────────────────────────
+// FIX 1: Always tear down existing channel before creating a new one
+function teardownRoomChannel(){
+  if(roomChannel && supabase_client){
+    try { supabase_client.removeChannel(roomChannel); } catch(e){}
+  }
+  roomChannel = null;
+  roomChannelActive = false;
+}
+
 function startChat(){
   inQueue=false; document.getElementById('find-btn').disabled=false; document.getElementById('queue-msg').classList.add('hidden');
   totalChats++; saveStats(); document.getElementById('stat-chats').textContent=totalChats;
@@ -1680,22 +1214,28 @@ function startChat(){
   saveSession();
   savePrevChat(partnerInfo);
   addMessage(tr('connected')+' '+partnerInfo.username,'system');
-  if(supabase_client&&currentRoom!=='demo'){
+  if(supabase_client && currentRoom){
+    // FIX 1: Tear down first to prevent duplicate listeners
+    teardownRoomChannel();
+    roomChannelActive = true;
     roomChannel = supabase_client.channel(currentRoom);
     roomChannel
-      .on('broadcast',{event:'message'},({payload})=>{ if(payload.sender!==profile.username){ stopPartnerTyping(); addMessage(payload.content,'them',payload.type,payload.url,payload.duration); } })
-      .on('broadcast',{event:'leave'},()=>{ stopPartnerTyping(); addMessage(tr('partnerleft'),'system'); })
+      .on('broadcast',{event:'message'},({payload})=>{
+        if(payload.sender!==profile.username){ stopPartnerTyping(); addMessage(payload.content,'them',payload.type,payload.url,payload.duration,payload.msgId); }
+      })
+      .on('broadcast',{event:'leave'},()=>{ stopPartnerTyping(); addMessage(tr('partnerleft'),'system'); clearSession(); })
+      // FIX 2: Reactions use shared msgId from payload
       .on('broadcast',{event:'reaction'},({payload})=>{ if(payload.sender!==profile.username) applyReaction(payload.msgId,payload.emoji); })
       .on('broadcast',{event:'typing'},({payload})=>{ if(payload.sender!==profile.username) showPartnerTyping('typing'); })
       .on('broadcast',{event:'recording'},({payload})=>{ if(payload.sender!==profile.username) showPartnerTyping('recording'); })
       .on('broadcast',{event:'stoptyping'},({payload})=>{ if(payload.sender!==profile.username) stopPartnerTyping(); })
+      .on('broadcast',{event:'reconnected'},({payload})=>{ if(payload.sender!==profile.username) addMessage(payload.sender+' '+tr('partnerReturned'),'system'); })
       .subscribe();
   }
 }
 
-// ─── TYPING / RECORDING INDICATORS ───────────────────────────────────────────
+// ─── TYPING / RECORDING ───────────────────────────────────────────────────────
 let partnerTypingTimer = null;
-
 function showPartnerTyping(mode){
   const ind = document.getElementById('typing-indicator');
   const lbl = document.getElementById('typing-label');
@@ -1704,46 +1244,42 @@ function showPartnerTyping(mode){
   av.textContent = partnerInfo.gender==='female'?'👩':'👨';
   lbl.textContent = partnerInfo.username + ' ' + (mode==='recording'? tr('recordingLabel') : tr('typingLabel'));
   ind.classList.remove('hidden');
-  // scroll messages down so indicator is visible
   const msgs = document.getElementById('messages');
   msgs.scrollTop = msgs.scrollHeight;
-  // auto-hide after 4s of silence
   clearTimeout(partnerTypingTimer);
   partnerTypingTimer = setTimeout(stopPartnerTyping, 4000);
 }
-
 function stopPartnerTyping(){
   clearTimeout(partnerTypingTimer);
   const ind = document.getElementById('typing-indicator');
   if(ind) ind.classList.add('hidden');
 }
-
 function broadcastTyping(){
-  if(!supabase_client||!roomChannel||currentRoom==='demo') return;
-  if(!isTypingBroadcast){
-    isTypingBroadcast = true;
-    roomChannel.send({type:'broadcast',event:'typing',payload:{sender:profile.username}});
-  }
+  if(!supabase_client||!roomChannel) return;
+  if(!isTypingBroadcast){ isTypingBroadcast=true; roomChannel.send({type:'broadcast',event:'typing',payload:{sender:profile.username}}); }
   clearTimeout(typingTimer);
   typingTimer = setTimeout(()=>{ isTypingBroadcast=false; roomChannel.send({type:'broadcast',event:'stoptyping',payload:{sender:profile.username}}); }, 2000);
 }
-
 function broadcastRecording(){
-  if(!supabase_client||!roomChannel||currentRoom==='demo') return;
+  if(!supabase_client||!roomChannel) return;
   roomChannel.send({type:'broadcast',event:'recording',payload:{sender:profile.username}});
 }
-
 function broadcastStopTyping(){
-  if(!supabase_client||!roomChannel||currentRoom==='demo') return;
-  clearTimeout(typingTimer);
-  isTypingBroadcast = false;
+  if(!supabase_client||!roomChannel) return;
+  clearTimeout(typingTimer); isTypingBroadcast=false;
   roomChannel.send({type:'broadcast',event:'stoptyping',payload:{sender:profile.username}});
 }
 
-function addMessage(content,from,type='text',url=null,duration=null){
+// FIX 2: Generate a shared UUID for each message so reactions sync correctly
+function generateMsgId(){
+  return 'msg_'+Date.now()+'_'+Math.random().toString(36).substring(2,9);
+}
+
+function addMessage(content,from,type='text',url=null,duration=null,sharedMsgId=null){
   const msgs = document.getElementById('messages');
   const wrap = document.createElement('div');
-  const msgId = 'msg-'+(++msgCounter);
+  // FIX 2: Use the shared msgId if provided (for incoming), or generate one (for outgoing/system)
+  const msgId = sharedMsgId || generateMsgId();
   wrap.setAttribute('data-msgid',msgId);
   if(from==='system'){
     wrap.className='system-msg'; wrap.textContent=content;
@@ -1770,6 +1306,7 @@ function addMessage(content,from,type='text',url=null,duration=null){
   }
   msgs.appendChild(wrap); msgs.scrollTop=msgs.scrollHeight;
   if(from==='me'){ totalMsgs++; saveStats(); document.getElementById('stat-msgs').textContent=totalMsgs; }
+  return msgId;
 }
 
 function buildVoicePlayer(url,duration,from){
@@ -1791,15 +1328,20 @@ function buildVoicePlayer(url,duration,from){
 }
 function formatDur(s){ const t=Math.round(s); return Math.floor(t/60)+':'+(t%60<10?'0':'')+(t%60); }
 
+// FIX 2: toggleReaction and applyReaction both use the stable shared msgId
 function toggleReaction(msgId,emoji,wrapEl){
   if(!msgReactions[msgId]) msgReactions[msgId]={};
   const key=msgId+'_'+emoji, mine=sessionStorage.getItem(key);
   if(mine){ msgReactions[msgId][emoji]=Math.max(0,(msgReactions[msgId][emoji]||1)-1); if(!msgReactions[msgId][emoji])delete msgReactions[msgId][emoji]; sessionStorage.removeItem(key); }
   else { msgReactions[msgId][emoji]=(msgReactions[msgId][emoji]||0)+1; sessionStorage.setItem(key,'1'); }
   renderRxnCounts(msgId,wrapEl);
-  if(supabase_client&&roomChannel&&currentRoom!=='demo') roomChannel.send({type:'broadcast',event:'reaction',payload:{sender:profile.username,msgId,emoji}});
+  if(supabase_client&&roomChannel) roomChannel.send({type:'broadcast',event:'reaction',payload:{sender:profile.username,msgId,emoji}});
 }
-function applyReaction(msgId,emoji){ if(!msgReactions[msgId])msgReactions[msgId]={}; msgReactions[msgId][emoji]=(msgReactions[msgId][emoji]||0)+1; renderRxnCounts(msgId,document.querySelector('[data-msgid="'+msgId+'"]')); }
+function applyReaction(msgId,emoji){
+  if(!msgReactions[msgId])msgReactions[msgId]={};
+  msgReactions[msgId][emoji]=(msgReactions[msgId][emoji]||0)+1;
+  renderRxnCounts(msgId,document.querySelector('[data-msgid="'+msgId+'"]'));
+}
 function renderRxnCounts(msgId,wrap){
   if(!wrap)return;
   const c=wrap.querySelector('.reaction-counts'); if(!c)return; c.innerHTML='';
@@ -1813,35 +1355,26 @@ function renderRxnCounts(msgId,wrap){
   });
 }
 
+// FIX 2: sendMessage generates and broadcasts a shared msgId
 async function sendMessage(content,type='text',url=null,duration=null){
-  addMessage(content,'me',type,url,duration);
-  if(supabase_client&&roomChannel&&currentRoom!=='demo') await roomChannel.send({type:'broadcast',event:'message',payload:{sender:profile.username,content,type,url,duration}});
+  const msgId = generateMsgId();
+  addMessage(content,'me',type,url,duration,msgId);
+  if(supabase_client&&roomChannel) await roomChannel.send({type:'broadcast',event:'message',payload:{sender:profile.username,content,type,url,duration,msgId}});
 }
+
 document.getElementById('send-btn').addEventListener('click',sendText);
 document.getElementById('msg-input').addEventListener('keydown',e=>{ if(e.key==='Enter')sendText(); else broadcastTyping(); });
 document.getElementById('msg-input').addEventListener('input',()=>broadcastTyping());
 function sendText(){ const inp=document.getElementById('msg-input'), t=inp.value.trim(); if(!t)return; broadcastStopTyping(); sendMessage(t.replace(/</g,'&lt;').replace(/>/g,'&gt;').substring(0,500)); inp.value=''; }
 
 // ─── MEDIA BOTTOM SHEET ───────────────────────────────────────────────────────
-function openMediaSheet(){
-  document.getElementById('media-overlay').classList.add('open');
-}
-function closeMediaSheet(){
-  document.getElementById('media-overlay').classList.remove('open');
-}
+function openMediaSheet(){ document.getElementById('media-overlay').classList.add('open'); }
+function closeMediaSheet(){ document.getElementById('media-overlay').classList.remove('open'); }
 document.getElementById('media-btn').addEventListener('click', openMediaSheet);
 document.getElementById('sheet-cancel').addEventListener('click', closeMediaSheet);
-document.getElementById('media-overlay').addEventListener('click', e=>{
-  if(e.target === document.getElementById('media-overlay')) closeMediaSheet();
-});
-document.getElementById('opt-upload').addEventListener('click',()=>{
-  closeMediaSheet();
-  document.getElementById('img-input').click();
-});
-document.getElementById('opt-camera').addEventListener('click',()=>{
-  closeMediaSheet();
-  document.getElementById('cam-input').click();
-});
+document.getElementById('media-overlay').addEventListener('click', e=>{ if(e.target === document.getElementById('media-overlay')) closeMediaSheet(); });
+document.getElementById('opt-upload').addEventListener('click',()=>{ closeMediaSheet(); document.getElementById('img-input').click(); });
+document.getElementById('opt-camera').addEventListener('click',()=>{ closeMediaSheet(); document.getElementById('cam-input').click(); });
 
 async function compressImage(file){
   return new Promise(resolve=>{
@@ -1862,9 +1395,10 @@ async function compressImage(file){
 async function handleImageFile(file){
   if(!file)return;
   if(!file.type.startsWith('image/')){ showToast(tr('onlyImages')); return; }
+  if(file.size > 8*1024*1024){ showToast(tr('imageTooLarge')); return; }
   showToast(tr('sendingToast'));
   const compressed = await compressImage(file);
-  if(supabase_client&&currentRoom!=='demo'){
+  if(supabase_client&&currentRoom){
     const path='chat/'+currentRoom+'/'+Date.now()+'.jpg';
     const{error}=await supabase_client.storage.from('naki2naki-media').upload(path,compressed,{contentType:'image/jpeg'});
     if(!error){ const{data:ud}=supabase_client.storage.from('naki2naki-media').getPublicUrl(path); sendMessage('[photo]','image',ud.publicUrl); }
@@ -1918,7 +1452,7 @@ async function handleRecordingStop(){
   const mimeType=audioChunks[0]?.type||'audio/webm';
   const blob=new Blob(audioChunks,{type:mimeType});
   const ext=mimeType.includes('mp4')?'mp4':'webm';
-  if(supabase_client&&currentRoom!=='demo'){
+  if(supabase_client&&currentRoom){
     const path='chat/'+currentRoom+'/'+Date.now()+'.'+ext;
     const{error}=await supabase_client.storage.from('naki2naki-media').upload(path,blob);
     if(!error){ const{data:ud}=supabase_client.storage.from('naki2naki-media').getPublicUrl(path); sendMessage('[voice note]','audio',ud.publicUrl,dur); }
@@ -1932,7 +1466,9 @@ document.getElementById('leave-btn').addEventListener('click',()=>{
 });
 function doLeave(){
   broadcastStopTyping(); stopPartnerTyping();
-  if(supabase_client&&roomChannel){ roomChannel.send({type:'broadcast',event:'leave',payload:{}}); supabase_client.removeChannel(roomChannel); roomChannel=null; }
+  if(supabase_client&&roomChannel){ roomChannel.send({type:'broadcast',event:'leave',payload:{}}); }
+  // FIX 1: Always tear down on leave
+  teardownRoomChannel();
   clearSession();
   document.getElementById('messages').innerHTML=''; msgReactions={};
   currentRoom=null; partnerInfo=null; delete contentCache[currentTab];
@@ -1957,14 +1493,13 @@ function showToast(msg,dur=2600){
   clearTimeout(_tt); _tt=setTimeout(()=>{ el.classList.remove('show'); el.style.display='none'; },dur);
 }
 
-// ─── SESSION SAVE / RESTORE ──────────────────────────────────────────────────
+// ─── SESSION SAVE / RESTORE ───────────────────────────────────────────────────
 function saveSession(){
   localStorage.setItem('n2n_profile', JSON.stringify(profile));
   localStorage.setItem('n2n_lang', currentLang);
   if(currentRoom) localStorage.setItem('n2n_room', currentRoom);
   if(partnerInfo)  localStorage.setItem('n2n_partner', JSON.stringify(partnerInfo));
 }
-
 function clearSession(){
   localStorage.removeItem('n2n_room');
   localStorage.removeItem('n2n_partner');
@@ -1975,35 +1510,23 @@ function restoreSession(){
   const savedProfile = localStorage.getItem('n2n_profile');
   const savedRoom    = localStorage.getItem('n2n_room');
   const savedPartner = localStorage.getItem('n2n_partner');
-
-  if(!savedProfile) return false; // nothing saved, show lang screen
-
-  // Restore lang
+  if(!savedProfile) return false;
   if(savedLang){
     currentLang = savedLang;
-    document.querySelectorAll('#lang-row .lang-btn').forEach(b=>{
-      b.classList.toggle('active', b.dataset.lang === savedLang);
-    });
+    document.querySelectorAll('#lang-row .lang-btn').forEach(b=>b.classList.toggle('active', b.dataset.lang === savedLang));
     applyLang(savedLang);
   }
-
-  // Restore profile
   profile = JSON.parse(savedProfile);
   selectedGender = profile.gender;
   selectedZone   = profile.zone;
   selectedMood   = profile.mood || '😊';
-
-  // Restore profile screen fields silently
   const ui = document.getElementById('username-input');
   if(ui) ui.value = profile.username;
   document.querySelectorAll('.gender-btn').forEach(b=> b.classList.toggle('selected', b.dataset.g===profile.gender));
   document.querySelectorAll('#zone-row .zone-btn').forEach(b=> b.classList.toggle('selected', b.dataset.zone===profile.zone));
-
-  // Init supabase and stats
   initSupabase(); loadStats();
   syncLobbyMood(selectedMood); updateMyMoodBadge();
 
-  // If they were mid-chat, restore that
   if(savedRoom && savedPartner){
     currentRoom  = savedRoom;
     partnerInfo  = JSON.parse(savedPartner);
@@ -2015,11 +1538,13 @@ function restoreSession(){
     document.getElementById('partner-sub').textContent  = partnerInfo.zone;
     document.getElementById('leave-btn').textContent    = tr('leave');
     addMessage(tr('reconnected'),'system');
-    // Rejoin the realtime channel
     if(supabase_client){
+      // FIX 1: Tear down before re-subscribing on session restore
+      teardownRoomChannel();
+      roomChannelActive = true;
       roomChannel = supabase_client.channel(currentRoom);
       roomChannel
-        .on('broadcast',{event:'message'},({payload})=>{ if(payload.sender!==profile.username){ stopPartnerTyping(); addMessage(payload.content,'them',payload.type,payload.url,payload.duration); } })
+        .on('broadcast',{event:'message'},({payload})=>{ if(payload.sender!==profile.username){ stopPartnerTyping(); addMessage(payload.content,'them',payload.type,payload.url,payload.duration,payload.msgId); } })
         .on('broadcast',{event:'leave'},()=>{ stopPartnerTyping(); addMessage(tr('partnerleft'),'system'); clearSession(); })
         .on('broadcast',{event:'reaction'},({payload})=>{ if(payload.sender!==profile.username) applyReaction(payload.msgId,payload.emoji); })
         .on('broadcast',{event:'typing'},({payload})=>{ if(payload.sender!==profile.username) showPartnerTyping('typing'); })
@@ -2027,7 +1552,6 @@ function restoreSession(){
         .on('broadcast',{event:'stoptyping'},({payload})=>{ if(payload.sender!==profile.username) stopPartnerTyping(); })
         .on('broadcast',{event:'reconnected'},({payload})=>{ if(payload.sender!==profile.username) addMessage(payload.sender+' '+tr('partnerReturned'),'system'); })
         .subscribe(()=>{
-          // Tell partner we are back
           roomChannel.send({type:'broadcast',event:'reconnected',payload:{sender:profile.username}});
         });
     }
@@ -2035,7 +1559,6 @@ function restoreSession(){
     return true;
   }
 
-  // Otherwise go to lobby
   showScreen('lobby-screen');
   joinPresence();
   loadContent(currentTab);
