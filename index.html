@@ -670,6 +670,8 @@ const T = {
     voiceUploadFailed:'Voice upload failed.',
     micUnavailable:'Microphone not available.',
     feelingPrefix:'Feeling',
+    reconnected:'You are back in the chat.',
+    partnerReturned:'is back.',
     typingLabel:'is typing',
     recordingLabel:'is recording a voice note',
   },
@@ -732,6 +734,8 @@ const T = {
     voiceUploadFailed:'Échec de l\'envoi vocal.',
     micUnavailable:'Microphone non disponible.',
     feelingPrefix:'Humeur',
+    reconnected:'Tu es de retour dans le chat.',
+    partnerReturned:'est de retour.',
     typingLabel:'est en train d\'écrire',
     recordingLabel:'enregistre un message vocal',
   },
@@ -794,6 +798,8 @@ const T = {
     voiceUploadFailed:'Kupakia sauti kumeshindwa.',
     micUnavailable:'Kipaza sauti hakipatikani.',
     feelingPrefix:'Hisia',
+    reconnected:'Umerudi kwenye mazungumzo.',
+    partnerReturned:'amerudi.',
     typingLabel:'anaandika',
     recordingLabel:'anarekodia ujumbe wa sauti',
   },
@@ -856,6 +862,8 @@ const T = {
     voiceUploadFailed:'Codka rarida ayaa fashilantay.',
     micUnavailable:'Microphone lama heli karo.',
     feelingPrefix:'Dareenka',
+    reconnected:'Waad ku noqotay wada hadalka.',
+    partnerReturned:'ayaa soo noqday.',
     typingLabel:'wuxuu qorayo',
     recordingLabel:'wuxuu duubayo codad',
   },
@@ -918,6 +926,8 @@ const T = {
     voiceUploadFailed:'Kohereza ijwi ntibyakunze.',
     micUnavailable:'Microphone ntiboneka.',
     feelingPrefix:'Imyumvire',
+    reconnected:'Waramuye mu kiganiro.',
+    partnerReturned:'aragarutse.',
     typingLabel:'arimo andika',
     recordingLabel:'arimo vuga ubutumwa',
   },
@@ -980,6 +990,8 @@ const T = {
     voiceUploadFailed:'فشل رفع الصوت.',
     micUnavailable:'الميكروفون غير متاح.',
     feelingPrefix:'المزاج',
+    reconnected:'عدت إلى المحادثة.',
+    partnerReturned:'عاد.',
     typingLabel:'يكتب',
     recordingLabel:'يسجل رسالة صوتية',
   },
@@ -1214,6 +1226,7 @@ document.getElementById('profile-next-btn').addEventListener('click',()=>{
   if(!safe){err.classList.remove('hidden');return;}
   err.classList.add('hidden');
   profile = {username:safe, gender:selectedGender, zone:selectedZone, location:loc, mood:selectedMood};
+  localStorage.setItem('n2n_lang', currentLang);
   showScreen('mood-screen');
 });
 
@@ -1227,6 +1240,7 @@ document.getElementById('mood-next-btn').addEventListener('click',()=>{
   profile.mood = selectedMood;
   initSupabase(); loadStats();
   syncLobbyMood(selectedMood); updateMyMoodBadge();
+  saveSession();
   showScreen('lobby-screen'); joinPresence(); loadContent(currentTab);
 });
 
@@ -1360,6 +1374,7 @@ function startChat(){
   document.getElementById('partner-sub').textContent = partnerInfo.zone;
   document.getElementById('chat-online-count').textContent = currentOnlineCount;
   document.getElementById('leave-btn').textContent = tr('leave');
+  saveSession();
   addMessage(tr('connected')+' '+partnerInfo.username,'system');
   if(supabase_client&&currentRoom!=='demo'){
     roomChannel = supabase_client.channel(currentRoom);
@@ -1614,6 +1629,7 @@ document.getElementById('leave-btn').addEventListener('click',()=>{
 function doLeave(){
   broadcastStopTyping(); stopPartnerTyping();
   if(supabase_client&&roomChannel){ roomChannel.send({type:'broadcast',event:'leave',payload:{}}); supabase_client.removeChannel(roomChannel); roomChannel=null; }
+  clearSession();
   document.getElementById('messages').innerHTML=''; msgReactions={};
   currentRoom=null; partnerInfo=null; delete contentCache[currentTab];
   showScreen('lobby-screen'); loadContent(currentTab);
@@ -1637,8 +1653,96 @@ function showToast(msg,dur=2600){
   clearTimeout(_tt); _tt=setTimeout(()=>{ el.classList.remove('show'); el.style.display='none'; },dur);
 }
 
+// ─── SESSION SAVE / RESTORE ──────────────────────────────────────────────────
+function saveSession(){
+  localStorage.setItem('n2n_profile', JSON.stringify(profile));
+  localStorage.setItem('n2n_lang', currentLang);
+  if(currentRoom) localStorage.setItem('n2n_room', currentRoom);
+  if(partnerInfo)  localStorage.setItem('n2n_partner', JSON.stringify(partnerInfo));
+}
+
+function clearSession(){
+  localStorage.removeItem('n2n_room');
+  localStorage.removeItem('n2n_partner');
+}
+
+function restoreSession(){
+  const savedLang    = localStorage.getItem('n2n_lang');
+  const savedProfile = localStorage.getItem('n2n_profile');
+  const savedRoom    = localStorage.getItem('n2n_room');
+  const savedPartner = localStorage.getItem('n2n_partner');
+
+  if(!savedProfile) return false; // nothing saved, show lang screen
+
+  // Restore lang
+  if(savedLang){
+    currentLang = savedLang;
+    document.querySelectorAll('#lang-row .lang-btn').forEach(b=>{
+      b.classList.toggle('active', b.dataset.lang === savedLang);
+    });
+    applyLang(savedLang);
+  }
+
+  // Restore profile
+  profile = JSON.parse(savedProfile);
+  selectedGender = profile.gender;
+  selectedZone   = profile.zone;
+  selectedMood   = profile.mood || '😊';
+
+  // Restore profile screen fields silently
+  const ui = document.getElementById('username-input');
+  if(ui) ui.value = profile.username;
+  document.querySelectorAll('.gender-btn').forEach(b=> b.classList.toggle('selected', b.dataset.g===profile.gender));
+  document.querySelectorAll('#zone-row .zone-btn').forEach(b=> b.classList.toggle('selected', b.dataset.zone===profile.zone));
+
+  // Init supabase and stats
+  initSupabase(); loadStats();
+  syncLobbyMood(selectedMood); updateMyMoodBadge();
+
+  // If they were mid-chat, restore that
+  if(savedRoom && savedPartner){
+    currentRoom  = savedRoom;
+    partnerInfo  = JSON.parse(savedPartner);
+    showScreen('chat-screen');
+    const av = document.getElementById('partner-avatar');
+    av.textContent = partnerInfo.gender==='female'?'👩':'👨';
+    av.className = 'avatar av-online '+(partnerInfo.gender==='female'?'avatar-f':'avatar-m');
+    document.getElementById('partner-name').textContent = partnerInfo.username+' '+partnerInfo.mood;
+    document.getElementById('partner-sub').textContent  = partnerInfo.zone;
+    document.getElementById('leave-btn').textContent    = tr('leave');
+    addMessage(tr('reconnected'),'system');
+    // Rejoin the realtime channel
+    if(supabase_client){
+      roomChannel = supabase_client.channel(currentRoom);
+      roomChannel
+        .on('broadcast',{event:'message'},({payload})=>{ if(payload.sender!==profile.username){ stopPartnerTyping(); addMessage(payload.content,'them',payload.type,payload.url,payload.duration); } })
+        .on('broadcast',{event:'leave'},()=>{ stopPartnerTyping(); addMessage(tr('partnerleft'),'system'); clearSession(); })
+        .on('broadcast',{event:'reaction'},({payload})=>{ if(payload.sender!==profile.username) applyReaction(payload.msgId,payload.emoji); })
+        .on('broadcast',{event:'typing'},({payload})=>{ if(payload.sender!==profile.username) showPartnerTyping('typing'); })
+        .on('broadcast',{event:'recording'},({payload})=>{ if(payload.sender!==profile.username) showPartnerTyping('recording'); })
+        .on('broadcast',{event:'stoptyping'},({payload})=>{ if(payload.sender!==profile.username) stopPartnerTyping(); })
+        .on('broadcast',{event:'reconnected'},({payload})=>{ if(payload.sender!==profile.username) addMessage(payload.sender+' '+tr('partnerReturned'),'system'); })
+        .subscribe(()=>{
+          // Tell partner we are back
+          roomChannel.send({type:'broadcast',event:'reconnected',payload:{sender:profile.username}});
+        });
+    }
+    joinPresence();
+    return true;
+  }
+
+  // Otherwise go to lobby
+  showScreen('lobby-screen');
+  joinPresence();
+  loadContent(currentTab);
+  return true;
+}
+
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 applyLang('en');
+if(!restoreSession()){
+  showScreen('lang-screen');
+}
 </script>
 </body>
 </html>
