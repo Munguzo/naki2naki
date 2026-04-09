@@ -181,6 +181,7 @@
     @keyframes rpulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
     .rec-time { font-size: 0.9rem; font-weight: 700; color: var(--red); }
     .rec-cancel { background: none; border: none; cursor: pointer; color: var(--gray-mid); font-size: 0.82rem; font-weight: 700; padding: 2px 6px; margin-left: auto; }
+    .rec-send { background: var(--blue); border: none; border-radius: 20px; cursor: pointer; color: white; font-size: 0.82rem; font-weight: 700; padding: 4px 12px; margin-left: 6px; }
 
     .match-modal-box { background: var(--white); border-radius: var(--radius-lg); padding: 28px 24px; max-width: 360px; width: 100%; box-shadow: var(--shadow-lg); animation: popIn 0.25s ease-out; text-align: center; }
     .match-avatar-big { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 10px; font-size: 2.2rem; display: flex; align-items: center; justify-content: center; position: relative; }
@@ -208,6 +209,36 @@
     .err { color: var(--red); font-size: 0.82rem; margin-top: 6px; font-weight: 600; }
     hr { border: none; border-top: 1.5px solid var(--blue-mid); margin: 14px 0; }
     .security-note { text-align: center; color: var(--gray-mid); font-size: 0.77rem; font-weight: 500; margin-top: 12px; }
+
+    /* ── MOBILE FIXES ── */
+    @media (max-width: 480px) {
+      .screen { padding: 12px; }
+      .logo { font-size: 2.1rem; }
+      .card { padding: 16px; }
+      .lang-grid { grid-template-columns: 1fr 1fr; gap: 7px; }
+      .lang-btn { font-size: 0.82rem; padding: 9px 10px; }
+      .mood-btn { font-size: 1.25rem; padding: 4px 7px; }
+      .chat-header { padding: 8px 10px; gap: 7px; }
+      .partner-name { font-size: 0.88rem; }
+      .chat-online-badge { font-size: 0.68rem; padding: 2px 7px; }
+      .leave-btn { padding: 6px 10px !important; font-size: 0.8rem !important; }
+      .bubble { font-size: 0.9rem; max-width: 85%; }
+      .input-bar { padding: 6px 8px; gap: 4px; }
+      .icon-btn { width: 36px; height: 36px; font-size: 1rem; }
+      .msg-iw input { padding: 9px 13px; font-size: 0.88rem; }
+      .content-tabs { gap: 4px; }
+      .tab-btn { font-size: 0.67rem; padding: 6px 3px; }
+      .stats-row { gap: 6px; }
+      .stat-num { font-size: 1.1rem; }
+      .stat-label { font-size: 0.6rem; }
+      .btn { padding: 12px; font-size: 0.97rem; }
+      .lobby-scroll { padding: 12px; }
+      .rec-bar { padding: 6px 10px; }
+      .rec-time { font-size: 0.82rem; }
+      .rec-send { font-size: 0.76rem; padding: 3px 9px; }
+      #chat-screen .inner { height: 100dvh; }
+      .messages { padding: 10px; }
+    }
   </style>
 </head>
 <body>
@@ -411,6 +442,7 @@
         <span class="rec-time" id="rec-time">0:00</span>
         <span style="font-size:0.72rem;color:var(--red);font-weight:600">/ 1:00</span>
         <button class="rec-cancel" id="rec-cancel">Cancel</button>
+        <button class="rec-send" id="rec-send">Send ✔</button>
       </div>
       <div class="msg-iw" id="text-input-wrap">
         <input type="text" id="msg-input" placeholder="Type a message..." maxlength="500" autocomplete="off"/>
@@ -1250,18 +1282,33 @@ document.addEventListener('click',()=>{ if(mediaMenuOpen){ mediaMenuOpen=false; 
 document.getElementById('opt-upload').addEventListener('click',()=>{ document.getElementById('img-input').click(); mediaMenuOpen=false; document.getElementById('media-menu').classList.remove('open'); });
 document.getElementById('opt-camera').addEventListener('click',()=>{ document.getElementById('cam-input').click(); mediaMenuOpen=false; document.getElementById('media-menu').classList.remove('open'); });
 
+async function compressImage(file){
+  return new Promise(resolve=>{
+    const img=new Image();
+    const url=URL.createObjectURL(file);
+    img.onload=()=>{
+      const MAX=1024;
+      let w=img.width, h=img.height;
+      if(w>MAX||h>MAX){ if(w>h){h=Math.round(h*MAX/w);w=MAX;}else{w=Math.round(w*MAX/h);h=MAX;} }
+      const canvas=document.createElement('canvas');
+      canvas.width=w; canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      canvas.toBlob(blob=>{ URL.revokeObjectURL(url); resolve(blob); },'image/jpeg',0.75);
+    };
+    img.src=url;
+  });
+}
 async function handleImageFile(file){
   if(!file)return;
   if(!file.type.startsWith('image/')){ showToast(tr('onlyImages')); return; }
-  if(file.size>8*1024*1024){ showToast(tr('imageTooLarge')); return; }
   showToast(tr('sendingToast'));
+  const compressed = await compressImage(file);
   if(supabase_client&&currentRoom!=='demo'){
-    const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
-    const path='chat/'+currentRoom+'/'+Date.now()+'_'+safeName;
-    const{error}=await supabase_client.storage.from('naki2naki-media').upload(path,file);
+    const path='chat/'+currentRoom+'/'+Date.now()+'.jpg';
+    const{error}=await supabase_client.storage.from('naki2naki-media').upload(path,compressed,{contentType:'image/jpeg'});
     if(!error){ const{data:ud}=supabase_client.storage.from('naki2naki-media').getPublicUrl(path); sendMessage('[photo]','image',ud.publicUrl); }
     else showToast(tr('uploadFailed'));
-  } else { sendMessage('[photo]','image',URL.createObjectURL(file)); }
+  } else { sendMessage('[photo]','image',URL.createObjectURL(compressed)); }
 }
 document.getElementById('img-input').addEventListener('change',async e=>{ await handleImageFile(e.target.files[0]); e.target.value=''; });
 document.getElementById('cam-input').addEventListener('change',async e=>{ await handleImageFile(e.target.files[0]); e.target.value=''; });
@@ -1269,6 +1316,7 @@ document.getElementById('cam-input').addEventListener('change',async e=>{ await 
 // ─── VOICE ────────────────────────────────────────────────────────────────────
 document.getElementById('mic-btn').addEventListener('click',async()=>{ if(!isRecording)startRecording(); });
 document.getElementById('rec-cancel').addEventListener('click',()=>cancelRecording());
+document.getElementById('rec-send').addEventListener('click',()=>{ if(isRecording)stopRecording(); });
 
 async function startRecording(){
   try{
