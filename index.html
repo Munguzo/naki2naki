@@ -4,6 +4,35 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naki2Naki — Connect in Nakivale</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAbN0lEQVR4nO3de5yVdb3o8TUzMMN9uAgKCipeUkmRI6WmiZrXvKRSloppmebRMsu9t2nlPpX7UO12+dpesiztKHnJS4qXvCSSpe1Qg1ITLyGKCshdGO7M7D84Lw5HUGDNM+t5fs/3/f6rP1o/fr36zu/zPGvNrKeueeSZFQDiqc97AwDkQwAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKA65b2BjtU87Ki8t0DRLXr+wby3APkoYQAc+myR9QdGDAilPAFw7tN+66ZICYgg+QA49+kISkAECQfA0U8NrB0zGaCUkgyAo58akwFKKb1fA3X6kxezR8mkdAfgx4/cuRWgTJK5A3D6UxymkXJIIwB+3igaM0kJFP0tID9mFJa3g0hdoe8AnP4UnyklXcUNgJ8rUmFWSVRBA+AnirSYWFJU0AAA0NGKGAAXU6TI3JKcwgXATxHpMr2kpVgB8PND6swwCSlWAAComQIFwKUT5WCSSUVRAuBnhjIxzyShKAEAoMYKEQCXS5SPqab4ChEAAGov/wC4UKKszDYFl38AAMiFAAAElXMA3CNTbiacInMHABCUAAAElWcA3B0TgTmnsNwBAAQlAABBCQBAULkFwBujxGHaKSZ3AABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIA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"/>
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAbN0lEQVR4nO3de5yVdb3o8TUzMMN9uAgKCipeUkmRI6WmiZrXvKRSloppmebRMsu9t2nlPpX7UO12+dpesiztKHnJS4qXvCSSpe1Qg1ITLyGKCshdGO7M7D84Lw5HUGDNM+t5fs/3/f6rP1o/fr36zu/zPGvNrKeueeSZFQDiqc97AwDkQwAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKAEACAoAQAISgAAghIAgKA65b2BjtU87Ki8t0DRLXr+wby3APkoYQAc+myR9QdGDAilPAFw7tN+66ZICYgg+QA49+kISkAECQfA0U8NrB0zGaCUkgyAo58akwFKKb1fA3X6kxezR8mkdAfgx4/cuRWgTJK5A3D6UxymkXJIIwB+3igaM0kJFP0tID9mFJa3g0hdoe8AnP4UnyklXcUNgJ8rUmFWSVRBA+AnirSYWFJU0AAA0NGKGAAXU6TI3JKcwgXATxHpMr2kpVgB8PND6swwCSlWAAComQIFwKUT5WCSSUVRAuBnhjIxzyShKAEAoMYKEQCXS5SPqab4ChEAAGov/wC4UKKszDYFl38AAMiFAAAElXMA3CNTbiacInMHABCUAAAElWcA3B0TgTmnsNwBAAQlAABBCQBAULkFwBujxGHaKSZ3AABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIAEJQAAAQlAABBCQBAUAIA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"/>
+
+  <!-- PWA basics -->
+  <meta name="theme-color" content="#0F3460"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="Naki2Naki"/>
+
+  <!-- SEO -->
+  <meta name="description" content="Talk to someone in Nakivale Refugee Settlement. Anonymous, safe, and free. Available in English, French, Swahili, Somali, Kinyarwanda, and Arabic."/>
+
+  <!-- Open Graph — WhatsApp, Facebook, Telegram previews -->
+  <meta property="og:type"        content="website"/>
+  <meta property="og:title"       content="Naki2Naki — Connect in Nakivale"/>
+  <meta property="og:description" content="Talk to someone in Nakivale Refugee Settlement. Anonymous, safe, and free."/>
+  <meta property="og:image"       content="https://naki2naki.vercel.app/og.png"/>
+  <meta property="og:url"         content="https://naki2naki.vercel.app"/>
+  <meta property="og:locale"      content="en_US"/>
+
+  <!-- Twitter card -->
+  <meta name="twitter:card"        content="summary_large_image"/>
+  <meta name="twitter:title"       content="Naki2Naki — Connect in Nakivale"/>
+  <meta name="twitter:description" content="Talk to someone in Nakivale Refugee Settlement. Anonymous, safe, and free."/>
+  <meta name="twitter:image"       content="https://naki2naki.vercel.app/og.png"/>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
@@ -343,6 +372,36 @@
     hr { border: none; border-top: 1.5px solid var(--blue-mid); margin: 14px 0; }
     .security-note { text-align: center; color: var(--gray-mid); font-size: 0.77rem; font-weight: 500; margin-top: 12px; }
 
+    .prev-chat-card {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--white); border: 1.5px solid var(--blue-mid);
+      border-radius: var(--radius-md); padding: 12px 14px;
+      transition: all 0.15s;
+    }
+    .prev-chat-card:hover { background: var(--blue-light); border-color: var(--blue); }
+    .prev-chat-av {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+    }
+    .prev-chat-av.m { background: linear-gradient(135deg,#4A90D9,#1E5FA8); }
+    .prev-chat-av.f { background: linear-gradient(135deg,#F472B6,#BE185D); }
+    .prev-chat-info { flex: 1; min-width: 0; }
+    .prev-chat-name { font-weight: 800; font-size: 0.93rem; color: var(--blue-deep); }
+    .prev-chat-meta { font-size: 0.75rem; color: var(--gray-mid); margin-top: 2px; }
+    .prev-chat-reconnect {
+      background: var(--blue); color: white; border: none;
+      border-radius: 20px; padding: 7px 14px; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem; font-weight: 700; cursor: pointer; flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .prev-chat-reconnect:hover { background: var(--blue-dark); }
+    .prev-chat-reconnect:disabled { opacity: 0.5; cursor: not-allowed; }
+    .reconnect-pending {
+      background: var(--blue-light); color: var(--blue-dark);
+      border: 1.5px solid var(--blue-mid); border-radius: 20px;
+      padding: 6px 12px; font-size: 0.78rem; font-weight: 700; flex-shrink: 0;
+    }
+
     /* ── MOBILE FIXES ── */
     @media (max-width: 480px) {
       .screen { padding: 12px; }
@@ -395,7 +454,23 @@
     <div class="match-title" id="mm-match-title">You have a match</div>
     <div class="match-sub" id="mm-desc">Someone feeling the same way is ready to connect.</div>
     <div class="match-chips" id="mm-chips"></div>
-    <button class="btn btn-blue" id="mm-start-btn">Start Chatting</button>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn btn-outline" id="mm-decline-btn" style="flex:1">Keep Looking</button>
+      <button class="btn btn-blue" id="mm-start-btn" style="flex:1">Accept ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECONNECT REQUEST MODAL -->
+<div class="modal-overlay" id="reconnect-modal">
+  <div class="match-modal-box">
+    <div class="match-avatar-big avatar-m" id="rm-avatar">👤</div>
+    <div class="match-title" id="rm-title">Reconnect Request</div>
+    <div class="match-sub" id="rm-desc">wants to chat with you again.</div>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn btn-outline" id="rm-decline-btn" style="flex:1">Decline</button>
+      <button class="btn btn-blue" id="rm-accept-btn" style="flex:1">Accept ✓</button>
+    </div>
   </div>
 </div>
 
@@ -536,6 +611,12 @@
         </div>
       </div>
 
+      <!-- PREVIOUS CHATS -->
+      <div id="prev-chats-section" class="hidden" style="margin-bottom:14px">
+        <div class="section-label" id="tl-prev-chats">People you talked to before</div>
+        <div id="prev-chats-list" style="display:flex;flex-direction:column;gap:8px"></div>
+      </div>
+
       <button class="btn btn-blue" id="find-btn"><span id="tl-findFriend">Find a Friend in Nakivale</span></button>
       <div class="queue-msg hidden" id="queue-msg">
         <span id="tl-searching">Looking for someone with a matching mood</span>
@@ -670,6 +751,16 @@ const T = {
     voiceUploadFailed:'Voice upload failed.',
     micUnavailable:'Microphone not available.',
     feelingPrefix:'Feeling',
+    prevChats:'People you talked to before',
+    reconnectBtn:'Reconnect',
+    reconnecting:'Waiting for reply...',
+    reconnectRequest:'Reconnect Request',
+    wantsToChat:'wants to chat with you again.',
+    keepLooking:'Keep Looking',
+    accept:'Accept ✓',
+    decline:'Decline',
+    declinedMatch:'Match declined. Looking for someone else...',
+    reconnectDeclined:'They are not available right now.',
     reconnected:'You are back in the chat.',
     partnerReturned:'is back.',
     typingLabel:'is typing',
@@ -734,6 +825,16 @@ const T = {
     voiceUploadFailed:'Échec de l\'envoi vocal.',
     micUnavailable:'Microphone non disponible.',
     feelingPrefix:'Humeur',
+    prevChats:'Personnes avec qui tu as parlé',
+    reconnectBtn:'Reconnecter',
+    reconnecting:'En attente de réponse...',
+    reconnectRequest:'Demande de reconnexion',
+    wantsToChat:'veut à nouveau te parler.',
+    keepLooking:'Continuer à chercher',
+    accept:'Accepter ✓',
+    decline:'Refuser',
+    declinedMatch:'Refusé. Recherche en cours...',
+    reconnectDeclined:'Pas disponible pour l\'instant.',
     reconnected:'Tu es de retour dans le chat.',
     partnerReturned:'est de retour.',
     typingLabel:'est en train d\'écrire',
@@ -798,6 +899,16 @@ const T = {
     voiceUploadFailed:'Kupakia sauti kumeshindwa.',
     micUnavailable:'Kipaza sauti hakipatikani.',
     feelingPrefix:'Hisia',
+    prevChats:'Watu uliozungumza nao',
+    reconnectBtn:'Unganika tena',
+    reconnecting:'Inasubiri jibu...',
+    reconnectRequest:'Ombi la kuunganika tena',
+    wantsToChat:'anataka kuzungumza nawe tena.',
+    keepLooking:'Endelea kutafuta',
+    accept:'Kubali ✓',
+    decline:'Kataa',
+    declinedMatch:'Imekataliwa. Inatafuta mtu mwingine...',
+    reconnectDeclined:'Hawapatikani sasa hivi.',
     reconnected:'Umerudi kwenye mazungumzo.',
     partnerReturned:'amerudi.',
     typingLabel:'anaandika',
@@ -862,6 +973,16 @@ const T = {
     voiceUploadFailed:'Codka rarida ayaa fashilantay.',
     micUnavailable:'Microphone lama heli karo.',
     feelingPrefix:'Dareenka',
+    prevChats:'Dadka aad la hadashay',
+    reconnectBtn:'Xidh mar kale',
+    reconnecting:'Sugaya jawaab...',
+    reconnectRequest:'Codsi dib u xidid',
+    wantsToChat:'wuxuu doonayaa inuu kula hadlo mar kale.',
+    keepLooking:'Sii raadi',
+    accept:'Aqbal ✓',
+    decline:'Diid',
+    declinedMatch:'Diidmay. Waxaa la raadinayaa qof kale...',
+    reconnectDeclined:'Kuma heli karo hadda.',
     reconnected:'Waad ku noqotay wada hadalka.',
     partnerReturned:'ayaa soo noqday.',
     typingLabel:'wuxuu qorayo',
@@ -926,6 +1047,16 @@ const T = {
     voiceUploadFailed:'Kohereza ijwi ntibyakunze.',
     micUnavailable:'Microphone ntiboneka.',
     feelingPrefix:'Imyumvire',
+    prevChats:'Abantu wabagaganye',
+    reconnectBtn:'Ongera uhuze',
+    reconnecting:'Tegereza igisubizo...',
+    reconnectRequest:'Ubusabe bwo gusubirana',
+    wantsToChat:'ashaka kuvugana nawe nanone.',
+    keepLooking:'Komeza gushaka',
+    accept:'Emera ✓',
+    decline:'Anga',
+    declinedMatch:'Yanganiwe. Gushaka uwundi...',
+    reconnectDeclined:'Ntabwo aboneka ubu.',
     reconnected:'Waramuye mu kiganiro.',
     partnerReturned:'aragarutse.',
     typingLabel:'arimo andika',
@@ -990,6 +1121,16 @@ const T = {
     voiceUploadFailed:'فشل رفع الصوت.',
     micUnavailable:'الميكروفون غير متاح.',
     feelingPrefix:'المزاج',
+    prevChats:'الأشخاص الذين تحدثت معهم',
+    reconnectBtn:'إعادة الاتصال',
+    reconnecting:'في انتظار الرد...',
+    reconnectRequest:'طلب إعادة الاتصال',
+    wantsToChat:'يريد التحدث معك مجدداً.',
+    keepLooking:'الاستمرار في البحث',
+    accept:'قبول ✓',
+    decline:'رفض',
+    declinedMatch:'تم الرفض. البحث عن شخص آخر...',
+    reconnectDeclined:'غير متاح الآن.',
     reconnected:'عدت إلى المحادثة.',
     partnerReturned:'عاد.',
     typingLabel:'يكتب',
@@ -1095,6 +1236,7 @@ function applyLang(lang){
     'tl-findFriend': t.findFriend,
     'tl-searching':  t.searching,
     'tl-anon':       t.anon,
+    'tl-prev-chats':  t.prevChats,
     'tl-tab-advice': t.tabAdvice,
     'tl-tab-skills': t.tabSkills,
     'tl-tab-nakivale':t.tabNakivale,
@@ -1242,6 +1384,8 @@ document.getElementById('mood-next-btn').addEventListener('click',()=>{
   syncLobbyMood(selectedMood); updateMyMoodBadge();
   saveSession();
   showScreen('lobby-screen'); joinPresence(); loadContent(currentTab);
+  renderPrevChats();
+  listenForReconnectRequests();
 });
 
 // ─── SCREEN 4: LOBBY MOOD ─────────────────────────────────────────────────────
@@ -1340,14 +1484,30 @@ async function pollForMatch(){
 }
 async function enterRoom(roomId){
   currentRoom=roomId;
-  if(supabase_client){const{data:q}=await supabase_client.from('queue').select('*').eq('room_id',roomId);partnerInfo=q?.find(u=>u.username!==profile.username)||{username:'Friend',gender:'male',zone:'Nakivale',mood:'😊'};}
-  showMatchModal(()=>startChat());
+  if(supabase_client){
+    const{data:q}=await supabase_client.from('queue').select('*').eq('room_id',roomId);
+    partnerInfo=q?.find(u=>u.username!==profile.username)||{username:'Friend',gender:'male',zone:'Nakivale',mood:'😊'};
+  }
+  showMatchModal(
+    ()=>startChat(),
+    async()=>{
+      // Declined — clear room_id for both and re-enter queue
+      showToast(tr('declinedMatch')||'Declined. Looking for someone else...');
+      if(supabase_client){
+        await supabase_client.from('queue').update({room_id:null}).eq('room_id',roomId);
+        // re-upsert self into queue
+        await supabase_client.from('queue').upsert({username:profile.username,gender:profile.gender,zone:profile.zone,location:profile.location,mood:profile.mood,lang:currentLang,joined_at:new Date().toISOString(),room_id:null});
+      }
+      currentRoom=null; partnerInfo=null;
+      pollForMatch();
+    }
+  );
 }
 
 
 
 // ─── MATCH MODAL ──────────────────────────────────────────────────────────────
-function showMatchModal(onStart){
+function showMatchModal(onStart, onDecline){
   const p = partnerInfo||{username:'Friend',gender:'male',zone:'Nakivale',mood:'😊'};
   const av = document.getElementById('mm-avatar');
   av.textContent = p.gender==='female'?'👩':'👨';
@@ -1355,11 +1515,154 @@ function showMatchModal(onStart){
   const moodLabel = getMoodLabel(p.mood,'#lobby-mood-row ');
   document.getElementById('mm-match-title').textContent = tr('matchfound');
   document.getElementById('mm-desc').textContent = p.username+' '+tr('matchFeeling')+' '+moodLabel+' '+p.mood+' '+tr('matchGoodMatch');
-  document.getElementById('mm-start-btn').textContent = tr('startChat');
+  document.getElementById('mm-start-btn').textContent = tr('accept') || 'Accept ✓';
+  document.getElementById('mm-decline-btn').textContent = tr('keepLooking') || 'Keep Looking';
   const chips = document.getElementById('mm-chips'); chips.innerHTML='';
   [p.zone, moodLabel].forEach(l=>{const c=document.createElement('span');c.className='match-chip';c.textContent=l;chips.appendChild(c);});
   document.getElementById('match-modal').classList.add('open');
-  document.getElementById('mm-start-btn').onclick=()=>{ document.getElementById('match-modal').classList.remove('open'); onStart(); };
+  document.getElementById('mm-start-btn').onclick=()=>{
+    document.getElementById('match-modal').classList.remove('open');
+    onStart();
+  };
+  document.getElementById('mm-decline-btn').onclick=()=>{
+    document.getElementById('match-modal').classList.remove('open');
+    if(onDecline) onDecline();
+  };
+}
+
+// ─── PREVIOUS CHATS ────────────────────────────────────────────────────────────
+function loadPrevChats(){
+  const raw = localStorage.getItem('n2n_prev_chats');
+  return raw ? JSON.parse(raw) : [];
+}
+
+function savePrevChat(partner){
+  const chats = loadPrevChats();
+  // Avoid duplicates — update existing entry
+  const idx = chats.findIndex(c=>c.username===partner.username);
+  const entry = {...partner, lastChat: Date.now()};
+  if(idx>=0) chats[idx]=entry; else chats.unshift(entry);
+  // Keep only last 5
+  localStorage.setItem('n2n_prev_chats', JSON.stringify(chats.slice(0,5)));
+}
+
+function renderPrevChats(){
+  const chats = loadPrevChats();
+  const section = document.getElementById('prev-chats-section');
+  const list    = document.getElementById('prev-chats-list');
+  if(!list) return;
+  list.innerHTML='';
+  document.getElementById('tl-prev-chats').textContent = tr('prevChats');
+  if(chats.length===0){ section.classList.add('hidden'); return; }
+  section.classList.remove('hidden');
+  chats.forEach(p=>{
+    const card = document.createElement('div');
+    card.className='prev-chat-card';
+    const av = document.createElement('div');
+    av.className='prev-chat-av '+(p.gender==='female'?'f':'m');
+    av.textContent = p.gender==='female'?'👩':'👨';
+    const info = document.createElement('div');
+    info.className='prev-chat-info';
+    const name = document.createElement('div');
+    name.className='prev-chat-name';
+    name.textContent = p.username+' '+p.mood;
+    const meta = document.createElement('div');
+    meta.className='prev-chat-meta';
+    meta.textContent = p.zone+' · '+new Date(p.lastChat).toLocaleDateString();
+    info.appendChild(name); info.appendChild(meta);
+    const btn = document.createElement('button');
+    btn.className='prev-chat-reconnect';
+    btn.textContent = tr('reconnectBtn')||'Reconnect';
+    btn.addEventListener('click',()=>sendReconnectRequest(p, btn));
+    card.appendChild(av); card.appendChild(info); card.appendChild(btn);
+    list.appendChild(card);
+  });
+}
+
+// ─── RECONNECT REQUEST ─────────────────────────────────────────────────────────
+let reconnectChannel = null;
+
+async function sendReconnectRequest(targetPartner, btn){
+  btn.disabled=true;
+  btn.textContent = tr('reconnecting')||'Waiting...';
+  const reqRoom = 'reconnect_'+profile.username+'_'+targetPartner.username+'_'+Date.now();
+  localStorage.setItem('n2n_pending_reconnect', JSON.stringify({room:reqRoom, target:targetPartner}));
+
+  if(!supabase_client) return;
+
+  // Open a channel to the target and send request
+  reconnectChannel = supabase_client.channel('reconnect_'+targetPartner.username);
+  reconnectChannel
+    .on('broadcast',{event:'reconnect_response'},({payload})=>{
+      if(payload.from!==targetPartner.username) return;
+      supabase_client.removeChannel(reconnectChannel);
+      reconnectChannel=null;
+      localStorage.removeItem('n2n_pending_reconnect');
+      if(payload.accepted){
+        currentRoom   = payload.room;
+        partnerInfo   = targetPartner;
+        saveSession();
+        showMatchModal(()=>startChat(), null);
+        // hide accept/decline since this is a pre-accepted reconnect
+        document.getElementById('mm-decline-btn').style.display='none';
+      } else {
+        btn.disabled=false;
+        btn.textContent=tr('reconnectBtn')||'Reconnect';
+        showToast(tr('reconnectDeclined')||'Not available right now.');
+      }
+    })
+    .subscribe(async()=>{
+      await reconnectChannel.send({
+        type:'broadcast', event:'reconnect_request',
+        payload:{ from:profile.username, fromInfo:profile, room:reqRoom }
+      });
+    });
+
+  // Timeout after 30s
+  setTimeout(()=>{
+    if(!reconnectChannel) return;
+    supabase_client.removeChannel(reconnectChannel);
+    reconnectChannel=null;
+    btn.disabled=false;
+    btn.textContent=tr('reconnectBtn')||'Reconnect';
+    localStorage.removeItem('n2n_pending_reconnect');
+    showToast(tr('reconnectDeclined')||'No response. They may be offline.');
+  }, 30000);
+}
+
+function listenForReconnectRequests(){
+  if(!supabase_client) return;
+  const incomingChannel = supabase_client.channel('reconnect_'+profile.username);
+  incomingChannel
+    .on('broadcast',{event:'reconnect_request'},({payload})=>{
+      showReconnectModal(payload.from, payload.fromInfo, payload.room, incomingChannel);
+    })
+    .subscribe();
+}
+
+function showReconnectModal(fromName, fromInfo, roomId, channel){
+  const av = document.getElementById('rm-avatar');
+  av.textContent = fromInfo.gender==='female'?'👩':'👨';
+  av.className = 'match-avatar-big '+(fromInfo.gender==='female'?'avatar-f':'avatar-m');
+  document.getElementById('rm-title').textContent = tr('reconnectRequest')||'Reconnect Request';
+  document.getElementById('rm-desc').textContent  = fromName+' '+(tr('wantsToChat')||'wants to chat with you again.');
+  document.getElementById('reconnect-modal').classList.add('open');
+
+  document.getElementById('rm-accept-btn').textContent  = tr('accept')||'Accept ✓';
+  document.getElementById('rm-decline-btn').textContent = tr('decline')||'Decline';
+
+  document.getElementById('rm-accept-btn').onclick=async()=>{
+    document.getElementById('reconnect-modal').classList.remove('open');
+    await channel.send({type:'broadcast',event:'reconnect_response',payload:{from:profile.username,accepted:true,room:roomId}});
+    partnerInfo = fromInfo;
+    currentRoom = roomId;
+    saveSession();
+    startChat();
+  };
+  document.getElementById('rm-decline-btn').onclick=async()=>{
+    document.getElementById('reconnect-modal').classList.remove('open');
+    await channel.send({type:'broadcast',event:'reconnect_response',payload:{from:profile.username,accepted:false,room:roomId}});
+  };
 }
 
 // ─── CHAT ─────────────────────────────────────────────────────────────────────
@@ -1375,6 +1678,7 @@ function startChat(){
   document.getElementById('chat-online-count').textContent = currentOnlineCount;
   document.getElementById('leave-btn').textContent = tr('leave');
   saveSession();
+  savePrevChat(partnerInfo);
   addMessage(tr('connected')+' '+partnerInfo.username,'system');
   if(supabase_client&&currentRoom!=='demo'){
     roomChannel = supabase_client.channel(currentRoom);
@@ -1735,6 +2039,8 @@ function restoreSession(){
   showScreen('lobby-screen');
   joinPresence();
   loadContent(currentTab);
+  renderPrevChats();
+  listenForReconnectRequests();
   return true;
 }
 
